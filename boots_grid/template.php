@@ -23,7 +23,7 @@ function boots_grid_preprocess_block(&$variables) {
     unset($ca[array_search(str_replace('_', '-', 'block-' . $b->module), $ca)]);
 
     // add grid span class
-    $w = boots_grid_get_block_width($b->module, $b->delta);
+    $w = tiles_get_block_width($b->module, $b->delta);
     if($w) {
         $ca[] = 'span' . $w;
     }
@@ -47,103 +47,24 @@ function boots_grid_preprocess_region(&$variables) {
 }
 
 /**
- * Implements hook_page_alter().
- *
- * Wraps blocks in each region with rows based on block widths.
+ * Default implementation of theme_tiles_region().
  */
-function boots_grid_page_alter(&$page) {
-  global $theme;
-  if ($theme === variable_get('admin_theme', 'ombuadmin')) {
-    return;
-  }
-
-  $default_width = 12;
-  $max_cols_per_row = $default_width;
-  foreach (element_children($page) as $region_key) {
-    // Make sure blocks are properly sorted.
-    unset($page[$region_key]['#sorted']);
-    $region_children = element_children($page[$region_key], TRUE);
-
-    $col_count = $row = 0;
-    $row_key = 'row_'. $row;
-
-    $page[$region_key]['#original'] = array();
-    $page[$region_key]['rows'] = array();
-    $page[$region_key]['rows'][$row_key] = array(
-      '#prefix' => '<div class="row-fluid">',
-      '#suffix' => '</div>',
-    );
-
-    foreach ($region_children as $delta) {
-
-      // Only operate on blocks
-      if (!array_key_exists('#block', $page[$region_key][$delta])) {
-          continue;
-      }
-
-      $block = $page[$region_key][$delta]['#block'];
-      $width = boots_grid_get_block_width($block->module, $block->delta);
-
-      if (($col_count + $width) <= $max_cols_per_row) {
-        $col_count += $width;
-      }
-      else {
-        $col_count = $width;
-        $row++;
-        $row_key = 'row_'. $row;
-        $page[$region_key]['rows'][$row_key] = array(
-          '#prefix' => '<div class="row-fluid">',
-          '#suffix' => '</div>',
-        );
-      }
-
-      // Add block to current row
-      $page[$region_key]['rows'][$row_key][$delta] = $page[$region_key][$delta];
-
-      // Stash the block in the #original key
-      $page[$region_key]['#original'][$delta] = $page[$region_key][$delta];
-
-      // Remove block from old position in region
-      unset($page[$region_key][$delta]);
-    }
-  }
+function boots_grid_tiles_region($variables) {
+  return $variables['element']['#children'];
 }
 
 /**
- * Returns a block's width
- *
- * The block's width is determined by:
- * - Checking for values from hook_block_widths().
- * - Checking if it is an ombublock that has a width value. (overwrites
- *   previous)
- * - Setting to default if none of the above produced a width.
- *
- * @return int $width
+ * Default implementation of theme_tiles_row().
  */
-function boots_grid_get_block_width($module, $delta) {
+function boots_grid_tiles_row($variables) {
+  return '<div class="row-fluid">' . $variables['element']['#children'] . '</div>';
+}
 
-  $default_width = 12;
-  $width = FALSE;
-  $block_widths = module_invoke_all('block_widths');
-
-  // Get width from hook_block_widths().
-  if (isset($block_widths[$module][$delta])) {
-    $width = (int) $block_widths[$module][$delta];
-  }
-
-  // Get width from tiles
-  if (function_exists('tiles_is_tile') && tiles_is_tile($module, $delta)) {
-    $tile_width = tiles_block_get_width($module, $delta);
-    if ($tile_width) {
-      $width = $tile_width;
-    }
-  }
-
-  if ($width === FALSE) {
-    $width = $default_width;
-  }
-
-  return $width;
+/**
+ * Default implementation of theme_tiles_tile().
+ */
+function boots_grid_tiles_tile($variables) {
+  return $variables['element']['#children'];
 }
 
 /**
