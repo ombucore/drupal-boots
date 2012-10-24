@@ -16,20 +16,34 @@
   <?php if ($messages): ?>
 	<div class="row-fluid">
 	  <div id="console" class="span12 clearfix"><?php print $messages; ?></div>
-	</div>
+    </div><!-- /.row-fluid -->
   <?php endif; ?>
 
   <div class="row-fluid">
-	<?php if ($page['sidebar_first']): ?> <?php print render($page['sidebar_first']); ?> <?php endif ?>
+
+    <!-- Sidebar First-->
+    <?php if ($page['sidebar_first']): ?>
+      <?php print render($page['sidebar_first']); ?>
+    <?php endif ?>
+
+    <!-- Main Content -->
 	<div class="span<?php print $content_col_span ?>">
-	  <?php if ($page['content_top']): ?> <?php print render($page['content_top']); ?> <?php endif ?>
-	  <?php if ($page['content']): ?> <?php print render($page['content']); ?> <?php endif ?>
+        <?php if ($page['content_top']): ?>
+          <?php print render($page['content_top']); ?>
+        <?php endif ?>
+        <?php if ($page['content']): ?>
+            <?php print render($page['content']); ?>
+        <?php endif ?>
 	</div>
-	<?php if ($page['sidebar_second']): ?> <?php print render($page['sidebar_second']); ?> <?php endif ?>
-  </div>
+
+    <!-- Sidebar Second -->
+    <?php if ($page['sidebar_second']): ?>
+      <?php print render($page['sidebar_second']); ?>
+    <?php endif ?>
+  </div><!-- /.row-fluid -->
 
 
-<?php if ($page['footer']): ?> <?php print render($page['footer']); ?> <?php endif ?>
+  <?php if ($page['footer']): ?> <?php print render($page['footer']); ?> <?php endif ?>
 
 </div> <!--/#container -->
 
