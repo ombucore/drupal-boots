@@ -1,0 +1,7 @@
+name = OMBU Admin Theme 
+description = Back End Administration Theme by OMBU Web based on Core
+version = 0.3
+base theme = boots_core
+core = 7.x
+stylesheets[all][] = css/boots_admin.css
+scripts[] = js/core.js

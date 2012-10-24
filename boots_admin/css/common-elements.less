@@ -1,0 +1,40 @@
+.views-exposed-form {
+  background: white;
+  .border-radius(@radius);
+  border: solid 1px #e5e5e5;
+  padding: 0 (@baseLineHeight / 2);
+  margin-bottom: @baseLineHeight;
+  .views-exposed-widget .form-submit {margin-top: 1.8em;}
+  .views-exposed-widgets {margin-bottom: 0;}
+}
+ 
+.vertical-tabs {
+  .vertical-tabs-list {
+    :focus {outline:none;}
+  }
+  .form-type-textfield input {
+    box-sizing: content-box;
+    width: 98%;
+  }
+  fieldset {
+    padding-top: @baseLineHeight / 2 !important;
+    .border-radius(0);
+    .fieldset-wrapper {
+      .border-radius(0);
+      border: none;
+      padding: 0;
+      background: transparent;
+    }
+  }
+}
+
+.form-actions {
+  .border-radius(0 0 @radius @radius);
+  margin-bottom: 0;
+  input[type='submit'] {
+    margin-right: @baseLineHeight / 2;
+  }
+}
+.action-links.btn-group {
+  margin-bottom: @baseLineHeight;
+}

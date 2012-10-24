@@ -1,0 +1,116 @@
+@media only screen
+and (min-width : 950px) {
+  .page-admin {
+    .admin > div {
+      width: 48%;
+      &.left {float: left;}
+      &.right {float: right;}
+    }
+  }
+}
+
+.page-admin-dashboard {
+  min-width: 497px;
+  #container {
+    background: transparent;
+    .box-shadow(none);
+    #page {
+      background: rgba(255,255,255,0.3);
+      padding: 27px 35px;
+      .border-radius(@radius);
+      table, 
+      .fieldset-wrapper, 
+      .view-filters
+      fieldset .fieldset-legend {
+        background: white;
+      }
+    }
+    #page-title {
+      color: white;
+      margin-bottom: @baseLineHeight / 2;
+    }
+  }
+  #overlay {
+    #container {
+      #page-title {color: black;}
+      #page {
+        padding: 0;
+      }
+    }
+  }
+  .admin {
+    .clearfix();
+    > div {
+      > aside {
+        margin-bottom: @baseLineHeight;
+        border-radius: @radius;
+        .box-shadow(0 1px 2px rgba(0,0,0,0.1));
+        background: white;
+        border: solid 1px #D9D9D9;
+        > h3 {
+          border-bottom: solid 1px #D9D9D9;
+          color: #353535;
+          text-shadow: 0 1px 0px rgba(255, 255, 255, 0.2);
+          font-size: 13px;
+          text-transform: uppercase;
+          line-height: 180%;
+          padding: 0.3em 0 0 2em;
+        }
+        .body {
+          padding: 5px;
+          .clearfix();
+          .admin-list {
+            margin: (@baseLineHeight / 4) 0 (@baseLineHeight / 4) 20px;
+            list-style-type: none;  
+            dt {
+              + dt {
+                margin-top: 5px;
+              }
+            }
+            dd {
+              font-style: italic;
+            }
+          }
+        }
+      }
+    }
+  }
+  #core-content-operations {
+    select {
+      float: left;
+      margin-bottom: 0;
+    }
+    > dl {
+      margin: 0;
+      dt {
+        float: left;
+        position: relative;
+        top: 5px;
+        margin-right: 4px;
+      }
+      dd {
+        float: left;
+        font-style: normal;
+      }
+    }
+    .description {
+      clear: both;
+      margin-bottom: @baseLineHeight / 2;
+    }
+  }
+  #code-content-node-picker {
+    clear: both;
+    form {margin-bottom: 0;}
+    .form-item-title {
+      float: left;
+      margin-right: @baseLineHeight / 2;
+      input[type='text'] {
+        margin-bottom: 0;
+      }
+    }
+    .description {
+      clear: both;
+    }
+  }
+  .pagination ul {background: white;}
+}
