@@ -27,3 +27,5 @@ settings[tiles_steps][9] =  75%
 settings[tiles_steps][10] = 83%
 settings[tiles_steps][11] = 92%
 settings[tiles_steps][12] = 100%
+
+stylesheets[all][] = boots_grid.css
