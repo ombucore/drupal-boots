@@ -6,6 +6,7 @@ version = 0.3
 core = 7.x
 
 stylesheets[all][] = bootstrap.css
+scripts[] = js/bootstrap-alert.js
 
 regions[site_top] = Site Top
 regions[header] = Header
