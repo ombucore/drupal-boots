@@ -3,7 +3,7 @@
  * @file
  * - Adds Bootstrap markup
  * - Removes some default markup cruft
- */ 
+ */
 
 /**
  * Implements hook_css_alter().
@@ -179,7 +179,7 @@ function boots_core_pager($variables) {
 }
 
 /**
- * Adds `btn` class to all submit buttons with special treatment for Save & 
+ * Adds `btn` class to all submit buttons with special treatment for Save &
  * Delete buttons
  */
 function boots_core_preprocess_button(&$variables) {
@@ -261,6 +261,25 @@ function boots_core_menu_local_action($variables) {
   }
 
   return $output;
+}
+
+/**
+ * Implements theme_preprocess_block().
+ */
+function boots_core_preprocess_block(&$variables) {
+  $title_classes = &$variables['title_attributes_array']['class'];
+  $block = $variables['block'];
+
+  if ($block->module == 'system' && $block->delta == 'main-menu') {
+    $title_classes[] = 'nav-header';
+  }
+}
+
+/**
+ * Themes menu wrappers with Bootstrap
+ */
+function boots_core_menu_tree(&$variables) {
+  return '<ul class="nav">' . $variables['tree'] . '</ul>';
 }
 
 /**
