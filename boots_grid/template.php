@@ -23,9 +23,8 @@ function boots_grid_preprocess_block(&$variables) {
     unset($ca[array_search(str_replace('_', '-', 'block-' . $b->module), $ca)]);
 
     // add grid span class
-    $w = tiles_get_block_width($b->module, $b->delta);
-    if($w) {
-        $ca[] = 'span' . $w;
+    if (isset($b->width)) {
+      $ca[] = 'span' . $b->width;
     }
 }
 
