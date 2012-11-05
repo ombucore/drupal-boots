@@ -283,6 +283,16 @@ function boots_core_menu_tree(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_menu_link.
+ */
+function boots_core_preprocess_menu_link(&$variables) {
+  // Add .active class to <li>
+  if (in_array('active-trail', $variables['element']['#attributes']['class'])) {
+    $variables['element']['#attributes']['class'][] = 'active';
+  }
+}
+
+/**
  * Themes tables with Bootstrap
  */
  function boots_core_preprocess_table(&$variables) {
