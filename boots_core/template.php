@@ -287,7 +287,7 @@ function boots_core_menu_tree(&$variables) {
  */
 function boots_core_preprocess_menu_link(&$variables) {
   // Add .active class to <li>
-  if (in_array('active-trail', $variables['element']['#attributes']['class'])) {
+  if (isset($variables['element']['#attributes']['class']) && in_array('active-trail', $variables['element']['#attributes']['class'])) {
     $variables['element']['#attributes']['class'][] = 'active';
   }
 }
