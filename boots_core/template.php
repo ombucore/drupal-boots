@@ -286,8 +286,14 @@ function boots_core_menu_tree(&$variables) {
  * Implements hook_preprocess_menu_link.
  */
 function boots_core_preprocess_menu_link(&$variables) {
-  // Add .active class to <li>
-  if (isset($variables['element']['#attributes']['class']) && in_array('active-trail', $variables['element']['#attributes']['class'])) {
+  // Add .active class to <li>.  Checks if <li> is in active-trail, but since
+  // theme_menu_link() doesn't add active-trail to homepage menu items, also
+  // need to check if link path matches current path.
+  $path = $variables['element']['#href'];
+  if (
+    isset($variables['element']['#attributes']['class']) && in_array('active-trail', $variables['element']['#attributes']['class']) ||
+    ($path == $_GET['q'] || ($path == '<front>' && drupal_is_front_page()))
+  ) {
     $variables['element']['#attributes']['class'][] = 'active';
   }
 }
