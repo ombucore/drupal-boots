@@ -2423,13 +2423,21 @@ input[type="submit"].btn.btn-mini {
  * For the styles below, see
  * <http://twitter.github.com/bootstrap/examples/fluid.html>
  */
-body,
-#overlay {
+/* Make room for toolbar */
+body {
   padding-top: 60px;
+}
+.overlay-element {
+  top: 30px;
 }
 .sidebar-nav {
   padding: 9px 0;
 }
 .row-fluid [class*="span"] {
   min-height: 0;
+}
+[data-delta*='ombubeans-fpo'] img {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }

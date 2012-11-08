@@ -46,12 +46,19 @@
  * For the styles below, see
  * <http://twitter.github.com/bootstrap/examples/fluid.html>
  */
-body, #overlay {
-  padding-top: 60px
-}
+
+/* Make room for toolbar */
+body { padding-top: 60px }
+.overlay-element { top: 30px; }
+
 .sidebar-nav {
   padding: 9px 0;
 }
 .row-fluid [class*="span"] {
     min-height: 0;
+}
+
+/* Bootstrap FPO images have padding: keep them in the box */
+[data-delta*='ombubeans-fpo'] img {
+    .box-sizing(border-box);
 }
