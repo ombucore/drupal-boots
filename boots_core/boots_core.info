@@ -1,0 +1,13 @@
+name = boots_core
+description = Providing the base theme that project and admin themes will use. Imports Twitter's Bootstrap (which is a nested repo).
+package = OMBU
+version = 0.3
+core = 7.x
+
+regions[header] = Header
+regions[footer] = Footer
+regions[content] = Content
+regions[sidebar_first] = Sidebar First
+regions[sidebar_second] = Sidebar Second
+
+features[] = favicon

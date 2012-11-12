@@ -1,0 +1,31 @@
+name = Boots Grid Theme
+description = Grid FTW
+base theme = boots_core
+package = OMBU
+version = 0.3
+core = 7.x
+
+regions[site_top] = Site Top
+regions[header] = Header
+regions[sidebar_first] = Sidebar First
+regions[header] = Header
+regions[content_top] = Content Top
+regions[content] = Content
+regions[sidebar_second] = Sidebar Second
+regions[footer] = Footer
+regions[site_bottom] = Site Bottom
+
+settings[tiles_steps][1] =  8%
+settings[tiles_steps][2] =  17%
+settings[tiles_steps][3] =  25%
+settings[tiles_steps][4] =  33%
+settings[tiles_steps][5] =  42%
+settings[tiles_steps][6] =  50%
+settings[tiles_steps][7] =  58%
+settings[tiles_steps][8] =  67%
+settings[tiles_steps][9] =  75%
+settings[tiles_steps][10] = 83%
+settings[tiles_steps][11] = 92%
+settings[tiles_steps][12] = 100%
+
+stylesheets[all][] = boots_grid.css

@@ -1,0 +1,43 @@
+table.table {
+  background: white;
+  thead {}
+  tbody {
+    td {
+      ul.inline {
+        li {
+          list-style-type: none;
+          float: left;
+          margin-left: 3px;
+          &:first-child {margin-left: 0;}
+        }
+      }
+      a[href^='/admin'],
+      a[href*='destination=admin'] {
+        &[href*='delete'] {
+          color: @red;
+        }
+      }
+      .control-group {margin-bottom: 0;}
+    }
+  }
+  .radio input[type="radio"], 
+  .checkbox input[type="checkbox"] {margin-left: 0;}
+  &.system-status-report {
+    tr:hover td {background: inherit;}
+    .merge-down {
+      border-bottom-width: 0;
+      td {
+        padding-bottom: 0;
+      }
+    }
+    .merge-up {
+      border-top-width: 0;
+      td {
+        border-top-width: 0;
+        padding-left: 9%;
+        padding-top: 0;
+        font-size: 11px;
+      }
+    }
+  }
+}
