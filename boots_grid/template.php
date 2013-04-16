@@ -6,7 +6,7 @@ function boots_grid_preprocess_page(&$variables) {
 
     // Set the content area width
     $variables['content_col_span']  = 12;
-    if($variables['page']['sidebar_first']) {
+    if(isset($variables['page']['sidebar_first'])) {
         $variables['content_col_span']  -= 3;
     }
     if($variables['page']['sidebar_second']) {
@@ -78,35 +78,37 @@ function boots_grid_block_view_alter(&$data, $block) {
       '' => '- Menu -',
     );
     $default_value = '';
-    foreach (element_children($data['content']['#content']) as $i) {
-      $item = $data['content']['#content'][$i];
-      $path = $item['#href'];
-      $url = url($path);
-      if ($path == $_GET['q'] || ($path == '<front>' && drupal_is_front_page())) {
-        $default_value = $url;
+    if (isset($data['content']['#content'])) {
+      foreach (element_children($data['content']['#content']) as $i) {
+        $item = $data['content']['#content'][$i];
+        $path = $item['#href'];
+        $url = url($path);
+        if ($path == $_GET['q'] || ($path == '<front>' && drupal_is_front_page())) {
+          $default_value = $url;
+        }
+        $options[$url] = $item['#title'];
       }
-      $options[$url] = $item['#title'];
-    }
 
-    $data['content']['#content']['attributes'] = array(
-      'class' => array('hidden-phone'),
-    );
-    $data['content']['#content'] = array(
-      'menu' => array(
-        '#prefix' => '<div class="hidden-phone">',
-        'content' => $data['content']['#content'],
-        '#suffix' => '</div>',
-      ),
-      'select' => array(
-        '#type' => 'select',
-        '#options' => $options,
-        '#value' => $default_value,
-        '#attributes' => array(
-          'class' => array('select-menu', 'visible-phone'),
-          'onChange' => 'window.location.replace(this.options[this.selectedIndex].value);',
+      $data['content']['#content']['attributes'] = array(
+        'class' => array('hidden-phone'),
+      );
+      $data['content']['#content'] = array(
+        'menu' => array(
+          '#prefix' => '<div class="hidden-phone">',
+          'content' => $data['content']['#content'],
+          '#suffix' => '</div>',
         ),
-      ),
-    );
+        'select' => array(
+          '#type' => 'select',
+          '#options' => $options,
+          '#value' => $default_value,
+          '#attributes' => array(
+            'class' => array('select-menu', 'visible-phone'),
+            'onChange' => 'window.location.replace(this.options[this.selectedIndex].value);',
+          ),
+        ),
+      );
+    }
   }
 
 }
