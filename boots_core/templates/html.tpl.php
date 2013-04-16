@@ -48,6 +48,7 @@
   <title><?php print $head_title; ?></title>
   <?php print $head; ?>
   <?php print $styles; ?>
+  <script src="<?php print url(drupal_get_path('theme', 'boots_core')) . '/js/modernizr.js'; ?>"></script>
 </head>
 <!-- <body class="<?php print $classes; ?>" <?php print $attributes;?>> -->
 <body class="<?php print $classes; ?>" <?php print $attributes;?>
