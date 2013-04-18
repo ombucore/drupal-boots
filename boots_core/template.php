@@ -442,6 +442,15 @@ function boots_core_bean_container($variables) {
 }
 
 /**
+ * Implements hook_preprocess_field().
+ */
+function boots_core_preprocess_field(&$variables) {
+  if ($variables['element']['#field_type'] == 'text_with_summary' || $variables['element']['#field_type'] == 'text_long') {
+    $variables['classes_array'][] = 'c';
+  }
+}
+
+/**
  * Form Elements
  */
 
