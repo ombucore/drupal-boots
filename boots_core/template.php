@@ -273,6 +273,9 @@ function boots_core_preprocess_block(&$variables) {
   if ($block->module == 'system' && $block->delta == 'main-menu') {
     $title_classes[] = 'nav-header';
   }
+
+  $variables['attributes_array']['data-module'] = $variables['block']->module;
+  $variables['attributes_array']['data-delta'] = $variables['block']->delta;
 }
 
 /**
