@@ -42,10 +42,11 @@
  */
 ?>
 <!doctype html>
-<!--[if lt IE 7]>      <html lang="<?php print $language->language; ?>" class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="<?php print $language->language; ?>" class="lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="<?php print $language->language; ?>" class="lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="<?php print $language->language; ?>" class=""> <!--<![endif]-->
+<!--[if lt IE 7]>      <html lang="<?php print $language->language; ?>" class="lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="<?php print $language->language; ?>" class="lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="<?php print $language->language; ?>" class="lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html lang="<?php print $language->language; ?>" class="lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html lang="<?php print $language->language; ?>" class="not-ie"> <!--<![endif]-->
 <head>
   <title><?php print $head_title; ?></title>
   <?php print $head; ?>
