@@ -41,12 +41,15 @@ function boots_core_css_alter(&$css) {
 }
 
 /**
- * Implements hook_preprocess_search_block_form().
- *
- * Puts placeholder attribute in search bars
+ * Implements hook_form_alter().
  */
-function boots_core_preprocess_search_block_form(&$vars) {
-  $vars['search_form'] = str_replace('type="text"', 'type="text" placeholder="Search" value="" size=""', $vars['search_form']);
+function boots_core_form_alter(&$form, $form_state, $form_id) {
+  if ($form_id == 'search_form') {
+    $form['basic']['keys']['#attributes']['placeholder'] = t('Search');
+  }
+  elseif ($form_id == 'search_block_form') {
+    $form['search_block_form']['#attributes']['placeholder'] = t('Search');
+  }
 }
 
 /**
