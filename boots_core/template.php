@@ -392,7 +392,7 @@ function boots_core_bean_container($variables) {
   if (empty($children)) {
     if (user_access('edit any bean_container bean')) {
       $output .= t('This is an empty block container. You can add blocks to it by clicking <a href="!url">"Manage Children"</a> on the container cog menu', array(
-        '!url' => $variables['parent']->viewURL() . '/manage-children',
+        '!url' => url($variables['parent']->url() . '/manage-children'),
       ));
     }
     return $output;
