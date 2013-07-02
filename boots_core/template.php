@@ -377,7 +377,7 @@ function boots_core_item_list($variables) {
  * Bean Containers: User Bootstrap tab js.
  */
 function boots_core_preprocess_bean_container(&$variables) {
-  $bootstrap_path = drupal_get_path('theme', 'boots_core') . '/bootstrap';
+  $bootstrap_path = drupal_get_path('theme', 'boots_core') . '/../lib/bootstrap';
   drupal_add_js($bootstrap_path . '/js/bootstrap-tab.js');
 }
 
