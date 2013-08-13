@@ -8,7 +8,6 @@ core = 7.x
 regions[site_top] = Site Top
 regions[header] = Header
 regions[sidebar_first] = Sidebar First
-regions[header] = Header
 regions[content_top] = Content Top
 regions[content] = Content
 regions[sidebar_second] = Sidebar Second
@@ -27,5 +26,10 @@ settings[tiles_steps][9] =  75%
 settings[tiles_steps][10] = 83%
 settings[tiles_steps][11] = 92%
 settings[tiles_steps][12] = 100%
+
+settings[regions][sidebar_first] = Sidebar First
+settings[regions][content_top] = Content Top
+settings[regions][content] = Content
+settings[regions][sidebar_second] = Sidebar Second
 
 stylesheets[all][] = boots_grid.css
