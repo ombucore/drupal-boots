@@ -407,9 +407,7 @@ function boots_core_bean_container_tabs($variables) {
 
   if (empty($children)) {
     if (user_access('edit any bean_container bean')) {
-      $output .= t('This is an empty block container. You can add blocks to it by clicking <a href="!url">"Manage Children"</a> on the container cog menu', array(
-        '!url' => url($variables['parent']->url() . '/manage-children'),
-      ));
+      $output .= t('This is an empty block container. You can add blocks to it by clicking "Add Block to Container" in the container cog menu');
     }
     return $output;
   }
@@ -418,28 +416,33 @@ function boots_core_bean_container_tabs($variables) {
 
   $nav = array();
   $items = array();
-  $key = 0;
-  foreach (element_children($children) as $child) {
-    $child = $children[$child];
-    $block = $child['#block'];
-
+  foreach ($children as $key => $child) {
     // Generate nav.
     $nav[] = array(
-      'data' => '<a data-toggle="tab" href="#' . $parent->delta . '-' . $key . '">' . $block->subject . '</a>',
+      'data' => '<a data-toggle="tab" href="#' . $parent->delta . '-' . $key . '">' . $child->title . '</a>',
       'class' => $key == 0 ? array('active') : array(),
     );
 
-    // Hide subject, since it's shown in tab.
-    $block->subject = '';
-
     // Generate items.
+    $content = $child->view();
+    $content['#prefix'] = '<div class="' . drupal_clean_css_identifier($child->type) . '">';
+    $content['#suffix'] = '</div>';
     $item_output = '<div class="tab-pane' . ($key == 0 ? ' active' : '') . '" id="' . $parent->delta . '-' . $key . '">';
-    $item_output .= drupal_render($child);
+    $item_output .= drupal_render($content);
     $item_output .= '</div>';
     $items[] = $item_output;
-
-    $key++;
   }
+
+  $output .= theme('item_list', array(
+    'items' => $nav,
+    'attributes' => array(
+      'class' => array('nav', 'nav-tabs', 'bean-container-' . $variables['display_type']),
+    ),
+  ));
+
+  $output .= '<div class="tab-content">' . join('', $items) . '</div>';
+
+  $output .= '</div>';
 
   $output .= theme('item_list', array(
     'items' => $nav,
