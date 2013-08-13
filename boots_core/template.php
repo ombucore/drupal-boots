@@ -424,11 +424,8 @@ function boots_core_bean_container_tabs($variables) {
     );
 
     // Generate items.
-    $content = $child->view();
-    $content['#prefix'] = '<div class="' . drupal_clean_css_identifier($child->type) . '">';
-    $content['#suffix'] = '</div>';
     $item_output = '<div class="tab-pane' . ($key == 0 ? ' active' : '') . '" id="' . $parent->delta . '-' . $key . '">';
-    $item_output .= drupal_render($content);
+    $item_output .= theme('bean_container_item', array('item' => $child, 'title' => FALSE));
     $item_output .= '</div>';
     $items[] = $item_output;
   }
