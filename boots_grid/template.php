@@ -6,10 +6,10 @@ function boots_grid_preprocess_page(&$variables) {
 
     // Set the content area width
     $variables['content_col_span']  = 12;
-    if(isset($variables['page']['sidebar_first'])) {
+    if (!empty($variables['page']['sidebar_first'])) {
         $variables['content_col_span']  -= 3;
     }
-    if($variables['page']['sidebar_second']) {
+    if (!empty($variables['page']['sidebar_second'])) {
         $variables['content_col_span']  -= 3;
     }
 }

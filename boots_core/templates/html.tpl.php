@@ -58,9 +58,9 @@
     data-grid-framework="bf" data-grid-color="blue" data-grid-opacity="0.5"
     data-grid-zindex="0" data-grid-nbcols="12">
 
-  <?php print $page_top; ?>
-  <?php print $page; ?>
-  <?php print $scripts; ?>
-  <?php print $page_bottom; ?>
+    <?php print $page_top; ?>
+    <?php print $page; ?>
+    <?php print $scripts; ?>
+    <?php print $page_bottom; ?>
 </body>
 </html>
