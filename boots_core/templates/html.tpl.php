@@ -57,10 +57,11 @@
 <body class="<?php print $classes; ?>" <?php print $attributes;?>
     data-grid-framework="bf" data-grid-color="blue" data-grid-opacity="0.5"
     data-grid-zindex="0" data-grid-nbcols="12">
-
-    <?php print $page_top; ?>
-    <?php print $page; ?>
-    <?php print $scripts; ?>
-    <?php print $page_bottom; ?>
+    <div id="wrap">
+      <?php print $page_top; ?>
+      <?php print $page; ?>
+      <?php print $scripts; ?>
+      <?php print $page_bottom; ?>
+    </div>
 </body>
 </html>
