@@ -112,3 +112,24 @@ function boots_admin_status_report($variables) {
   $output .= '</table>';
   return $output;
 }
+
+/**
+ * Default implementation of theme_tiles_region().
+ */
+function boots_admin_tiles_region($variables) {
+  return $variables['element']['#children'];
+}
+
+/**
+ * Default implementation of theme_tiles_row().
+ */
+function boots_admin_tiles_row($variables) {
+  return $variables['element']['#children'];
+}
+
+/**
+ * Default implementation of theme_tiles_tile().
+ */
+function boots_admin_tiles_tile($variables) {
+  return $variables['element']['#children'];
+}
