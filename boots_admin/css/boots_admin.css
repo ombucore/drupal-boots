@@ -5275,6 +5275,56 @@ fieldset.collapsible .fieldset-legend {
   position: absolute;
   margin-top: .5em;
 }
+#autocomplete {
+  border: none;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  border-color: #ccc;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  border-width: 1px;
+  -webkit-border-radius: 4px !important;
+  -moz-border-radius: 4px !important;
+  border-radius: 4px !important;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+  margin-top: 2px;
+}
+#autocomplete ul li {
+  display: block;
+  padding: 3px 15px;
+  clear: both;
+  font-weight: normal;
+  line-height: 20px;
+  background: white;
+  color: #333333;
+  white-space: nowrap;
+}
+#autocomplete ul li.selected,
+#autocomplete ul li:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #0088cc;
+}
+#autocomplete ul li:first-child {
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+}
+#autocomplete ul li:last-child {
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+}
+#autocomplete ul li:first-child:last-child {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
 .views-exposed-form {
   background: white;
   -webkit-border-radius: 4px;
