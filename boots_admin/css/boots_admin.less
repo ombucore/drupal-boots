@@ -1,3 +1,7 @@
+//@import "../../boots_grid/boots_grid.less"; // Not sure how people were compiling this before… maybe I don't need this?
+//@import "../../lib/bootstrap/less/buttons.less";
+//@import "../../lib/bootstrap/less/tables.less";
+@import "../../lib/bootstrap/less/bootstrap.less";
 @import "common-elements.less";
 @import "dashboard.less";
 @import "node-form.less";
@@ -7,6 +11,7 @@
 
 #container {
   max-width: 1276px;
+  //padding: 2em;
 }
 #page-title {
   font-weight: 200;
@@ -15,7 +20,7 @@
 body {
   background: url(img/wood.jpg) repeat;
   // Non-Overlay Styles
-  > #container {
+  #container {
     width: 90%;
     margin: @baseLineHeight auto;
     padding: (@baseLineHeight / 2);

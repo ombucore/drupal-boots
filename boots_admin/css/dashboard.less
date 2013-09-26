@@ -17,12 +17,14 @@ and (min-width : 950px) {
     #page {
       background: rgba(255,255,255,0.3);
       padding: 27px 35px;
-      .border-radius(@radius);
+      .border-radius(@radius*2);
       table, 
       .fieldset-wrapper, 
       .view-filters
-      fieldset .fieldset-legend {
+      fieldset .fieldset-legend,
+      fieldset {
         background: white;
+        .border-radius(@radius);
       }
     }
     #page-title {
@@ -35,6 +37,7 @@ and (min-width : 950px) {
       #page-title {color: black;}
       #page {
         padding: 0;
+        background: transparent;
       }
     }
   }
@@ -68,6 +71,7 @@ and (min-width : 950px) {
               }
             }
             dd {
+              margin-bottom: 1em;
               font-style: italic;
             }
           }

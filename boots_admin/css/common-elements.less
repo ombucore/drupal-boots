@@ -1,3 +1,18 @@
+fieldset.collapsible {
+  border: solid 1px #e5e5e5;
+  padding: 2em (@baseLineHeight / 2) 1em;
+  margin-bottom: @baseLineHeight;
+  legend {
+    font-size: 100%;
+    text-transform: uppercase;
+    border: none;
+  }
+  .fieldset-legend {
+    position: absolute;
+    margin-top: .5em;
+  }
+}
+
 .views-exposed-form {
   background: white;
   .border-radius(@radius);
@@ -37,4 +52,11 @@
 }
 .action-links.btn-group {
   margin-bottom: @baseLineHeight;
+}
+
+html.js input.form-autocomplete {
+  background-position: 99% 8px;
+  &.throbbing {
+    background-position: 99% -13px;
+  }
 }
