@@ -5450,11 +5450,13 @@ html.js input.form-autocomplete.throbbing {
 .page-admin-dashboard .admin > div > aside > h3 {
   border-bottom: solid 1px #D9D9D9;
   color: #353535;
+  background: #eee;
   text-shadow: 0 1px 0px rgba(255, 255, 255, 0.2);
   font-size: 13px;
   text-transform: uppercase;
   line-height: 180%;
-  padding: 0.3em 0 0 2em;
+  padding: .5em 0 .45em 2em;
+  margin: 0;
 }
 .page-admin-dashboard .admin > div > aside .body {
   padding: 5px;
@@ -5473,12 +5475,27 @@ html.js input.form-autocomplete.throbbing {
   margin: 5px 0 5px 20px;
   list-style-type: none;
 }
-.page-admin-dashboard .admin > div > aside .body .admin-list dt + dt {
-  margin-top: 5px;
+.page-admin-dashboard .admin > div > aside .body .admin-list dt {
+  margin: 0 -5px 0 -25px;
+  padding: 0 5px 0 25px;
 }
-.page-admin-dashboard .admin > div > aside .body .admin-list dd {
-  margin-bottom: 1em;
+.page-admin-dashboard .admin > div > aside .body .admin-list dt + dt {
+  margin-top: .75em;
+  padding-top: .75em;
+  border-top: 1px solid #e9e9e9;
+}
+.page-admin-dashboard .admin > div > aside .body .admin-list dd,
+.page-admin-dashboard .admin > div > aside .body .admin-list .description {
+  margin: 0 -5px 0.75em -25px;
+  padding: 0 5px .75em 25px;
   font-style: italic;
+  font-size: 13px;
+  border-bottom: 1px solid #e9e9e9;
+}
+.page-admin-dashboard .admin > div > aside .body .admin-list dd.btn-group,
+.page-admin-dashboard .admin > div > aside .body .admin-list .description.btn-group {
+  font-size: 0;
+  border-bottom: none;
 }
 .page-admin-dashboard #core-content-operations select {
   float: left;
@@ -5499,13 +5516,14 @@ html.js input.form-autocomplete.throbbing {
 }
 .page-admin-dashboard #core-content-operations .description {
   clear: both;
+  padding-top: .5em;
   margin-bottom: 10px;
 }
 .page-admin-dashboard #code-content-node-picker {
   clear: both;
 }
 .page-admin-dashboard #code-content-node-picker form {
-  margin-bottom: 0;
+  margin: 1.5em 0 .5em 0;
 }
 .page-admin-dashboard #code-content-node-picker .form-item-title {
   float: left;
