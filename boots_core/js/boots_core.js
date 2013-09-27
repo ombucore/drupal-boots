@@ -1,9 +1,8 @@
 (function($) {
-  
+
+  // Override markup for autocomplete dropdown.
+  // This is copied and modified from misc/autocomplete.js, which outputs HTML directly (boo!)
   if (Drupal.jsAC) {
-    // Override markup for autocomplete dropdown.
-    // This comes from misc/autocomplete.js, which outputs HTML directly (boo!)
-  
     Drupal.jsAC.prototype.populatePopup = function () {
       var $input = $(this.input);
       var position = $input.position();
@@ -23,9 +22,9 @@
       $(this.popup).find('ul.dropdown-menu').css({
         width: $input.innerWidth() + 'px',
       });
-      console.log($(this.popup).children('ul.dropdown-menu'));
+
       $input.after(this.popup);
-    
+
       // Do search.
       this.db.owner = this;
       this.db.search(this.input.value);
@@ -36,7 +35,7 @@
       if (!this.input.value.length) {
         return false;
       }
-  
+
       // Prepare matches.
       var ul = $('<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu"></ul>');
       var ac = this;
