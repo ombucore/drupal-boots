@@ -11,3 +11,5 @@ regions[sidebar_first] = Sidebar First
 regions[sidebar_second] = Sidebar Second
 
 features[] = favicon
+
+scripts[] = js/boots_core.js
