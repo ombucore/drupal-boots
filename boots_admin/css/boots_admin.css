@@ -5293,8 +5293,57 @@ fieldset.collapsible .fieldset-legend {
 .views-exposed-form .views-exposed-widgets {
   margin-bottom: 0;
 }
-.vertical-tabs .vertical-tabs-list :focus {
+.vertical-tabs {
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  border-top-right-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  border-bottom-right-radius: 4px;
+}
+.vertical-tabs ul.vertical-tabs-list {
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  border-top-left-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  border-bottom-left-radius: 4px;
+}
+.vertical-tabs ul.vertical-tabs-list li a {
+  padding: .6em .75em .75em .75em;
+}
+.vertical-tabs ul.vertical-tabs-list li a:hover,
+.vertical-tabs ul.vertical-tabs-list li a:focus,
+.vertical-tabs ul.vertical-tabs-list li a:active {
+  background: #e6e6e6;
   outline: none;
+}
+.vertical-tabs ul.vertical-tabs-list li a:hover strong,
+.vertical-tabs ul.vertical-tabs-list li a:focus strong,
+.vertical-tabs ul.vertical-tabs-list li a:active strong {
+  text-decoration: none;
+}
+.vertical-tabs ul.vertical-tabs-list li a .summary {
+  margin-top: .25em;
+  font-size: .85em;
+  line-height: 1.4;
+  color: #888;
+}
+.vertical-tabs ul.vertical-tabs-list li.first {
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  border-top-left-radius: 4px;
+}
+.vertical-tabs ul.vertical-tabs-list li.last {
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  border-bottom-left-radius: 4px;
+}
+.vertical-tabs ul.vertical-tabs-list li.selected a {
+  background: white;
+}
+.vertical-tabs ul.vertical-tabs-list li.selected a strong {
+  color: #222;
 }
 .vertical-tabs .form-type-textfield input {
   box-sizing: content-box;
@@ -5315,10 +5364,8 @@ fieldset.collapsible .fieldset-legend {
   background: transparent;
 }
 .form-actions {
-  -webkit-border-radius: 0 0 4px 4px;
-  -moz-border-radius: 0 0 4px 4px;
-  border-radius: 0 0 4px 4px;
-  margin-bottom: 0;
+  margin: 0 -15px;
+  padding: 19px 35px 20px 35px;
 }
 .form-actions input[type='submit'] {
   margin-right: 10px;
@@ -5355,9 +5402,6 @@ html.js input.form-autocomplete.throbbing {
 .page-admin-dashboard #container #page {
   background: rgba(255, 255, 255, 0.3);
   padding: 27px 35px;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
 }
 .page-admin-dashboard #container #page table,
 .page-admin-dashboard #container #page .fieldset-wrapper,
@@ -5370,7 +5414,11 @@ html.js input.form-autocomplete.throbbing {
 }
 .page-admin-dashboard #container #page-title {
   color: white;
-  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.2);
+}
+.page-admin-dashboard #container::after {
+  margin-top: 0;
+  background: rgba(255, 255, 255, 0.2);
 }
 .page-admin-dashboard #overlay #container #page-title {
   color: black;
@@ -5498,7 +5546,6 @@ html.js input.form-autocomplete.throbbing {
   text-indent: 4px;
 }
 .node-form .help-block {
-  text-indent: 10px;
   font-style: italic;
   font-size: .9em;
 }
@@ -5584,20 +5631,28 @@ table.table.system-status-report .merge-up td {
 }
 #page-title {
   font-weight: 200;
-  margin-bottom: 10px;
+  color: black;
+  padding: .25em 15px .4em 15px;
+  margin: .75em 0 0 0;
+  background: rgba(255, 255, 255, 0.4);
+  -webkit-border-radius: 8px 8px 0 0;
+  -moz-border-radius: 8px 8px 0 0;
+  border-radius: 8px 8px 0 0;
+}
+#page-title em {
+  color: #222;
 }
 body {
   background: url(img/wood.jpg) repeat;
 }
 body #container {
   width: 90%;
-  margin: 20px auto;
+  margin: 20px auto 0 auto;
   padding: 10px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  background: white;
-  box-shadow: 0 0 13px #000000;
+  background: transparent;
   *zoom: 1;
 }
 body #container:before,
@@ -5609,8 +5664,26 @@ body #container:after {
 body #container:after {
   clear: both;
 }
+body #container .nav-tabs {
+  margin-bottom: 0;
+  padding: .25em 4px 0 4px;
+  background: rgba(255, 255, 255, 0.75);
+}
+body #container #page {
+  padding: 8px 15px 0 15px;
+  background: white;
+}
 body #container form[action^='/admin'] {
   margin-bottom: 0;
+}
+body #container::after {
+  display: block;
+  height: 1.75em;
+  content: " ";
+  background: rgba(255, 255, 255, 0.3);
+  -webkit-border-radius: 0 0 8px 8px;
+  -moz-border-radius: 0 0 8px 8px;
+  border-radius: 0 0 8px 8px;
 }
 #main {
   padding: 0;
@@ -5685,15 +5758,27 @@ table.field-multiple-table .tabledrag-handle {
   margin-top: -10px;
   padding-top: 0 !important;
 }
+.wysiwyg-toggle-wrapper {
+  margin-top: .5em;
+}
 .filter-wrapper {
   padding: 0;
   margin-bottom: 0 !important;
 }
 .filter-wrapper .fieldset-wrapper {
   background: none;
-  display: inline-block;
   padding: 0;
   border: 0;
+  *zoom: 1;
+}
+.filter-wrapper .fieldset-wrapper:before,
+.filter-wrapper .fieldset-wrapper:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.filter-wrapper .fieldset-wrapper:after {
+  clear: both;
 }
 .filter-wrapper .filter-help {
   padding: 0;
@@ -5707,18 +5792,19 @@ table.field-multiple-table .tabledrag-handle {
   display: block;
 }
 .filter-wrapper .form-type-select {
+  float: right;
   margin-left: 20px;
-  padding: 9px 11px 1px;
-  border: solid 1px #ccc;
-  border-top: none;
+  margin-top: -2.45em;
+  padding: 9px 11px 9px;
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  border-top-color: #b6b6b6;
   -webkit-border-radius: 0 0 4px 4px;
   -moz-border-radius: 0 0 4px 4px;
   border-radius: 0 0 4px 4px;
 }
 .filter-wrapper .form-type-select label {
-  position: relative;
-  top: -3px;
-  display: inline-block;
+  margin-right: .5em;
 }
 .filter-wrapper .form-type-select .controls {
   display: inline-block;
@@ -5728,6 +5814,9 @@ table.field-multiple-table .tabledrag-handle {
 }
 .filter-wrapper .filter-guidelines {
   display: none;
+}
+.control-group .controls select {
+  margin-bottom: 0;
 }
 .field-type-field-collection {
   position: relative;
@@ -5742,6 +5831,9 @@ table.field-multiple-table .tabledrag-handle {
 }
 .form-wrapper.form-actions {
   margin-bottom: 0;
+}
+.form-wrapper.form-actions:empty {
+  display: none;
 }
 #progress {
   font-size: 1.2em;

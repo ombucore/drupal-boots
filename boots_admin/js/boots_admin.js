@@ -23,16 +23,17 @@
 
   // OnReady.
   jQuery(document).ready(function() {
-      //$('.disable-on-click').click( function(e) {
-      jQuery('input[type=submit]').click( function(e) {
-          var th = jQuery(this),
-              $form = jQuery(this.form);
-          $form.append('<input type="hidden" name="' + th.attr('name') + '" value="' + th.val() + '" />');
-          th.attr('value', 'Please wait...');
-          th.addClass('disabled');
-          // Need to submit manually on Safari
-          $form.submit();
-      });
+    //$('.disable-on-click').click( function(e) {
+    jQuery('input[type=submit]').click( function(e) {
+      var th = jQuery(this),
+          $form = jQuery(this.form);
+      $form.append('<input type="hidden" name="' + th.attr('name') + '" value="' + th.val() + '" />');
+      th.attr('value', 'Please wait...');
+      th.addClass('disabled');
+      // Need to submit manually on Safari
+      $form.submit();
+    });
+    $('.wysiwyg-toggle-wrapper > a').addClass('btn btn-small');
   });
 
 })(jQuery);
