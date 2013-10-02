@@ -60,19 +60,32 @@ body {
 #main {padding: 0;}
 #overlay-disable-message {display: none;}
 #overlay {
-  margin-top: 65px;
+  margin-top: 20px;
   #overlay-content {
-    .border-radius(@radius 0 @radius @radius);
+    .border-radius(@radius*2 0 @radius*2 @radius*2);
+    #container {
+      margin: 0 auto;
+      padding: 0;
+      width: 100%;
+    }
   }
   #overlay-title-wrapper {}
   #overlay-close-wrapper {}
+  #page-title {
+    margin-top: .25em;
+  }
   ul#main-tabs {
     position: absolute;
-    left: 0;
-    margin: -35px 0 0 4px;
+    right: 0;
+    bottom: 100%;
+    margin: 0;
+    padding: @radius*1.5 @radius*2 0 @radius*2;
+    //width: 100%;
+    background: rgba(255,255,255,0.75);
+    .border-radius(@radius*2 @radius*2 0 0);
     >li {
       a {
-        background-color: @grayLighter;
+        //background-color: @grayLighter;
       }
       &.active {
         a {

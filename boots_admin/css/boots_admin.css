@@ -5267,6 +5267,7 @@ fieldset.collapsible {
   margin-bottom: 20px;
 }
 fieldset.collapsible legend {
+  width: 0;
   font-size: 100%;
   text-transform: uppercase;
   border: none;
@@ -5274,6 +5275,11 @@ fieldset.collapsible legend {
 fieldset.collapsible .fieldset-legend {
   position: absolute;
   margin-top: .5em;
+}
+fieldset.collapsible.collapsed {
+  border-bottom-width: 1px !important;
+  border-left-width: 1px !important;
+  border-right-width: 1px !important;
 }
 .dropdown > ul.dropdown-menu {
   width: 100%;
@@ -5692,20 +5698,31 @@ body #container::after {
   display: none;
 }
 #overlay {
-  margin-top: 65px;
+  margin-top: 20px;
 }
 #overlay #overlay-content {
-  -webkit-border-radius: 4px 0 4px 4px;
-  -moz-border-radius: 4px 0 4px 4px;
-  border-radius: 4px 0 4px 4px;
+  -webkit-border-radius: 8px 0 8px 8px;
+  -moz-border-radius: 8px 0 8px 8px;
+  border-radius: 8px 0 8px 8px;
+}
+#overlay #overlay-content #container {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+}
+#overlay #page-title {
+  margin-top: .25em;
 }
 #overlay ul#main-tabs {
   position: absolute;
-  left: 0;
-  margin: -35px 0 0 4px;
-}
-#overlay ul#main-tabs > li a {
-  background-color: #eeeeee;
+  right: 0;
+  bottom: 100%;
+  margin: 0;
+  padding: 6px 8px 0 8px;
+  background: rgba(255, 255, 255, 0.75);
+  -webkit-border-radius: 8px 8px 0 0;
+  -moz-border-radius: 8px 8px 0 0;
+  border-radius: 8px 8px 0 0;
 }
 #overlay ul#main-tabs > li.active a {
   background-color: white;

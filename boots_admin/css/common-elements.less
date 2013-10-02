@@ -3,6 +3,7 @@ fieldset.collapsible {
   padding: 2em (@baseLineHeight / 2) 1em;
   margin-bottom: @baseLineHeight;
   legend {
+    width: 0;
     font-size: 100%;
     text-transform: uppercase;
     border: none;
@@ -10,6 +11,11 @@ fieldset.collapsible {
   .fieldset-legend {
     position: absolute;
     margin-top: .5em;
+  }
+  &.collapsed {
+    border-bottom-width: 1px !important;
+    border-left-width: 1px !important;
+    border-right-width: 1px !important;
   }
 }
 
