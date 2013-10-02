@@ -5408,6 +5408,9 @@ html.js input.form-autocomplete.throbbing {
 .page-admin-dashboard #container #page {
   background: rgba(255, 255, 255, 0.3);
   padding: 27px 35px;
+  -webkit-border-radius: 8px 8px 0 0;
+  -moz-border-radius: 8px 8px 0 0;
+  border-radius: 8px 8px 0 0;
 }
 .page-admin-dashboard #container #page table,
 .page-admin-dashboard #container #page .fieldset-wrapper,
@@ -5420,7 +5423,7 @@ html.js input.form-autocomplete.throbbing {
 }
 .page-admin-dashboard #container #page-title {
   color: white;
-  background: rgba(255, 255, 255, 0.2);
+  background: transparent;
 }
 .page-admin-dashboard #container::after {
   margin-top: 0;

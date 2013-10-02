@@ -17,7 +17,7 @@ and (min-width : 950px) {
     #page {
       background: rgba(255,255,255,0.3);
       padding: 27px 35px;
-      //.border-radius(@radius*2);
+      .border-radius(@radius*2 @radius*2 0 0);
       table, 
       .fieldset-wrapper, 
       .view-filters
@@ -30,7 +30,8 @@ and (min-width : 950px) {
     #page-title {
       color: white;
       //margin-bottom: 0;
-      background: rgba(255,255,255,0.2);
+      //background: rgba(255,255,255,0.2);
+      background: transparent;
     }
     &::after {
       margin-top: 0;
