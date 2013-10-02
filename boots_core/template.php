@@ -678,6 +678,41 @@ function boots_core_form_element_label($variables) {
 }
 
 /**
+ * Overrides theme_textfield.
+ *
+ * Adds 'required' attribute directly to form input,
+ * to match Bootstrap recommendations.
+ */
+function boots_core_textfield($variables) {
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'text';
+  element_set_attributes($element, array('id', 'name', 'value', 'size', 'maxlength'));
+  _form_set_class($element, array('form-text'));
+
+  if ($element['#required']) {
+    $element['#attributes']['required'] = 'required';
+  }
+
+  $extra = '';
+  if ($element['#autocomplete_path'] && drupal_valid_path($element['#autocomplete_path'])) {
+    drupal_add_library('system', 'drupal.autocomplete');
+    $element['#attributes']['class'][] = 'form-autocomplete';
+
+    $attributes = array();
+    $attributes['type'] = 'hidden';
+    $attributes['id'] = $element['#attributes']['id'] . '-autocomplete';
+    $attributes['value'] = url($element['#autocomplete_path'], array('absolute' => TRUE));
+    $attributes['disabled'] = 'disabled';
+    $attributes['class'][] = 'autocomplete';
+    $extra = '<input' . drupal_attributes($attributes) . ' />';
+  }
+
+  $output = '<input' . drupal_attributes($element['#attributes']) . ' />';
+
+  return $output . $extra;
+}
+
+/**
  * Overrides theme_checkboxes.
  */
 function boots_core_checkboxes($variables) {
@@ -757,6 +792,36 @@ function boots_core_radio($variables) {
     $output = '<input' . drupal_attributes($element['#attributes']) . ' />';
   }
 
+  return $output;
+}
+
+/**
+ * Override theme_fieldset.
+ */
+function boots_core_fieldset($variables) {
+  $element = $variables['element'];
+  element_set_attributes($element, array('id'));
+  _form_set_class($element, array('form-wrapper'));
+
+  if ($element['#collapsible']) {
+    $element['#attributes']['class'][] = 'accordion-group';
+  }
+
+  $output = '<fieldset' . drupal_attributes($element['#attributes']) . '>';
+  if (!empty($element['#title'])) {
+    // Always wrap fieldset legends in a SPAN for CSS positioning.
+    $output .= '<legend><span class="fieldset-legend">' . $element['#title'] . '</span></legend>';
+  }
+  $output .= '<div class="fieldset-wrapper">';
+  if (!empty($element['#description'])) {
+    $output .= '<div class="fieldset-description">' . $element['#description'] . '</div>';
+  }
+  $output .= $element['#children'];
+  if (isset($element['#value'])) {
+    $output .= $element['#value'];
+  }
+  $output .= '</div>';
+  $output .= "</fieldset>\n";
   return $output;
 }
 

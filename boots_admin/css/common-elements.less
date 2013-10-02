@@ -1,3 +1,30 @@
+fieldset.collapsible {
+  border: solid 1px #e5e5e5;
+  padding: 2em (@baseLineHeight / 2) 1em;
+  margin-bottom: @baseLineHeight;
+  legend {
+    width: 0;
+    font-size: 100%;
+    text-transform: uppercase;
+    border: none;
+  }
+  .fieldset-legend {
+    position: absolute;
+    margin-top: .5em;
+  }
+  &.collapsed {
+    border-bottom-width: 1px !important;
+    border-left-width: 1px !important;
+    border-right-width: 1px !important;
+  }
+}
+
+.dropdown {
+  > ul.dropdown-menu {
+    width: 100%; // our JS defines the width of .dropdown to be the width of the input
+  }
+}
+
 .views-exposed-form {
   background: white;
   .border-radius(@radius);
@@ -7,10 +34,57 @@
   .views-exposed-widget .form-submit {margin-top: 1.8em;}
   .views-exposed-widgets {margin-bottom: 0;}
 }
- 
+
+// Possible @TODO: change the markup to match Bootstrap vertical nav.
+// This would require overriding a crap-tonne of JS from vertical-tabs.js
+// which might have ramifications for modules
 .vertical-tabs {
-  .vertical-tabs-list {
-    :focus {outline:none;}
+  .border-top-right-radius(@radius);
+  .border-bottom-right-radius(@radius);
+  ul.vertical-tabs-list {
+    .border-top-left-radius(@radius);
+    .border-bottom-left-radius(@radius);
+    li {
+      a {
+        padding: .6em .75em .75em .75em;
+        &:link,
+        &:visited {
+          
+        }
+        &:hover,
+        &:focus,
+        &:active {
+          background: #e6e6e6;
+          outline: none;
+          strong {
+            text-decoration: none;
+          }
+        }
+        strong {
+          
+        }
+        .summary {
+          margin-top: .25em;
+          font-size: .85em;
+          line-height: 1.4;
+          color: #888;
+        }
+      }
+      &.first {
+        .border-top-left-radius(@radius);
+      }
+      &.last {
+        .border-bottom-left-radius(@radius);
+      }
+      &.selected {
+        a {
+          background: white;
+          strong {
+            color: #222;
+          }
+        }
+      }
+    }
   }
   .form-type-textfield input {
     box-sizing: content-box;
@@ -27,14 +101,20 @@
     }
   }
 }
-
 .form-actions {
-  .border-radius(0 0 @radius @radius);
-  margin-bottom: 0;
+  margin: 0 -15px;
+  padding: 19px 35px 20px 35px;
   input[type='submit'] {
     margin-right: @baseLineHeight / 2;
   }
 }
 .action-links.btn-group {
   margin-bottom: @baseLineHeight;
+}
+
+html.js input.form-autocomplete {
+  background-position: 99% 8px;
+  &.throbbing {
+    background-position: 99% -13px;
+  }
 }
