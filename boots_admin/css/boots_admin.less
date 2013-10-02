@@ -1,7 +1,17 @@
-//@import "../../boots_grid/boots_grid.less"; // Not sure how people were compiling this before… maybe I don't need this?
-//@import "../../lib/bootstrap/less/buttons.less";
-//@import "../../lib/bootstrap/less/tables.less";
-@import "../../lib/bootstrap/less/bootstrap.less";
+@import "../../lib/bootstrap/less/reset.less";
+@import "../../lib/bootstrap/less/variables.less";
+@import "../../lib/bootstrap/less/mixins.less";
+@import "../../lib/bootstrap/less/scaffolding.less";
+@import "../../lib/bootstrap/less/grid.less";
+@import "../../lib/bootstrap/less/layouts.less";
+@import "../../lib/bootstrap/less/type.less";
+@import "../../lib/bootstrap/less/forms.less";
+@import "../../lib/bootstrap/less/buttons.less";
+@import "../../lib/bootstrap/less/button-groups.less";
+@import "../../lib/bootstrap/less/breadcrumbs.less";
+@import "../../lib/bootstrap/less/dropdowns.less";
+@import "../../lib/bootstrap/less/navs.less";
+
 @import "common-elements.less";
 @import "dashboard.less";
 @import "node-form.less";
@@ -51,6 +61,7 @@ body {
     &::after {
       display: block;
       height: 1.75em;
+      margin: 0;
       content: " ";
       background: rgba(255,255,255,0.3);
       .border-radius(0 0 @radius*2 @radius*2);
