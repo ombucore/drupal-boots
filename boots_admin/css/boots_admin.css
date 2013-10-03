@@ -3507,6 +3507,16 @@ body #container .nav-tabs {
 body #container #page {
   padding: 8px 15px 0 15px;
   background: white;
+  *zoom: 1;
+}
+body #container #page:before,
+body #container #page:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+body #container #page:after {
+  clear: both;
 }
 body #container form[action^='/admin'] {
   margin-bottom: 0;
