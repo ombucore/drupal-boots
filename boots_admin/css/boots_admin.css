@@ -3497,6 +3497,30 @@ table.table.system-status-report .merge-up td {
 #overlay .breadcrumb {
   display: none;
 }
+.media-wrapper {
+  line-height: 1;
+  -webkit-box-shadow: 0 0 8px #000000;
+  -moz-box-shadow: 0 0 8px #000000;
+  box-shadow: 0 0 8px #000000;
+}
+body.page-media {
+  background: transparent;
+}
+#media-browser-tabset #branding h1 {
+  font-size: 90%;
+}
+.media-browser-tab.ui-tabs-panel {
+  padding-bottom: 0;
+}
+.media-browser-tab.ui-tabs-panel form {
+  margin-bottom: 0;
+}
+.media-browser-tab.ui-tabs-panel form .form-actions {
+  margin-left: -1.4em;
+  margin-right: -1.4em;
+  padding-left: 1.4em;
+  padding-right: 1.4em;
+}
 #container {
   max-width: 1276px;
 }
