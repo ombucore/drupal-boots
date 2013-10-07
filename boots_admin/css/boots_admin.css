@@ -3524,6 +3524,12 @@ body.page-media {
   padding-left: 1.4em;
   padding-right: 1.4em;
 }
+.media-browser-tab.ui-tabs-panel .media-item img {
+  margin-bottom: 1em;
+}
+.media-browser-tab.ui-tabs-panel .media-item label {
+  margin-bottom: 0;
+}
 #container {
   max-width: 1276px;
 }
