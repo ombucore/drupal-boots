@@ -3503,6 +3503,9 @@ table.table.system-status-report .merge-up td {
   -moz-box-shadow: 0 0 8px #000000;
   box-shadow: 0 0 8px #000000;
 }
+.ui-widget-overlay {
+  background: #000;
+}
 body.page-media {
   background: transparent;
 }
