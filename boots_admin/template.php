@@ -112,3 +112,27 @@ function boots_admin_status_report($variables) {
   $output .= '</table>';
   return $output;
 }
+
+/**
+ * Overrides theme_tiles_tile() to prevent outputting tiles wrappers
+ * since Boots Admin doesn't currently use a grid.
+ */
+function boots_admin_tiles_tile($variables) {
+  return $variables['element']['#children'];
+}
+
+/**
+ * Overrides theme_tiles_row() to prevent outputting tiles wrappers
+ * since Boots Admin doesn't currently use a grid.
+ */
+function boots_admin_tiles_row($variables) {
+  return $variables['element']['#children'];
+}
+
+/**
+ * Overrides theme_tiles_region() to prevent outputting tiles wrappers
+ * since Boots Admin doesn't currently use a grid.
+ */
+function boots_admin_tiles_region($variables) {
+  return $variables['element']['#children'];
+}
