@@ -5,12 +5,21 @@ function boots_grid_preprocess_page(&$variables) {
         'content', 'sidebar_second', 'footer');
 
     // Set the content area width
-    $variables['content_col_span']  = 12;
+    $variables['content_col_width_xs']  = 12;
+    $variables['content_col_width_sm']  = 12;
+    $variables['content_col_width_md']  = 12;
+    $variables['content_col_width_lg']  = 12;
     if (!empty($variables['page']['sidebar_first'])) {
-        $variables['content_col_span']  -= 3;
+        $variables['content_col_width_xs']  -= 3;
+        $variables['content_col_width_sm']  -= 3;
+        $variables['content_col_width_md']  -= 3;
+        $variables['content_col_width_lg']  -= 3;
     }
     if (!empty($variables['page']['sidebar_second'])) {
-        $variables['content_col_span']  -= 3;
+        $variables['content_col_width_xs']  -= 3;
+        $variables['content_col_width_sm']  -= 3;
+        $variables['content_col_width_md']  -= 3;
+        $variables['content_col_width_lg']  -= 3;
     }
 }
 
@@ -22,9 +31,12 @@ function boots_grid_preprocess_block(&$variables) {
     unset($ca[array_search('block', $ca)]);
     unset($ca[array_search(str_replace('_', '-', 'block-' . $b->module), $ca)]);
 
-    // add grid span class
+    // add grid column class
     if (isset($b->width)) {
-      $ca[] = 'span' . $b->width;
+      $ca[] = 'col-xs-' . $b->width;
+      $ca[] = 'col-sm-' . $b->width;
+      $ca[] = 'col-md-' . $b->width;
+      $ca[] = 'col-lg-' . $b->width;
     }
 }
 
@@ -36,12 +48,18 @@ function boots_grid_preprocess_region(&$variables) {
     unset($ca[array_search(str_replace('_', '-', 'region-' .
         $variables['region']), $ca)]);
 
-    // Add span to sidebars
+    // Add column to sidebars
     if ($variables['region'] == 'sidebar_first') {
-      $variables['classes_array'][] = 'span3';
+      $variables['classes_array'][] = 'col-xs-3';
+      $variables['classes_array'][] = 'col-sm-3';
+      $variables['classes_array'][] = 'col-md-3';
+      $variables['classes_array'][] = 'col-lg-3';
     }
     elseif ($variables['region'] == 'sidebar_second') {
-      $variables['classes_array'][] = 'span3';
+      $variables['classes_array'][] = 'col-xs-3';
+      $variables['classes_array'][] = 'col-sm-3';
+      $variables['classes_array'][] = 'col-md-3';
+      $variables['classes_array'][] = 'col-lg-3';
     }
 }
 
@@ -56,7 +74,7 @@ function boots_grid_tiles_region($variables) {
  * Default implementation of theme_tiles_row().
  */
 function boots_grid_tiles_row($variables) {
-  return '<div class="row-fluid">' . $variables['element']['#children'] . '</div>';
+  return '<div class="row">' . $variables['element']['#children' ] . '</div>';
 }
 
 /**
