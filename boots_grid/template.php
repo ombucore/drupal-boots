@@ -103,7 +103,7 @@ function boots_grid_block_view_alter(&$data, $block) {
         $options[$url] = $item['#title'];
       }
 
-      $data['content']['#content']['attributes'] = array(
+      $data['content']['#content']['#attributes'] = array(
         'class' => array('hidden-phone'),
       );
       $data['content']['#content'] = array(
@@ -113,6 +113,7 @@ function boots_grid_block_view_alter(&$data, $block) {
           '#suffix' => '</div>',
         ),
         'select' => array(
+          '#name' => 'select',
           '#type' => 'select',
           '#options' => $options,
           '#value' => $default_value,
