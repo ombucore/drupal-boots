@@ -10,6 +10,7 @@ function boots_grid_preprocess_page(&$variables) {
     $variables['content_col_width_md']  = 12;
     $variables['content_col_width_lg']  = 12;
     if (!empty($variables['page']['sidebar_first'])) {
+        $variables['content_col_width_sm']  -= 3;
         $variables['content_col_width_md']  -= 3;
         $variables['content_col_width_lg']  -= 3;
     }
@@ -47,7 +48,7 @@ function boots_grid_preprocess_region(&$variables) {
     // Add column to sidebars
     if ($variables['region'] == 'sidebar_first') {
       $variables['classes_array'][] = 'col-xs-12';
-      $variables['classes_array'][] = 'col-sm-12';
+      $variables['classes_array'][] = 'col-sm-3';
       $variables['classes_array'][] = 'col-md-3';
       $variables['classes_array'][] = 'col-lg-3';
     }
