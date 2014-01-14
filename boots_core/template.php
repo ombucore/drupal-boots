@@ -53,6 +53,17 @@ function boots_core_form_alter(&$form, $form_state, $form_id) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function boots_core_form_user_login_alter(&$form, $form_state) {
+  // Add password request to login form.
+  $form['actions']['request'] = array(
+    '#markup' => l(t('Request new password'), 'user/password', array('attributes' => array('title' => t('Request new password via e-mail.')))),
+  );
+}
+
+
+/**
  * Returns HTML for a breadcrumb trail.
  *
  * @param $variables
