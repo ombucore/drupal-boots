@@ -30,7 +30,7 @@ function boots_grid_preprocess_block(&$variables) {
 
     // add grid column class
     if (isset($b->width)) {
-      $ca[] = 'col-xs-' . $b->width;
+      $ca[] = 'col-xs-' . 12;
       $ca[] = 'col-sm-' . $b->width;
       $ca[] = 'col-md-' . $b->width;
       $ca[] = 'col-lg-' . $b->width;
