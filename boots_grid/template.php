@@ -109,7 +109,7 @@ function boots_grid_block_view_alter(&$data, $block) {
       );
       $data['content']['#content'] = array(
         'menu' => array(
-          '#prefix' => '<div class="hidden-phone">',
+          '#prefix' => '<div class="hidden-phone menu-root">',
           'content' => $data['content']['#content'],
           '#suffix' => '</div>',
         ),
