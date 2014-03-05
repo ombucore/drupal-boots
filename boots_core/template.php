@@ -74,20 +74,7 @@ function boots_core_form_user_login_alter(&$form, $form_state) {
 function boots_core_breadcrumb($variables) {
   $breadcrumb = $variables['breadcrumb'];
   if (!empty($breadcrumb)) {
-    // Fix breadcrumbs for Apachesolr searches.
-    if (module_exists('apachesolr_search') && arg(0) == 'search') {
-      // If site is being searched (i.e. not on the search landing page), remove
-      // duplicate third breadcrumb.
-      if (arg(2) || isset($_GET['f'])) {
-        unset($breadcrumb[2]);
-      }
-      else {
-        // Remove the second duplicate breadcrumb and append page title.
-        unset($breadcrumb[1]);
-        $breadcrumb[] = drupal_get_title();
-      }
-    }
-    elseif (variable_get('breadcrumb_show_page_title', FALSE)) {
+    if (variable_get('breadcrumb_show_page_title', FALSE)) {
       $breadcrumb[] = drupal_get_title();
     }
     $output = '<ul class="breadcrumb"><li>' . implode(' <span class="divider">/</span></li><li>', $breadcrumb) . '</li></ul>';
