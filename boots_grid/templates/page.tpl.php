@@ -13,11 +13,7 @@
 
     <?php if ($page['header']): ?> <?php print render($page['header']); ?> <?php endif ?>
 
-    <?php if ($messages): ?>
-    <div class="row">
-        <div id="console" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 clearfix"><?php print $messages; ?></div>
-    </div><!-- /.row -->
-    <?php endif; ?>
+    <?php if ($messages) { print $messages; } ?>
 
     <div class="row">
 

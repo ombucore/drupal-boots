@@ -131,3 +131,48 @@ function boots_grid_block_view_alter(&$data, $block) {
   }
 
 }
+
+/**
+ * Themes messages with Bootstrap
+ * TODO use Bootstrap JS for closing
+ */
+function boots_grid_status_messages($variables) {
+  $display = $variables['display'];
+  $output = '';
+
+  $status_heading = array(
+    'status' => t('Status message'),
+    'error' => t('Error message'),
+    'warning' => t('Warning message'),
+  );
+  $class_rename = array(
+    'status' => 'alert-success',
+    'error' => 'alert-error',
+    'warning' => '',
+  );
+  foreach (drupal_get_messages($display) as $type => $messages) {
+    $classes = 'block-inner alert alert-block';
+    if (!empty($class_rename)) {
+      $classes .= ' ' . $class_rename[$type];
+    }
+    $output .= '<div data-type="region" data-name="console" class="console-' . $type . "\">\n<div class=\"container\"><div class=\"row\">";
+    $output .= '<aside class="col-xs-12 col-sm-12 col-md-12 col-lg-12 clearfix"><div class="' . $classes . '"><div class="contents">';
+    if (!empty($status_heading[$type])) {
+      $output .= '<h3 class="caption status-type">' . $status_heading[$type] . "</h3>\n";
+    }
+    $output .= '<a class="dismiss" data-dismiss="alert" data-selector=".alert-block" href="#"><span>Dismiss</span></a>';
+    if (count($messages) > 1) {
+      $output .= ' <div class="messages"><ul>' . "\n";
+      foreach ($messages as $message) {
+        $output .= '  <li>' . $message . "</li>\n";
+      }
+      $output .= " </ul></div>\n";
+    }
+    else {
+      $output .= '<div class="messages"><p>' . $messages[0] . '</p></div>';
+    }
+    $output .= "</div></div></aside>";
+    $output .= "</div></div></div>\n";
+  }
+  return $output;
+}
