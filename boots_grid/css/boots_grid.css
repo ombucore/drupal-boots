@@ -865,6 +865,10 @@ hr {
 body {
   position: relative;
 }
+.menu-toggle,
+.submenu-toggle {
+  display: none;
+}
 div[data-type="region"][data-name="console"] {
   background: #c8c8ff;
 }
