@@ -914,6 +914,14 @@ div[data-type="region"][data-name="console"] .messages ul li {
   margin: 0.5em 0 0 0;
   padding: 0;
 }
+div[data-type="region"][data-name="console"] .messages a,
+div[data-type="region"][data-name="console"] .messages a:link,
+div[data-type="region"][data-name="console"] .messages a:visited,
+div[data-type="region"][data-name="console"] .messages a:active,
+div[data-type="region"][data-name="console"] .messages a:hover {
+  color: inherit;
+  text-decoration: underline;
+}
 div[data-type="region"][data-name="console"] .dismiss {
   display: block;
   position: absolute;
