@@ -28,7 +28,10 @@ div[data-type="region"][data-name="console"] {
 
   .alert-block {
     overflow: hidden;
-    .transition(all @transition-duration-default ease);
+
+    &.animate {
+      .transition(all @transition-duration-default ease);
+    }
 
     &.dismissed {
       max-height: 0 !important;
@@ -55,12 +58,12 @@ div[data-type="region"][data-name="console"] {
       margin: 0.5em 0 0 0;
     }
 
-    ul {
+    > ul {
       margin: 0;
       padding: 0;
       list-style-type: square;
 
-      li {
+      > li {
         margin: 0.5em 0 0 0;
         padding: 0;
       }

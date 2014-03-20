@@ -263,8 +263,10 @@ hr {
 .container:after {
   content: " ";
   /* 1 */
+
   display: table;
   /* 2 */
+
 }
 .container:after {
   clear: both;
@@ -277,8 +279,10 @@ hr {
 .row:after {
   content: " ";
   /* 1 */
+
   display: table;
   /* 2 */
+
 }
 .row:after {
   clear: both;
@@ -880,6 +884,8 @@ div[data-type="region"][data-name="console"] aside {
 }
 div[data-type="region"][data-name="console"] .alert-block {
   overflow: hidden;
+}
+div[data-type="region"][data-name="console"] .alert-block.animate {
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
@@ -905,12 +911,12 @@ div[data-type="region"][data-name="console"] .messages {
 div[data-type="region"][data-name="console"] .messages p {
   margin: 0.5em 0 0 0;
 }
-div[data-type="region"][data-name="console"] .messages ul {
+div[data-type="region"][data-name="console"] .messages > ul {
   margin: 0;
   padding: 0;
   list-style-type: square;
 }
-div[data-type="region"][data-name="console"] .messages ul li {
+div[data-type="region"][data-name="console"] .messages > ul > li {
   margin: 0.5em 0 0 0;
   padding: 0;
 }
