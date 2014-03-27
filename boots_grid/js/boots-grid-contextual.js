@@ -8,6 +8,13 @@
       // Drupal user is signed in, so this will not affect an anonymous visitor.
 
       $('ul.contextual-links', context).each(function(i, el) {
+
+        // If the contextual list we're considering belongs to the system main
+        // block, allow its region to collapse to 0 height.
+        if ($(el).closest('#block-system-main').length) {
+          return true;
+        }
+
         var $gear = $(el).siblings('.contextual-links-trigger');
         var $region = $(el).closest('.contextual-links-region');
         var height = $(el).outerHeight() + $gear.outerHeight() + 10;
