@@ -25,6 +25,12 @@
         <!-- Main Content -->
         <div class="col-xs-<?php print $content_col_width_xs; ?> col-sm-<?php print $content_col_width_sm; ?> col-md-<?php print $content_col_width_md; ?> col-lg-<?php print $content_col_width_lg; ?>">
 
+            <?php if ($page['content_top']): ?>
+            <?php print render($page['content_top']); ?>
+            <?php endif ?>
+            <?php if ($page['content']): ?>
+            <?php print render($page['content']); ?>
+            <?php endif ?>
         </div>
 
         <!-- Sidebar Second -->
