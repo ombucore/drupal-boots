@@ -973,3 +973,6 @@ div[data-type="region"][data-name="console"].console-error {
   background-color: #dc0000;
   color: white;
 }
+.password-request {
+  margin-left: 1em;
+}
