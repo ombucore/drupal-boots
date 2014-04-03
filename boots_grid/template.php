@@ -5,12 +5,18 @@ function boots_grid_preprocess_page(&$variables) {
         'content', 'sidebar_second', 'footer');
 
     // Set the content area width
-    $variables['content_col_span']  = 12;
+    $variables['content_col_width_xs']  = 12;
+    $variables['content_col_width_sm']  = 12;
+    $variables['content_col_width_md']  = 12;
+    $variables['content_col_width_lg']  = 12;
     if (!empty($variables['page']['sidebar_first'])) {
-        $variables['content_col_span']  -= 3;
+        $variables['content_col_width_sm']  -= 3;
+        $variables['content_col_width_md']  -= 3;
+        $variables['content_col_width_lg']  -= 3;
     }
     if (!empty($variables['page']['sidebar_second'])) {
-        $variables['content_col_span']  -= 3;
+        $variables['content_col_width_md']  -= 3;
+        $variables['content_col_width_lg']  -= 3;
     }
 }
 
@@ -22,9 +28,12 @@ function boots_grid_preprocess_block(&$variables) {
     unset($ca[array_search('block', $ca)]);
     unset($ca[array_search(str_replace('_', '-', 'block-' . $b->module), $ca)]);
 
-    // add grid span class
+    // add grid column class
     if (isset($b->width)) {
-      $ca[] = 'span' . $b->width;
+      $ca[] = 'col-xs-' . 12;
+      $ca[] = 'col-sm-' . $b->width;
+      $ca[] = 'col-md-' . $b->width;
+      $ca[] = 'col-lg-' . $b->width;
     }
 }
 
@@ -36,12 +45,18 @@ function boots_grid_preprocess_region(&$variables) {
     unset($ca[array_search(str_replace('_', '-', 'region-' .
         $variables['region']), $ca)]);
 
-    // Add span to sidebars
+    // Add column to sidebars
     if ($variables['region'] == 'sidebar_first') {
-      $variables['classes_array'][] = 'span3';
+      $variables['classes_array'][] = 'col-xs-12';
+      $variables['classes_array'][] = 'col-sm-3';
+      $variables['classes_array'][] = 'col-md-3';
+      $variables['classes_array'][] = 'col-lg-3';
     }
     elseif ($variables['region'] == 'sidebar_second') {
-      $variables['classes_array'][] = 'span3';
+      $variables['classes_array'][] = 'col-xs-12';
+      $variables['classes_array'][] = 'col-sm-12';
+      $variables['classes_array'][] = 'col-md-3';
+      $variables['classes_array'][] = 'col-lg-3';
     }
 }
 
@@ -56,7 +71,7 @@ function boots_grid_tiles_region($variables) {
  * Default implementation of theme_tiles_row().
  */
 function boots_grid_tiles_row($variables) {
-  return '<div class="row-fluid">' . $variables['element']['#children'] . '</div>';
+  return '<div class="row">' . $variables['element']['#children' ] . '</div>';
 }
 
 /**
@@ -89,16 +104,20 @@ function boots_grid_block_view_alter(&$data, $block) {
         $options[$url] = $item['#title'];
       }
 
-      $data['content']['#content']['attributes'] = array(
+      $data['content']['#content']['#attributes'] = array(
         'class' => array('hidden-phone'),
       );
+
+      $menu_toggle = '<dl class="menu-toggle"><dt class="open"><span>&#9660;</span></dt><dd class="open"><span>Open menu</span></dd><dt class="close"><span>&#9650;</span></dt><dd class="close"><span>Close menu</span></dd></dl>';
+
       $data['content']['#content'] = array(
         'menu' => array(
-          '#prefix' => '<div class="hidden-phone">',
+          '#prefix' => $menu_toggle . '<div class="hidden-phone menu-root">',
           'content' => $data['content']['#content'],
           '#suffix' => '</div>',
         ),
         'select' => array(
+          '#name' => 'select',
           '#type' => 'select',
           '#options' => $options,
           '#value' => $default_value,
@@ -111,4 +130,49 @@ function boots_grid_block_view_alter(&$data, $block) {
     }
   }
 
+}
+
+/**
+ * Themes messages with Bootstrap
+ * TODO use Bootstrap JS for closing
+ */
+function boots_grid_status_messages($variables) {
+  $display = $variables['display'];
+  $output = '';
+
+  $status_heading = array(
+    'status' => t('Status message'),
+    'error' => t('Error message'),
+    'warning' => t('Warning message'),
+  );
+  $class_rename = array(
+    'status' => 'alert-success',
+    'error' => 'alert-error',
+    'warning' => '',
+  );
+  foreach (drupal_get_messages($display) as $type => $messages) {
+    $classes = 'block-inner alert alert-block';
+    if (!empty($class_rename)) {
+      $classes .= ' ' . $class_rename[$type];
+    }
+    $output .= '<div data-type="region" data-name="console" class="console-' . $type . "\">\n<div class=\"container\"><div class=\"row\">";
+    $output .= '<aside class="col-xs-12 col-sm-12 col-md-12 col-lg-12 clearfix"><div class="' . $classes . '"><div class="contents">';
+    if (!empty($status_heading[$type])) {
+      $output .= '<h3 class="caption status-type">' . $status_heading[$type] . "</h3>\n";
+    }
+    $output .= '<a class="dismiss" data-dismiss="alert" data-selector=".alert-block" href="#"><span>Dismiss</span></a>';
+    if (count($messages) > 1) {
+      $output .= ' <div class="messages"><ul>' . "\n";
+      foreach ($messages as $message) {
+        $output .= '  <li>' . $message . "</li>\n";
+      }
+      $output .= " </ul></div>\n";
+    }
+    else {
+      $output .= '<div class="messages"><p>' . $messages[0] . '</p></div>';
+    }
+    $output .= "</div></div></aside>";
+    $output .= "</div></div></div>\n";
+  }
+  return $output;
 }

@@ -13,13 +13,9 @@
 
     <?php if ($page['header']): ?> <?php print render($page['header']); ?> <?php endif ?>
 
-    <?php if ($messages): ?>
-    <div class="row-fluid">
-        <div id="console" class="span12 clearfix"><?php print $messages; ?></div>
-    </div><!-- /.row-fluid -->
-    <?php endif; ?>
+    <?php if ($messages) { print $messages; } ?>
 
-    <div class="row-fluid">
+    <div class="row">
 
         <!-- Sidebar First-->
         <?php if ($page['sidebar_first']): ?>
@@ -27,7 +23,8 @@
         <?php endif ?>
 
         <!-- Main Content -->
-        <div class="span<?php print $content_col_span ?>">
+        <div class="col-xs-<?php print $content_col_width_xs; ?> col-sm-<?php print $content_col_width_sm; ?> col-md-<?php print $content_col_width_md; ?> col-lg-<?php print $content_col_width_lg; ?>">
+
             <?php if ($page['content_top']): ?>
             <?php print render($page['content_top']); ?>
             <?php endif ?>
@@ -40,7 +37,7 @@
         <?php if ($page['sidebar_second']): ?>
         <?php print render($page['sidebar_second']); ?>
         <?php endif ?>
-    </div><!-- /.row-fluid -->
+    </div><!-- /.row -->
 
 
     <?php if ($page['footer']): ?> <?php print render($page['footer']); ?> <?php endif ?>

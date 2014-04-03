@@ -4,4 +4,4 @@ version = 0.3
 base theme = boots_core
 core = 7.x
 stylesheets[all][] = css/boots_admin.css
-scripts[] = js/core.js
+scripts[] = js/boots_admin.js

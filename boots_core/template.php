@@ -53,6 +53,22 @@ function boots_core_form_alter(&$form, $form_state, $form_id) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function boots_core_form_user_login_alter(&$form, $form_state) {
+  // Add password request to login form.
+  $form['actions']['request'] = array(
+    '#markup' => l(t('Request new password'), 'user/password', array(
+      'attributes' => array(
+        'title' => t('Request new password via e-mail.'),
+        'class' => array('password-request'),
+      ),
+    )),
+  );
+}
+
+
+/**
  * Returns HTML for a breadcrumb trail.
  *
  * @param $variables
@@ -63,20 +79,7 @@ function boots_core_form_alter(&$form, $form_state, $form_id) {
 function boots_core_breadcrumb($variables) {
   $breadcrumb = $variables['breadcrumb'];
   if (!empty($breadcrumb)) {
-    // Fix breadcrumbs for Apachesolr searches.
-    if (module_exists('apachesolr_search') && arg(0) == 'search') {
-      // If site is being searched (i.e. not on the search landing page), remove
-      // duplicate third breadcrumb.
-      if (arg(2) || isset($_GET['f'])) {
-        unset($breadcrumb[2]);
-      }
-      else {
-        // Remove the second duplicate breadcrumb and append page title.
-        unset($breadcrumb[1]);
-        $breadcrumb[] = drupal_get_title();
-      }
-    }
-    elseif (variable_get('breadcrumb_show_page_title', FALSE)) {
+    if (variable_get('breadcrumb_show_page_title', FALSE)) {
       $breadcrumb[] = drupal_get_title();
     }
     $output = '<ul class="breadcrumb"><li>' . implode(' <span class="divider">/</span></li><li>', $breadcrumb) . '</li></ul>';
@@ -678,6 +681,41 @@ function boots_core_form_element_label($variables) {
 }
 
 /**
+ * Overrides theme_textfield.
+ *
+ * Adds 'required' attribute directly to form input,
+ * to match Bootstrap recommendations.
+ */
+function boots_core_textfield($variables) {
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'text';
+  element_set_attributes($element, array('id', 'name', 'value', 'size', 'maxlength'));
+  _form_set_class($element, array('form-text'));
+
+  if ($element['#required']) {
+    $element['#attributes']['required'] = 'required';
+  }
+
+  $extra = '';
+  if ($element['#autocomplete_path'] && drupal_valid_path($element['#autocomplete_path'])) {
+    drupal_add_library('system', 'drupal.autocomplete');
+    $element['#attributes']['class'][] = 'form-autocomplete';
+
+    $attributes = array();
+    $attributes['type'] = 'hidden';
+    $attributes['id'] = $element['#attributes']['id'] . '-autocomplete';
+    $attributes['value'] = url($element['#autocomplete_path'], array('absolute' => TRUE));
+    $attributes['disabled'] = 'disabled';
+    $attributes['class'][] = 'autocomplete';
+    $extra = '<input' . drupal_attributes($attributes) . ' />';
+  }
+
+  $output = '<input' . drupal_attributes($element['#attributes']) . ' />';
+
+  return $output . $extra;
+}
+
+/**
  * Overrides theme_checkboxes.
  */
 function boots_core_checkboxes($variables) {
@@ -757,6 +795,36 @@ function boots_core_radio($variables) {
     $output = '<input' . drupal_attributes($element['#attributes']) . ' />';
   }
 
+  return $output;
+}
+
+/**
+ * Override theme_fieldset.
+ */
+function boots_core_fieldset($variables) {
+  $element = $variables['element'];
+  element_set_attributes($element, array('id'));
+  _form_set_class($element, array('form-wrapper'));
+
+  if ($element['#collapsible']) {
+    $element['#attributes']['class'][] = 'accordion-group';
+  }
+
+  $output = '<fieldset' . drupal_attributes($element['#attributes']) . '>';
+  if (!empty($element['#title'])) {
+    // Always wrap fieldset legends in a SPAN for CSS positioning.
+    $output .= '<legend><span class="fieldset-legend">' . $element['#title'] . '</span></legend>';
+  }
+  $output .= '<div class="fieldset-wrapper">';
+  if (!empty($element['#description'])) {
+    $output .= '<div class="fieldset-description">' . $element['#description'] . '</div>';
+  }
+  $output .= $element['#children'];
+  if (isset($element['#value'])) {
+    $output .= $element['#value'];
+  }
+  $output .= '</div>';
+  $output .= "</fieldset>\n";
   return $output;
 }
 

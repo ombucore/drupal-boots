@@ -1,1 +1,1 @@
-../../lib/bootstrap/js/bootstrap-alert.js
+../../lib/bootstrap/js/alert.js
