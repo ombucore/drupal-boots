@@ -263,10 +263,8 @@ hr {
 .container:after {
   content: " ";
   /* 1 */
-
   display: table;
   /* 2 */
-
 }
 .container:after {
   clear: both;
@@ -279,10 +277,8 @@ hr {
 .row:after {
   content: " ";
   /* 1 */
-
   display: table;
   /* 2 */
-
 }
 .row:after {
   clear: both;
@@ -875,6 +871,7 @@ body {
 }
 div[data-type="region"][data-name="console"] {
   background: #c8c8ff;
+  clear: both;
 }
 div[data-type="region"][data-name="console"] > .container {
   position: relative;
