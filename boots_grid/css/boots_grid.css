@@ -869,6 +869,19 @@ body {
 .submenu-toggle {
   display: none;
 }
+.submenu-toggle strong {
+  font-family: sans-serif;
+}
+.submenu-toggle .when-open,
+.submenu-toggle span {
+  display: none;
+}
+.open .submenu-toggle .when-open {
+  display: block;
+}
+.open .submenu-toggle .when-closed {
+  display: none;
+}
 div[data-type="region"][data-name="console"] {
   background: #c8c8ff;
   clear: both;

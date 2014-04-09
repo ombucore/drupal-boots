@@ -176,3 +176,16 @@ function boots_grid_status_messages($variables) {
   }
   return $output;
 }
+
+function boots_grid_menu_link($variables) {
+  $element = $variables['element'];
+  $sub_menu = '';
+
+  if ($element['#below']) {
+    $sub_menu = '<div class="submenu-toggle"><a href="#"><strong class="when-closed">+</strong><strong class="when-open">&minus;</strong><span> Submenu</span></a></div>';
+    $sub_menu .= drupal_render($element['#below']);
+  }
+
+  $output = l($element['#title'], $element['#href'], $element['#localized_options']);
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+}

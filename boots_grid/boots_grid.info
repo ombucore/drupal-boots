@@ -30,4 +30,5 @@ settings[tiles_steps][12] = 100%
 
 stylesheets[all][] = css/boots_grid.css
 scripts[] = js/boots-grid-alerts.js
+scripts[] = js/boots-grid-menus.js
 scripts[] = js/boots-grid-contextual.js

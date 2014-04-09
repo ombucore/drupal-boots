@@ -12,6 +12,26 @@ body {
   display: none;
 }
 
+.submenu-toggle {
+  strong {
+    font-family: sans-serif;
+  }
+
+  .when-open, span {
+    display: none;
+  }
+
+  .open & {
+    .when-open {
+      display: block;
+    }
+
+    .when-closed {
+      display: none;
+    }
+  }
+}
+
 // Region: Console
 // ----------------------------------------------------------------------------
 
