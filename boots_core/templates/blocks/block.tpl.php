@@ -42,7 +42,7 @@
  * @see template_process()
  */
 ?>
-<aside data-type="block" data-module="<?php print $block->module ?>" id="<?php print $block_html_id; ?>" class="<?php print $classes ?>"<?php print $attributes; ?>>
+<aside data-type="block" id="<?php print $block_html_id; ?>" class="<?php print $classes ?>"<?php print $attributes; ?>>
 
   <?php print render($title_prefix); ?>
   <?php if ($block->subject): ?>
