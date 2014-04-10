@@ -1,0 +1,102 @@
+body.cke_editable {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5em;
+  color: #111;
+}
+body.cke_editable,
+body.cke_editable *,
+body.cke_editable *:before,
+body.cke_editable *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body.cke_editable h2,
+body.cke_editable h3,
+body.cke_editable h4,
+body.cke_editable h5,
+body.cke_editable h6 {
+  color: black;
+  font-weight: bold;
+}
+body.cke_editable a {
+  color: #000096;
+}
+body.cke_editable blockquote {
+  border-left: 3px solid #009600;
+  margin: 1.5em 0;
+  padding-left: 1.0em;
+}
+body.cke_editable pre {
+  font-family: 'Lucida Console', Monaco, monospace;
+  color: #5d5d5d;
+}
+body.cke_editable p.lead {
+  font-size: 1.1em;
+  line-height: 1.5em;
+  font-weight: bold;
+}
+body.cke_editable .pull-left img,
+body.cke_editable .pull-right img {
+  max-width: 100%;
+  width: auto !important;
+  height: auto !important;
+}
+body.cke_editable .pull-left {
+  float: left;
+  margin: 0 1.0em 1.0em 0;
+}
+body.cke_editable .pull-right {
+  float: right;
+  margin: 0 0 1.0em 1.0em;
+}
+body.cke_editable p.pull-left,
+body.cke_editable p.pull-right {
+  background-color: #f5f5f5;
+  border: 1px solid #dcdcdc;
+  border-top: 1px solid #e8e8e8;
+  border-bottom: 1px solid #c2c2c2;
+  padding: 1.5em;
+  width: 33%;
+  min-width: 15.0em;
+  font-size: 0.9em;
+  border-radius: 3px;
+}
+body.cke_editable a.btn {
+  display: inline-block;
+  padding: 0.5em 3.0em;
+  background-color: #dcdcdc;
+  border-bottom: 1px solid #b6b6b6;
+  color: black;
+  border-radius: 3px;
+  text-decoration: none;
+}
+body.cke_editable a.cta {
+  font-weight: bold;
+}
+body.cke_editable a.cta:after {
+  content: ' →';
+}
+body.cke_editable ul {
+  overflow: hidden;
+}
+body.cke_editable ul.inline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+body.cke_editable ul.inline li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+body.cke_editable ul.inline li:before {
+  content: '●';
+  color: #909090;
+  margin: 0 0.75em;
+}
+body.cke_editable ul.inline li:first-child:before {
+  content: '';
+  margin: 0;
+}

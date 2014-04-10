@@ -1,0 +1,119 @@
+@color-blue: rgb(0, 0, 150);
+@color-green: rgb(0, 150, 0);
+@color-green-light: rgb(220, 255, 220);
+@color-gray: rgb(220, 220, 220);
+@color-gray-light: rgb(245, 245, 245);
+
+body.cke_editable {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5em;
+  color: #111;
+
+  &, *, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  h2, h3, h4, h5, h6 {
+    color: black;
+    font-weight: bold;
+  }
+
+  a {
+    color: @color-blue;
+  }
+
+  blockquote {
+    border-left: 3px solid @color-green;
+    margin: 1.5em 0;
+    padding-left: 1.0em;
+  }
+
+  pre {
+    font-family: 'Lucida Console', Monaco, monospace;
+    color: darken(@color-gray, 50);
+  }
+
+  p.lead {
+    font-size: 1.1em;
+    line-height: 1.5em;
+    font-weight: bold;
+  }
+
+  .pull-left, .pull-right {
+    img {
+      max-width: 100%;
+      width: auto !important;
+      height: auto !important;
+    }
+  }
+
+  .pull-left {
+    float: left;
+    margin: 0 1.0em 1.0em 0;
+  }
+
+  .pull-right {
+    float: right;
+    margin: 0 0 1.0em 1.0em;
+  }
+
+  p.pull-left, p.pull-right {
+    background-color: @color-gray-light;
+    border: 1px solid darken(@color-gray-light, 10);
+    border-top: 1px solid darken(@color-gray-light, 5);
+    border-bottom: 1px solid darken(@color-gray-light, 20);
+    padding: 1.5em;
+    width: 33%;
+    min-width: 15.0em;
+    font-size: 0.9em;
+    border-radius: 3px;
+  }
+
+  a.btn {
+    display: inline-block;
+    padding: 0.5em 3.0em;
+    background-color: @color-gray;
+    border-bottom: 1px solid darken(@color-gray, 15);
+    color: black;
+    border-radius: 3px;
+    text-decoration: none;
+  }
+
+  a.cta {
+    font-weight: bold;
+
+    &:after {
+      content: ' →';
+    }
+  }
+
+  ul {
+    overflow: hidden;
+  }
+
+  ul.inline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline;
+      margin: 0;
+      padding: 0;
+
+      &:before {
+        content: '●';
+        color: darken(@color-gray, 30);
+        margin: 0 0.75em;
+      }
+
+      &:first-child:before {
+        content: '';
+        margin: 0;
+      }
+    }
+  }
+}
