@@ -1,52 +1,33 @@
-The BetterBase theme starter
-============================
+Boots
+=====
+Boots was developed by [OMBU](http://ombuweb.com) to provide a hierarchical set of starter themes for Drupal 7.  These themes include:
 
-Betterbase hopes to give Drupal developers a solid jumping off point for themes. The 'betterbase' theme itself has the goals of stripping out unneeded content and html elements and aims to be used in every project without modifications or the need to take anything away. The 'starter' sub-theme of betterbase aims to make a few assumptions about how sites are commonly put together, then provides a framework for whipping them together quickly and solidly. [LESS CSS](http://lesscss.org) is extensively used in the starter theme.
+1. #### **Boots Core**
+    Boots Core is our root theme.  Its primary purpose is to provide a foundational layer of lean, optimized Drupal markup using [Bootstrap](http://getbootstrap.com/) naming conventions (e.g., .btn, .alert).  We’ve purposefully excluded CSS from Boots Core so that it can be defined by other themes without the need for style overrides.
 
-Setup Steps
------------
-* After cloning, run 
-	* `git submodule init`
-	* `git submodule update`
-* After updating any subrepos, run `git submodule update` in main repo root
+1. #### **Boots Grid**
+    Boots Grid takes Boots Core one step further by incorporating [Bootstrap's grid system](http://getbootstrap.com/css/#grid).  The grid system provides a convention foundation for creating responsive sites and multi-column layouts.  Visual design treatments are still largely excluded from Boots Grid so that inheriting themes can define their own styles without collision.  Most of our client work begins with Boots Grid.
+    
+1. #### **Bootstrap**
+    Our Bootstrap theme adds a thin layer of visual treatments and front-end behaviors to Boots Grid.  These additions come directly from [Bootstrap](http://getbootstrap.com/) and contain a handful of our own targeted overrides.  Internally, we use the Bootstrap theme primarily to demonstrate the power and flexibility of the Boots system.
+    
+1. #### **Boots Admin**
+    Boots Admin is our Drupal admin theme.  It inherits from Boots Core and provides a starting point for building more sophisticated admin themes when necessary.  Boots Admin is still under development and is not in active use by any of our projects.
 
-Features
---------
-* HTML5 Ready (Using the new semantic elements and making sure IE can play along
-  thanks to [Modernizr](http://modernizr.com))
-* LESS CSS driven sub-theme that can generate dimensions of main content areas
-* LESS CSS driven CSS3 Gradient Faux Columns
-* Measure out a mockup in pixels, enter the dimensions into variables.less, have
-  it calculate out a liquid layout that preserves the ratios of the sidebars &
-  main content :)
+Dependencies
+------------
+* [LESS CSS](http://lesscss.org)
+    Our styles are written in LESS and compiled into CSS.
 
-Pre-launch Check List
----------------------
-* **Don't forget to give CSS PIE a set absolue path**
-* Modernizr is using a totally stripped down version that will basically just
-  let you use new HTML5 elements in IE. So it doesn't add any classes to the
-  `html` element that identifies features that browser supports (no
-  `border-radius` or `css-columns` classes). Considering PIE gets most whipped
-  into shape, we don't need most of those. [Regenerate your own custom
-  Modernizr](http://www.modernizr.com/download) for each project if you need to
-  have options for sending styles to browsers that can and can't use the more
-  advanced CSS3 that PIE doesn't cover (ie css columns).
-* Open variables.less and pick one of the layout setups: fixed, liquid, or fixed
-  to liquid conversion. Only un-comment one. Import either
-  toolkit-css-less-layout/layout-liquid.less or layout-fixed.less.
+* [Bootstrap](http://getbootstrap.com/)
+    Boostrap is already included in the repository, but contains LESS files of its own that may be customized and recompiled.
 
-To Do
+* [Modernizr](http://modernizr.com/)
+    Modernizr is also included in the repository and is enabled in Boots Core to allow the use of HTML5 elements in older versions of IE.
+
+Usage
 -----
-**Front End To Dos**
 
-* Make sure HTML 5 elements are used where applicable:
-	* Navs
-* Help SEO by reformatting page.tpl.php so source order goes #main,
-  #sidebar-first, #sidebar-second. Currently, #sidebar-first comes before #main.
+* Choose an appropriate Boots theme and apply it in your Drupal environment as a site theme or parent theme.
 
-Future Features
----------------
-* A 404 page that doesn't suck
-* A contact us page that doesn't suck
-* Different tab styles (View/Edit) than the default Drupal tabs 
-* Contact Us form, if it has address, to be marked up using microformats
+* To customize Bootstrap styles, substitute or include your own variables.less file and recompile the theme's primary LESS file.
