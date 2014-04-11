@@ -3,7 +3,7 @@
     attach: function(context, settings) {
 
       // Instantiate fastclick for speedy tap response on touch devices.
-      FastClick.attach(document.body);
+      this.fc = FastClick.attach(document.body);
     }
   }
 })(jQuery);
