@@ -24,16 +24,39 @@ function boots_grid_preprocess_block(&$variables) {
     $b = $variables['block'];
     $ca = &$variables['classes_array'];
 
-    // remove some classes
+    // Remove some classes.
     unset($ca[array_search('block', $ca)]);
     unset($ca[array_search(str_replace('_', '-', 'block-' . $b->module), $ca)]);
 
-    // add grid column class
-    if (isset($b->width)) {
-      $ca[] = 'col-xs-' . 12;
-      $ca[] = 'col-sm-' . $b->width;
-      $ca[] = 'col-md-' . $b->width;
-      $ca[] = 'col-lg-' . $b->width;
+    // Add grid column classes.
+    $default_breakpoint = tiles_get_default_breakpoint();
+    $default_width = isset($b->breakpoints[$default_breakpoint]) ? $b->breakpoints[$default_breakpoint] : tiles_get_max_step();
+
+
+    // Add breakpoint classes.
+    $breakpoints = tiles_get_breakpoints();
+    foreach ($breakpoints as $key => $value) {
+      // Phone default width should be max width.
+      if ($key == 'xs') {
+        $width = isset($b->breakpoints[$key]) && $b->breakpoints[$key] == 0 ? $b->breakpoints[$key] : tiles_get_max_step();
+
+        // Set width for xs breakpoint data attribute to max width if not set to
+        // be hidden.
+        $variables['attributes_array']['data-width-xs'] = $width;
+      }
+      // Otherwise use default width from default breakpoint (or max breakpoint
+      // if not set).
+      else {
+        $width = isset($b->breakpoints[$key]) ? $b->breakpoints[$key] : $default_width;
+      }
+
+      // Add bootstrap hidden classes if width is 0.
+      if ($width == 0) {
+        $ca[] = 'hidden-' . $key;
+      }
+      else {
+        $ca[] = 'col-' . $key . '-' . $width;
+      }
     }
 }
 
