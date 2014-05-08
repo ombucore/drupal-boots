@@ -63,6 +63,12 @@ body.cke_editable p.pull-right {
   font-size: 0.9em;
   border-radius: 3px;
 }
+body.cke_editable p.pull-left + p.pull-left {
+  clear: left;
+}
+body.cke_editable p.pull-right + p.pull-right {
+  clear: right;
+}
 body.cke_editable a.btn {
   display: inline-block;
   padding: 0.5em 3.0em;
