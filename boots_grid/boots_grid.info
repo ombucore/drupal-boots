@@ -17,7 +17,7 @@ regions[site_bottom] = Site Bottom
 
 settings[tiles_breakpoints][xs] = Phone
 settings[tiles_breakpoints][sm] = Tablet
-settings[tiles_breakpoints][md] = Medium desktop
+settings[tiles_breakpoints][md] = Medium Desktop
 settings[tiles_breakpoints][lg] = Large Desktop
 
 settings[tiles_steps][1] =  8%
