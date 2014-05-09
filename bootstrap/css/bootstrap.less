@@ -86,3 +86,223 @@ body { padding-top: 60px }
   .navbar-nav;
 }
 
+// Breakpoint pixel values
+// -----------------------------------------------------------------------------
+@breakpoint-xs:  320px;
+@breakpoint-sm:  768px;
+@breakpoint-md:  992px;
+@breakpoint-lg: 1280px;
+@unit-xs:  unit(@breakpoint-xs);
+@unit-sm:  unit(@breakpoint-sm);
+@unit-md:  unit(@breakpoint-md);
+@unit-lg:  unit(@breakpoint-lg);
+
+// Breakpoint indicator
+// -----------------------------------------------------------------------------
+
+// Assorted constants to configure style and behavior.
+@bi-width: 380px;
+@bi-height: 220px;
+@bi-border-default: fade(white, 60%);
+@bi-border-active: fade(orange, 70%);
+@bi-background-color: fade(black, 80%);
+@bi-foreground-color: white;
+@bi-animation-duration: 2s;
+@bi-z-index: 1000;
+
+// Keyframes definitions for the breakpoint-crossing animation.
+.keyframes-fade() {
+  0%   {
+    visibility: visible;
+    opacity: 0;
+    margin-top: (@bi-height - 30) / -2;
+    border-color: @bi-border-default;
+  }
+
+  20% {
+    opacity: 1;
+    margin-top: @bi-height / -2;
+    border-color: @bi-border-active;
+  }
+
+  30% {
+    border-color: @bi-border-active;
+  }
+
+  70% {
+    border-color: @bi-border-default;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+// To trigger an animation when a breakpoint is crossed on resize of the browser
+// window, it must have a unique animation definition for the corresponding
+// media query.  In our case, the keyframe properties for each animation can be
+// identical (e.g., fade in, remain visible for some time, then fade out), but
+// they must be redeclared with a different animation name (e.g., fade-md) for
+// each breakpoint.  The .keyframes-fade() mixin keeps these redeclarations
+// relatively DRY.
+@-webkit-keyframes fade-xs { .keyframes-fade(); }
+@-webkit-keyframes fade-sm { .keyframes-fade(); }
+@-webkit-keyframes fade-md { .keyframes-fade(); }
+@-webkit-keyframes fade-lg { .keyframes-fade(); }
+@-moz-keyframes    fade-xs { .keyframes-fade(); }
+@-moz-keyframes    fade-sm { .keyframes-fade(); }
+@-moz-keyframes    fade-md { .keyframes-fade(); }
+@-moz-keyframes    fade-lg { .keyframes-fade(); }
+@-ms-keyframes     fade-xs { .keyframes-fade(); }
+@-ms-keyframes     fade-sm { .keyframes-fade(); }
+@-ms-keyframes     fade-md { .keyframes-fade(); }
+@-ms-keyframes     fade-lg { .keyframes-fade(); }
+@-o-keyframes      fade-xs { .keyframes-fade(); }
+@-o-keyframes      fade-sm { .keyframes-fade(); }
+@-o-keyframes      fade-md { .keyframes-fade(); }
+@-o-keyframes      fade-lg { .keyframes-fade(); }
+@keyframes         fade-xs { .keyframes-fade(); }
+@keyframes         fade-sm { .keyframes-fade(); }
+@keyframes         fade-md { .keyframes-fade(); }
+@keyframes         fade-lg { .keyframes-fade(); }
+
+// Mixin to activate the breakpoint-crossing animation.
+.activate-animation(@name: fade-xs) {
+  #breakpoints {
+    -webkit-animation: @name @bi-animation-duration;
+    -moz-animation: @name @bi-animation-duration;
+    -ms-animation: @name @bi-animation-duration;
+    -o-animation: @name @bi-animation-duration;
+    animation: @name @bi-animation-duration;
+  }
+}
+
+// Mixin to show a specific breakpoint name.
+.show-breakpoint(@selector) {
+  @{selector} {
+    display: inline-block;
+  }
+}
+
+// Mixin to hide a specific breakpoint name.
+.hide-breakpoint(@selector) {
+  @{selector} {
+    display: none;
+  }
+}
+
+#breakpoints {
+  visibility: hidden;
+  opacity: 0;
+  z-index: @bi-z-index;
+  display: block;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  width: @bi-width;
+  height: @bi-height;
+  margin: @bi-height / -2 0 0 @bi-width / -2;
+  padding: 0;
+  list-style: none;
+  font-size: 0;
+  text-align: center;
+  border: 10px solid @bi-border-default;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border-radius: 16px;
+  color: @bi-foreground-color;
+  background-color: @bi-background-color;
+
+  // A pseudo element on the parent list enabels its children
+  // items to be vertically centered.
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  li {
+    display: inline-block;
+    margin: 0;
+    padding: 0 0.5em;
+    vertical-align: middle;
+    font-size: 36px;
+    line-height: 1.2;
+
+    &:before, &:after {
+      content: '';
+      display: block;
+    }
+
+    &:before {
+      content: 'Active breakpoint';
+      margin-bottom: 15px;
+      font-size: 14px;
+      font-weight: 200;
+      text-transform: uppercase;
+      color: fade(@bi-foreground-color, 50%);
+    }
+
+    &:after {
+      margin-top: 15px;
+      font-size: 24px;
+      font-weight: 100;
+      color: fade(@bi-foreground-color, 80%);
+    }
+
+    &.xs:after {
+      content: '@{unit-xs} pixels';
+    }
+
+    &.sm:after {
+      content: '@{unit-sm} pixels';
+    }
+
+    &.md:after {
+      content: '@{unit-md} pixels';
+    }
+
+    &.lg:after {
+      content: '@{unit-lg} pixels';
+    }
+  }
+}
+
+// Activate the 'xs' indicator by default.
+.show-breakpoint(~'#breakpoints .xs');
+.hide-breakpoint(~'#breakpoints .sm');
+.hide-breakpoint(~'#breakpoints .md');
+.hide-breakpoint(~'#breakpoints .lg');
+.activate-animation(fade-xs);
+
+// For each breakpoint media query, hide and show the appropriate breakpoint
+// names and activate the corresponding animation.
+@media all and (min-width: @breakpoint-sm) {
+  .hide-breakpoint(~'#breakpoints .xs');
+  .show-breakpoint(~'#breakpoints .sm');
+  .hide-breakpoint(~'#breakpoints .md');
+  .hide-breakpoint(~'#breakpoints .lg');
+  .activate-animation(fade-sm);
+}
+
+@media all and (min-width: @breakpoint-md) {
+  .hide-breakpoint(~'#breakpoints .xs');
+  .hide-breakpoint(~'#breakpoints .sm');
+  .show-breakpoint(~'#breakpoints .md');
+  .hide-breakpoint(~'#breakpoints .lg');
+  .activate-animation(fade-md);
+}
+
+@media all and (min-width: @breakpoint-lg) {
+  .hide-breakpoint(~'#breakpoints .xs');
+  .hide-breakpoint(~'#breakpoints .sm');
+  .hide-breakpoint(~'#breakpoints .md');
+  .show-breakpoint(~'#breakpoints .lg');
+  .activate-animation(fade-lg);
+}
