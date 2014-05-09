@@ -1,46 +1,65 @@
-@import "../lib/bootstrap/less/variables.less"; // Modify this for custom colors, font-sizes, etc
-@import "../lib/bootstrap/less/mixins.less";
+/*!
+ * Bootstrap v3.0.0
+ *
+ * Copyright 2013 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world by @mdo and @fat.
+ */
 
-// Base CSS
-@import "../lib/bootstrap/less/type.less";
-// @import "../lib/bootstrap/less/code.less";
-@import "../lib/bootstrap/less/forms.less";
-// @import "../lib/bootstrap/less/tables.less";
-//
-//// Components: common
-//@import "../lib/bootstrap/less/sprites.less";
-//@import "../lib/bootstrap/less/dropdowns.less";
-@import "../lib/bootstrap/less/wells.less";
-//@import "../lib/bootstrap/less/component-animations.less";
-@import "../lib/bootstrap/less/close.less";
-//
-//// Components: Buttons & Alerts
-@import "../lib/bootstrap/less/buttons.less";
-//@import "../lib/bootstrap/less/button-groups.less";
-@import "../lib/bootstrap/less/alerts.less"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
-//
-//// Components: Nav
-@import "../lib/bootstrap/less/navs.less";
-@import "../lib/bootstrap/less/navbar.less";
-@import "../lib/bootstrap/less/breadcrumbs.less";
-//@import "../lib/bootstrap/less/pagination.less";
-//@import "../lib/bootstrap/less/pager.less";
-//
-//// Components: Popovers
-//@import "../lib/bootstrap/less/modals.less";
-//@import "../lib/bootstrap/less/tooltip.less";
-//@import "../lib/bootstrap/less/popovers.less";
-//
-//// Components: Misc
-//@import "../lib/bootstrap/less/thumbnails.less";
-//@import "../lib/bootstrap/less/labels-badges.less";
-//@import "../lib/bootstrap/less/progress-bars.less";
-//@import "../lib/bootstrap/less/accordion.less";
-//@import "../lib/bootstrap/less/carousel.less";
-@import "../lib/bootstrap/less/hero-unit.less";
-//
-//// Utility classes
-//@import "../lib/bootstrap/less/utilities.less"; // Has to be last to override when necessary
+// Core variables and mixins
+
+@path: "../../lib/bootstrap/less";
+
+@import "@{path}/variables.less";
+@import "@{path}/mixins.less";
+
+// Reset
+@import "@{path}/normalize.less";
+@import "@{path}/print.less";
+
+// Core CSS
+@import "@{path}/scaffolding.less";
+@import "@{path}/type.less";
+@import "@{path}/code.less";
+@import "@{path}/grid.less";
+@import "@{path}/tables.less";
+@import "@{path}/forms.less";
+@import "@{path}/buttons.less";
+
+// Components
+@import "@{path}/component-animations.less";
+@import "@{path}/glyphicons.less";
+@import "@{path}/dropdowns.less";
+@import "@{path}/button-groups.less";
+@import "@{path}/input-groups.less";
+@import "@{path}/navs.less";
+@import "@{path}/navbar.less";
+@import "@{path}/breadcrumbs.less";
+@import "@{path}/pagination.less";
+@import "@{path}/pager.less";
+@import "@{path}/labels.less";
+@import "@{path}/badges.less";
+@import "@{path}/jumbotron.less";
+@import "@{path}/thumbnails.less";
+@import "@{path}/alerts.less";
+@import "@{path}/progress-bars.less";
+@import "@{path}/media.less";
+@import "@{path}/list-group.less";
+@import "@{path}/panels.less";
+@import "@{path}/wells.less";
+@import "@{path}/close.less";
+
+// Components w/ JavaScript
+@import "@{path}/modals.less";
+@import "@{path}/tooltip.less";
+@import "@{path}/popovers.less";
+@import "@{path}/carousel.less";
+
+// Utility classes
+@import "@{path}/utilities.less";
+@import "@{path}/responsive-utilities.less";
 
 /**
  * For the styles below, see
@@ -62,3 +81,8 @@ body { padding-top: 60px }
 [data-delta*='ombubeans-fpo'] img {
     .box-sizing(border-box);
 }
+
+[data-module='menu'][data-delta='header-menu'] ul {
+  .navbar-nav;
+}
+

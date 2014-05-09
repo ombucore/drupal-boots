@@ -9,7 +9,7 @@
 <?php print render($page['site_top']); ?>
 <?php endif ?>
 
-<div id="container" class="container-fluid <?php print $classes ?>">
+<div id="container" class="container <?php print $classes ?>">
 
     <?php if ($page['header']): ?> <?php print render($page['header']); ?> <?php endif ?>
 

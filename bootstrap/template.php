@@ -10,8 +10,8 @@ function bootstrap_preprocess_region(&$variables, $hook) {
     $variables['classes_array'][] = 'navbar';
     $variables['classes_array'][] = 'navbar-inverse';
     $variables['classes_array'][] = 'navbar-fixed-top';
-    $variables['content'] = '<div class="navbar-inner"><div class="container-fluid">' .
-        $variables['content'] . '</div></div>';
+    $variables['content'] = '<div class="container">' .
+        $variables['content'] . '</div>';
   }
 }
 
@@ -31,4 +31,17 @@ function bootstrap_preprocess_block(&$variables) {
       $variables['classes_array'][] = 'sidebar-nav';
     }
   }
+  if ($block->module == 'ombucleanup' && $block->delta == 'site_logo') {
+  }
+}
+
+/**
+ * Default implementation for site logo block theme function.
+ */
+function bootstrap_ombucleanup_site_logo($variables) {
+  return l($variables['site_name'], '<front>', array(
+    'attributes' => array(
+      'class' => array('navbar-brand'),
+    )
+  ));
 }
