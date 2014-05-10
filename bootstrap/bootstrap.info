@@ -6,7 +6,8 @@ version = 0.3
 core = 7.x
 
 stylesheets[all][] = css/bootstrap.css
-scripts[] = js/bootstrap-alert.js
+scripts[] = js/alert.js
+scripts[] = js/collapse.js
 scripts[] = js/bootstrap.js
 
 regions[site_top] = Site Top
