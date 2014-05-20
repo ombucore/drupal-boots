@@ -178,9 +178,12 @@ function boots_core_pager($variables) {
         'data' => $li_next,
       );
     }
-    return '<h2 class="element-invisible">' . t('Pages') . '</h2>' . '<div class="pagination">'. theme('item_list', array(
+    return '<h2 class="element-invisible">' . t('Pages') . '</h2>' . theme('item_list', array(
       'items' => $items,
-    )) . '</div>';
+      'attributes' => array(
+        'class' => array('pagination'),
+      ),
+    ));
   }
 }
 
