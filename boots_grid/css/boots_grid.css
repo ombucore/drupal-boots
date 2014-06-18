@@ -882,6 +882,9 @@ body {
 .open .submenu-toggle .when-closed {
   display: none;
 }
+.password-request {
+  margin-left: 1em;
+}
 div[data-type="region"][data-name="console"] {
   background: #c8c8ff;
   clear: both;
@@ -982,7 +985,4 @@ div[data-type="region"][data-name="console"].console-warning {
 div[data-type="region"][data-name="console"].console-error {
   background-color: #dc0000;
   color: white;
-}
-.password-request {
-  margin-left: 1em;
 }
