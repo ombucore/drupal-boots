@@ -8,7 +8,6 @@ core = 7.x
 regions[site_top] = Site Top
 regions[header] = Header
 regions[sidebar_first] = Sidebar First
-regions[header] = Header
 regions[content_top] = Content Top
 regions[content] = Content
 regions[sidebar_second] = Sidebar Second
