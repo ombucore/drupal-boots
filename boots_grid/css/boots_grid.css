@@ -888,8 +888,8 @@ body {
 @media print {
   * {
     text-shadow: none !important;
-    color: #000 !important;
-    background: transparent !important;
+    color: #000;
+    background: transparent;
     box-shadow: none !important;
   }
   a,
