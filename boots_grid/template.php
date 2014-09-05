@@ -97,6 +97,9 @@ function boots_grid_block_view_alter(&$data, $block) {
       foreach (element_children($data['content']['#content']) as $i) {
         $item = $data['content']['#content'][$i];
         $path = $item['#href'];
+        if ($path == '<nolink>') {
+          $path = '';
+        }
         $url = url($path);
         if ($path == $_GET['q'] || ($path == '<front>' && drupal_is_front_page())) {
           $default_value = $url;
