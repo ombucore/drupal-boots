@@ -10,6 +10,9 @@ body.cke_editable {
   line-height: 1.5em;
   color: #111;
 
+  // Common element styles
+  // ---------------------------------------------------------------------------
+
   &, *, *:before, *:after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -25,10 +28,28 @@ body.cke_editable {
     color: @color-blue;
   }
 
+  img {
+    max-width: 100%;
+  }
+
+  ul {
+    overflow: hidden;
+  }
+
   blockquote {
-    border-left: 3px solid @color-green;
-    margin: 1.5em 0;
+    clear: both;
+    margin: 1.0em 0;
     padding-left: 1.0em;
+    border-left: 3px solid @color-green;
+    font-style: italic;
+
+    p:first-child {
+      margin-top: 0;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
   }
 
   pre {
@@ -36,15 +57,13 @@ body.cke_editable {
     color: darken(@color-gray, 50);
   }
 
-  p.lead {
-    font-size: 1.1em;
-    line-height: 1.5em;
-    font-weight: bold;
-  }
+  // Custom style baseline rules
+  // ---------------------------------------------------------------------------
 
   .pull-left, .pull-right {
+    width: 33%;
+
     img {
-      max-width: 100%;
       width: auto !important;
       height: auto !important;
     }
@@ -52,25 +71,43 @@ body.cke_editable {
 
   .pull-left {
     float: left;
-    margin: 0 1.0em 1.0em 0;
+    margin: 0 2.0em 1.0em 0;
   }
 
   .pull-right {
     float: right;
-    margin: 0 0 1.0em 1.0em;
+    margin: 0 0 1.0em 2.0em;
   }
 
-  p.pull-left, p.pull-right {
-    background-color: @color-gray-light;
-    border: 1px solid darken(@color-gray-light, 10);
-    border-top: 1px solid darken(@color-gray-light, 5);
-    border-bottom: 1px solid darken(@color-gray-light, 20);
-    padding: 1.5em;
-    width: 33%;
-    min-width: 15.0em;
-    font-size: 0.9em;
-    border-radius: 3px;
+  // Custom style: Lead text
+  // ---------------------------------------------------------------------------
+
+  p.lead {
+    font-size: 1.1em;
+    line-height: 1.5em;
+    font-weight: bold;
   }
+
+  // Custom styles: Image left, Image right
+  // ---------------------------------------------------------------------------
+
+  p {
+    &.pull-left, &.pull-right {
+      width: 33%;
+    }
+  }
+
+  // Custom styles: Blockqoute left, Blockquote right
+  // ---------------------------------------------------------------------------
+
+  blockquote {
+    &.pull-left, &.pull-right {
+      width: 33%;
+    }
+  }
+
+  // Custom style: Button link
+  // ---------------------------------------------------------------------------
 
   a.btn {
     display: inline-block;
@@ -82,6 +119,9 @@ body.cke_editable {
     text-decoration: none;
   }
 
+  // Custom style: CTA link
+  // ---------------------------------------------------------------------------
+
   a.cta {
     font-weight: bold;
 
@@ -90,9 +130,8 @@ body.cke_editable {
     }
   }
 
-  ul {
-    overflow: hidden;
-  }
+  // Custom style: Inline list
+  // ---------------------------------------------------------------------------
 
   ul.inline {
     list-style: none;
