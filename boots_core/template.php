@@ -21,6 +21,7 @@ function boots_core_css_alter(&$css) {
     // 'core' => 'vertical-tabs.css',
     'date_api' => 'date.css',
     'search' => 'search.css',
+    'field_collection' => 'field_collection.theme.css',
   );
 
   foreach ($blacklist as $module => $value) {
