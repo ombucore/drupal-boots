@@ -383,15 +383,15 @@ function boots_core_item_list($variables) {
 /**
  * Bean Containers: User Bootstrap tab js.
  */
-function boots_core_preprocess_bean_container(&$variables) {
+function boots_core_preprocess_bean_container_tabs(&$variables) {
   $bootstrap_path = drupal_get_path('theme', 'boots_core') . '/../lib/bootstrap';
-  drupal_add_js($bootstrap_path . '/js/bootstrap-tab.js');
+  drupal_add_js($bootstrap_path . '/js/tab.js');
 }
 
 /**
  * Themes bean containers with Bootstrap
  */
-function boots_core_bean_container($variables) {
+function boots_core_bean_container_tabs($variables) {
   $children = $variables['children'];
   $parent = $variables['parent'];
   $output = '';
@@ -405,51 +405,37 @@ function boots_core_bean_container($variables) {
     return $output;
   }
 
-  if ($variables['display_type'] == 'tab') {
-    $output .= '<div class="tabbable">';
+  $output .= '<div class="tabbable">';
 
-    $nav = array();
-    $items = array();
-    foreach ($children as $key => $child) {
-      // Generate nav.
-      $nav[] = array(
-        'data' => '<a data-toggle="tab" href="#' . $parent->delta . '-' . $key . '">' . $child->title . '</a>',
-        'class' => $key == 0 ? array('active') : array(),
-      );
+  $nav = array();
+  $items = array();
+  foreach ($children as $key => $child) {
+    // Generate nav.
+    $nav[] = array(
+      'data' => '<a data-toggle="tab" href="#' . $parent->delta . '-' . $key . '">' . $child->title . '</a>',
+      'class' => $key == 0 ? array('active') : array(),
+    );
 
-      // Generate items.
-      $content = $child->view();
-      $content['#prefix'] = '<div class="' . drupal_clean_css_identifier($child->type) . '">';
-      $content['#suffix'] = '</div>';
-      $item_output = '<div class="tab-pane' . ($key == 0 ? ' active' : '') . '" id="' . $parent->delta . '-' . $key . '">';
-      $item_output .= drupal_render($content);
-      $item_output .= '</div>';
-      $items[] = $item_output;
-    }
-
-    $output .= theme('item_list', array(
-      'items' => $nav,
-      'attributes' => array(
-        'class' => array('nav', 'nav-tabs'),
-      ),
-    ));
-
-    $output .= '<div class="tab-content">' . join('', $items) . '</div>';
-
-    $output .= '</div>';
+    // Generate items.
+    $content = $child->view();
+    $content['#prefix'] = '<div class="' . drupal_clean_css_identifier($child->type) . '">';
+    $content['#suffix'] = '</div>';
+    $item_output = '<div class="tab-pane' . ($key == 0 ? ' active' : '') . '" id="' . $parent->delta . '-' . $key . '">';
+    $item_output .= drupal_render($content);
+    $item_output .= '</div>';
+    $items[] = $item_output;
   }
-  else {
-    $output = '';
-    foreach ($children as $key => $child) {
-      $content = $child->view();
-      $content['#prefix'] = '<div class="' . drupal_clean_css_identifier($child->type) . '">';
-      if (!empty($child->title)) {
-        $content['#prefix'] .= '<h2>' . $child->title . '</h2>';
-      }
-      $content['#suffix'] = '</div>';
-      $output .= drupal_render($content);
-    }
-  }
+
+  $output .= theme('item_list', array(
+    'items' => $nav,
+    'attributes' => array(
+      'class' => array('nav', 'nav-tabs'),
+    ),
+  ));
+
+  $output .= '<div class="tab-content">' . join('', $items) . '</div>';
+
+  $output .= '</div>';
 
   return $output;
 }
