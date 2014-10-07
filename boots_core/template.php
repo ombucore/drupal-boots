@@ -72,16 +72,26 @@ function boots_core_form_user_login_alter(&$form, $form_state) {
 /**
  * Returns HTML for a breadcrumb trail.
  *
- * @param $variables
+ * @param array $variables
  *   An associative array containing:
  *   - breadcrumb: An array containing the breadcrumb links.
+ *
  * @see theme_breadcrumb
  */
 function boots_core_breadcrumb($variables) {
   $breadcrumb = $variables['breadcrumb'];
   if (!empty($breadcrumb)) {
     if (variable_get('breadcrumb_show_page_title', FALSE)) {
-      $breadcrumb[] = drupal_get_title();
+      // Optionally show menu title instead of page title.
+      if (variable_get('breadcrumb_use_menu_title', FALSE)) {
+        $link = menu_link_get_preferred();
+        // If link has been found, use title, otherwise default to current
+        // title.
+        $breadcrumb[] = isset($link['link_title']) ? $link['link_title'] : drupal_get_title();
+      }
+      else {
+        $breadcrumb[] = drupal_get_title();
+      }
     }
     $output = '<ul class="breadcrumb"><li>' . implode(' <span class="divider">/</span></li><li>', $breadcrumb) . '</li></ul>';
     return $output;
