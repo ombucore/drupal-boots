@@ -87,7 +87,7 @@ function boots_core_breadcrumb($variables) {
         $link = menu_link_get_preferred();
         // If link has been found, use title, otherwise default to current
         // title.
-        $breadcrumb[] = isset($link['link_title']) ? $link['link_title'] : drupal_get_title();
+        $breadcrumb[] = !empty($link['link_title']) ? $link['link_title'] : drupal_get_title();
       }
       else {
         $breadcrumb[] = drupal_get_title();
