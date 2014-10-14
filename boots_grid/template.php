@@ -97,6 +97,9 @@ function boots_grid_block_view_alter(&$data, $block) {
       foreach (element_children($data['content']['#content']) as $i) {
         $item = $data['content']['#content'][$i];
         $path = $item['#href'];
+        if ($path == '<nolink>') {
+          $path = '';
+        }
         $url = url($path);
         if ($path == $_GET['q'] || ($path == '<front>' && drupal_is_front_page())) {
           $default_value = $url;
@@ -122,6 +125,7 @@ function boots_grid_block_view_alter(&$data, $block) {
           '#options' => $options,
           '#value' => $default_value,
           '#attributes' => array(
+            'title' => 'Navigation menu',
             'class' => array('select-menu', 'visible-phone'),
             'onChange' => 'window.location.replace(this.options[this.selectedIndex].value);',
           ),
