@@ -125,6 +125,7 @@ function boots_grid_block_view_alter(&$data, $block) {
           '#options' => $options,
           '#value' => $default_value,
           '#attributes' => array(
+            'title' => 'Navigation menu',
             'class' => array('select-menu', 'visible-phone'),
             'onChange' => 'window.location.replace(this.options[this.selectedIndex].value);',
           ),
