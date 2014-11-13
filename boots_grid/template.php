@@ -112,7 +112,7 @@ function boots_grid_block_view_alter(&$data, $block) {
 
       $data['content']['#content'] = array(
         'menu' => array(
-          '#prefix' => $menu_toggle . '<div class="hidden-sm hidden-xs menu-root">',
+          '#prefix' => $menu_toggle . '<div class="hidden-xs menu-root">',
           'content' => $data['content']['#content'],
           '#suffix' => '</div>',
         ),
@@ -122,7 +122,7 @@ function boots_grid_block_view_alter(&$data, $block) {
           '#options' => $options,
           '#value' => $default_value,
           '#attributes' => array(
-            'class' => array('select-menu', 'visible-sm', 'visible-xs'),
+            'class' => array('select-menu', 'visible-xs'),
             'onChange' => 'window.location.replace(this.options[this.selectedIndex].value);',
           ),
         ),
