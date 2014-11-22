@@ -419,21 +419,27 @@ function boots_core_bean_container_tabs($variables) {
 
   $nav = array();
   $items = array();
-  foreach ($children as $key => $child) {
+  $key = 0;
+  foreach (element_children($children) as $child) {
+    $child = $children[$child];
+    $block = $child['#block'];
+
     // Generate nav.
     $nav[] = array(
-      'data' => '<a data-toggle="tab" href="#' . $parent->delta . '-' . $key . '">' . $child->title . '</a>',
+      'data' => '<a data-toggle="tab" href="#' . $parent->delta . '-' . $key . '">' . $block->subject . '</a>',
       'class' => $key == 0 ? array('active') : array(),
     );
 
+    // Hide subject, since it's shown in tab.
+    $block->subject = '';
+
     // Generate items.
-    $content = $child->view();
-    $content['#prefix'] = '<div class="' . drupal_clean_css_identifier($child->type) . '">';
-    $content['#suffix'] = '</div>';
     $item_output = '<div class="tab-pane' . ($key == 0 ? ' active' : '') . '" id="' . $parent->delta . '-' . $key . '">';
-    $item_output .= drupal_render($content);
+    $item_output .= drupal_render($child);
     $item_output .= '</div>';
     $items[] = $item_output;
+
+    $key++;
   }
 
   $output .= theme('item_list', array(

@@ -885,3 +885,6 @@ body {
 .password-request {
   margin-left: 1em;
 }
+.bean-container.contextual-links-region:hover {
+  padding-top: 20px;
+}
