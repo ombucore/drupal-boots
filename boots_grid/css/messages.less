@@ -117,3 +117,37 @@ div[data-type="region"][data-name="console"] {
     color: white;
   }
 }
+
+aside[data-module="ombubench"][data-delta="moderation"] {
+  background-color: @color-console-background-status;
+  padding: 15px;
+  margin-bottom: 15px;
+
+  h2 {
+    .opacity(0.5);
+    font-size: 1.5em;
+    margin: 0.75em 0 0.25em 0;
+  }
+
+  em {
+    font-style: normal;
+    font-weight: bold;
+    color: light-gray;
+  }
+
+  // Ideally, this <em> would't be here, invalidly wrapping the <form>
+  // block-level element.  For now, set it to block display itself, in the
+  // hopes that browsers will respect the styles of nested elements, and
+  // to give the main Reject/Publish link its own line.
+  em:last-child {
+    display: block;
+  }
+
+  // To do: figure out why this color rule isn't being respected in
+  // content_top's moderation block (Reject/Publish) without enforcing
+  // it with !important.
+  .btn {
+    margin-top: 0.5em;
+    color: white !important;
+  }
+}
