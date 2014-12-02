@@ -40,3 +40,36 @@ body {
 .bean-container.contextual-links-region:hover {
   padding-top: 20px;
 }
+
+// Search
+// ----------------------------------------------------------------------------
+a.facetapi-active, a.facetapi-inactive {
+  display: inline-block;
+  font-size: 15px;
+  line-height: 1.5em;
+  position: relative;
+  padding: 0.25em 0 0.25em 30px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #999;
+    border-radius: 2px;
+    background-color: rgb(245, 245, 245);
+    background-color: white;
+  }
+
+  &.facetapi-active:after {
+    content: "\2713";
+    font-size: 20px;
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 22px;
+    text-align: center;
+  }
+}

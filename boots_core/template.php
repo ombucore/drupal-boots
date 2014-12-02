@@ -867,10 +867,9 @@ function boots_core_facetapi_link_active($variables) {
   // position of the widget on a per-language basis.
   $replacements = array(
     '!link_text' => '<span class="term">' . $link_text . '</span>',
-    '!facetapi_deactivate_widget' => '<button class="close">&times;</button>',
     '!facetapi_accessible_markup' => theme('facetapi_accessible_markup', $accessible_vars),
   );
-  $variables['text'] = t('!link_text !facetapi_deactivate_widget !facetapi_accessible_markup', $replacements);
+  $variables['text'] = t('!link_text !facetapi_accessible_markup', $replacements);
   $variables['options']['html'] = TRUE;
   return  theme_link($variables);
 }
