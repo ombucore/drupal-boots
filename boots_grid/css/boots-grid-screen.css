@@ -888,9 +888,11 @@ body {
 .bean-container.contextual-links-region:hover {
   padding-top: 20px;
 }
+ul.facetapi-ombucleanup-dropdowns,
 ul.facetapi-facetapi-links {
   padding-left: 0;
 }
+ul.facetapi-ombucleanup-dropdowns li,
 ul.facetapi-facetapi-links li {
   list-style: none;
 }
