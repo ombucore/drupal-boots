@@ -551,7 +551,7 @@ function boots_core_form_element($variables) {
       $attributes['id'] = $element['#id'];
     }
     // Add element's #type and #name as class to aid with JS/CSS selectors.
-    $attributes['class'] = array('control-group', 'form-item');
+    $attributes['class'] = array('form-group', 'form-item');
     if (!empty($element['#type'])) {
       $attributes['class'][] = 'form-type-' . strtr($element['#type'], '_', '-');
     }
@@ -580,7 +580,6 @@ function boots_core_form_element($variables) {
       case 'invisible':
         $output .= ' ' . theme('form_element_label', $variables);
 
-        $output .= '<div class="controls">';
         $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
         // Add inline errors.
         // @todo: figure out how to remove errors from messages area.
@@ -590,7 +589,6 @@ function boots_core_form_element($variables) {
         if (!empty($element['#description'])) {
           $output .= '<p class="help-block">' . $element['#description'] . "</p>\n";
         }
-        $output .= '</div>';
 
         break;
 
@@ -611,12 +609,10 @@ function boots_core_form_element($variables) {
       case 'none':
       case 'attribute':
         // Output no label and no required marker, only the children.
-        $output .= '<div class="controls">';
         $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
         if (!empty($element['#description'])) {
           $output .= '<p class="help-block">' . $element['#description'] . "</p>\n";
         }
-        $output .= '</div>';
 
         break;
     }
@@ -696,7 +692,7 @@ function boots_core_textfield($variables) {
   $element = $variables['element'];
   $element['#attributes']['type'] = 'text';
   element_set_attributes($element, array('id', 'name', 'value', 'size', 'maxlength'));
-  _form_set_class($element, array('form-text'));
+  _form_set_class($element, array('form-control'));
 
   if ($element['#required']) {
     $element['#attributes']['required'] = 'required';
