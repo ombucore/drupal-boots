@@ -15,23 +15,23 @@ div[data-type="region"][data-name="console"] {
     min-height: 0;
   }
 
-  .alert-block {
+  .alert {
     overflow: hidden;
+    position: relative;
+    padding-top: 15px;
+    padding-bottom: 15px;
 
     &.animate {
       .transition(all @transition-duration-default ease);
     }
 
     &.dismissed {
+      border: 0;
+      margin: 0;
+      padding: 0;
       max-height: 0 !important;
       .opacity(0);
     }
-  }
-
-  .contents {
-    position: relative;
-    padding-top: 15px;
-    padding-bottom: 15px;
   }
 
   h3 {
@@ -68,7 +68,7 @@ div[data-type="region"][data-name="console"] {
     }
   }
 
-  .dismiss {
+  .close {
     display: block;
     position: absolute;
     top: 10px;

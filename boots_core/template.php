@@ -226,19 +226,18 @@ function boots_core_status_messages($variables) {
   );
   $class_rename = array(
     'status' => 'alert-success',
-    'error' => 'alert-error',
-    'warning' => '',
+    'error' => 'alert-danger',
+    'warning' => 'alert-warning',
   );
   foreach (drupal_get_messages($display) as $type => $messages) {
-    $classes = 'alert alert-block';
-    if (!empty($class_rename)) {
-      $classes .= ' ' . $class_rename[$type];
-    }
-    $output .= '<div class="' . $classes . "\">\n";
+    $output .= '<div role="alert" class="alert alert-dismissible' . $class_rename[$type] . '">';
+
     if (!empty($status_heading[$type])) {
       $output .= '<h2 class="element-invisible">' . $status_heading[$type] . "</h2>\n";
     }
-    $output .= '<a class="close" data-dismiss="alert" href="#">&times;</a>';
+
+    $output .= '<a class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></a><span class="sr-only">Close</span></a>';
+
     if (count($messages) > 1) {
       $output .= " <ul>\n";
       foreach ($messages as $message) {
