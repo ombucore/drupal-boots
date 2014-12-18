@@ -120,6 +120,9 @@ function boots_grid_block_view_alter(&$data, $block) {
       foreach (element_children($data['content']['#content']) as $i) {
         $item = $data['content']['#content'][$i];
         $path = $item['#href'];
+        if ($path == '<nolink>') {
+          $path = '';
+        }
         $url = url($path);
         if ($path == $_GET['q'] || ($path == '<front>' && drupal_is_front_page())) {
           $default_value = $url;
@@ -128,14 +131,14 @@ function boots_grid_block_view_alter(&$data, $block) {
       }
 
       $data['content']['#content']['#attributes'] = array(
-        'class' => array('hidden-phone'),
+        'class' => array('hidden-sm', 'hidden-xs'),
       );
 
       $menu_toggle = '<dl class="menu-toggle"><dt class="open"><span>&#9660;</span></dt><dd class="open"><span>Open menu</span></dd><dt class="close"><span>&#9650;</span></dt><dd class="close"><span>Close menu</span></dd></dl>';
 
       $data['content']['#content'] = array(
         'menu' => array(
-          '#prefix' => $menu_toggle . '<div class="hidden-phone menu-root">',
+          '#prefix' => $menu_toggle . '<div class="hidden-xs menu-root">',
           'content' => $data['content']['#content'],
           '#suffix' => '</div>',
         ),
@@ -145,7 +148,7 @@ function boots_grid_block_view_alter(&$data, $block) {
           '#options' => $options,
           '#value' => $default_value,
           '#attributes' => array(
-            'class' => array('select-menu', 'visible-phone'),
+            'class' => array('select-menu', 'visible-xs'),
             'onChange' => 'window.location.replace(this.options[this.selectedIndex].value);',
           ),
         ),

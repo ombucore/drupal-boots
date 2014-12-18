@@ -21,6 +21,7 @@ function boots_core_css_alter(&$css) {
     // 'core' => 'vertical-tabs.css',
     'date_api' => 'date.css',
     'search' => 'search.css',
+    'field_collection' => 'field_collection.theme.css',
   );
 
   foreach ($blacklist as $module => $value) {
@@ -71,16 +72,26 @@ function boots_core_form_user_login_alter(&$form, $form_state) {
 /**
  * Returns HTML for a breadcrumb trail.
  *
- * @param $variables
+ * @param array $variables
  *   An associative array containing:
  *   - breadcrumb: An array containing the breadcrumb links.
+ *
  * @see theme_breadcrumb
  */
 function boots_core_breadcrumb($variables) {
   $breadcrumb = $variables['breadcrumb'];
   if (!empty($breadcrumb)) {
     if (variable_get('breadcrumb_show_page_title', FALSE)) {
-      $breadcrumb[] = drupal_get_title();
+      // Optionally show menu title instead of page title.
+      if (variable_get('breadcrumb_use_menu_title', FALSE)) {
+        $link = menu_link_get_preferred();
+        // If link has been found, use title, otherwise default to current
+        // title.
+        $breadcrumb[] = !empty($link['link_title']) ? $link['link_title'] : drupal_get_title();
+      }
+      else {
+        $breadcrumb[] = drupal_get_title();
+      }
     }
     $output = '<ul class="breadcrumb"><li>' . implode(' <span class="divider">/</span></li><li>', $breadcrumb) . '</li></ul>';
     return $output;
@@ -178,9 +189,12 @@ function boots_core_pager($variables) {
         'data' => $li_next,
       );
     }
-    return '<h2 class="element-invisible">' . t('Pages') . '</h2>' . '<div class="pagination">'. theme('item_list', array(
+    return '<h2 class="element-invisible">' . t('Pages') . '</h2>' . theme('item_list', array(
       'items' => $items,
-    )) . '</div>';
+      'attributes' => array(
+        'class' => array('pagination'),
+      ),
+    ));
   }
 }
 
@@ -379,15 +393,15 @@ function boots_core_item_list($variables) {
 /**
  * Bean Containers: User Bootstrap tab js.
  */
-function boots_core_preprocess_bean_container(&$variables) {
+function boots_core_preprocess_bean_container_tabs(&$variables) {
   $bootstrap_path = drupal_get_path('theme', 'boots_core') . '/../lib/bootstrap';
-  drupal_add_js($bootstrap_path . '/js/bootstrap-tab.js');
+  drupal_add_js($bootstrap_path . '/js/tab.js');
 }
 
 /**
  * Themes bean containers with Bootstrap
  */
-function boots_core_bean_container($variables) {
+function boots_core_bean_container_tabs($variables) {
   $children = $variables['children'];
   $parent = $variables['parent'];
   $output = '';
@@ -401,51 +415,43 @@ function boots_core_bean_container($variables) {
     return $output;
   }
 
-  if ($variables['display_type'] == 'tab') {
-    $output .= '<div class="tabbable">';
+  $output .= '<div class="tabbable">';
 
-    $nav = array();
-    $items = array();
-    foreach ($children as $key => $child) {
-      // Generate nav.
-      $nav[] = array(
-        'data' => '<a data-toggle="tab" href="#' . $parent->delta . '-' . $key . '">' . $child->title . '</a>',
-        'class' => $key == 0 ? array('active') : array(),
-      );
+  $nav = array();
+  $items = array();
+  $key = 0;
+  foreach (element_children($children) as $child) {
+    $child = $children[$child];
+    $block = $child['#block'];
 
-      // Generate items.
-      $content = $child->view();
-      $content['#prefix'] = '<div class="' . drupal_clean_css_identifier($child->type) . '">';
-      $content['#suffix'] = '</div>';
-      $item_output = '<div class="tab-pane' . ($key == 0 ? ' active' : '') . '" id="' . $parent->delta . '-' . $key . '">';
-      $item_output .= drupal_render($content);
-      $item_output .= '</div>';
-      $items[] = $item_output;
-    }
+    // Generate nav.
+    $nav[] = array(
+      'data' => '<a data-toggle="tab" href="#' . $parent->delta . '-' . $key . '">' . $block->subject . '</a>',
+      'class' => $key == 0 ? array('active') : array(),
+    );
 
-    $output .= theme('item_list', array(
-      'items' => $nav,
-      'attributes' => array(
-        'class' => array('nav', 'nav-tabs'),
-      ),
-    ));
+    // Hide subject, since it's shown in tab.
+    $block->subject = '';
 
-    $output .= '<div class="tab-content">' . join('', $items) . '</div>';
+    // Generate items.
+    $item_output = '<div class="tab-pane' . ($key == 0 ? ' active' : '') . '" id="' . $parent->delta . '-' . $key . '">';
+    $item_output .= drupal_render($child);
+    $item_output .= '</div>';
+    $items[] = $item_output;
 
-    $output .= '</div>';
+    $key++;
   }
-  else {
-    $output = '';
-    foreach ($children as $key => $child) {
-      $content = $child->view();
-      $content['#prefix'] = '<div class="' . drupal_clean_css_identifier($child->type) . '">';
-      if (!empty($child->title)) {
-        $content['#prefix'] .= '<h2>' . $child->title . '</h2>';
-      }
-      $content['#suffix'] = '</div>';
-      $output .= drupal_render($content);
-    }
-  }
+
+  $output .= theme('item_list', array(
+    'items' => $nav,
+    'attributes' => array(
+      'class' => array('nav', 'nav-tabs'),
+    ),
+  ));
+
+  $output .= '<div class="tab-content">' . join('', $items) . '</div>';
+
+  $output .= '</div>';
 
   return $output;
 }
@@ -545,7 +551,7 @@ function boots_core_form_element($variables) {
       $attributes['id'] = $element['#id'];
     }
     // Add element's #type and #name as class to aid with JS/CSS selectors.
-    $attributes['class'] = array('control-group', 'form-item');
+    $attributes['class'] = array('form-group', 'form-item');
     if (!empty($element['#type'])) {
       $attributes['class'][] = 'form-type-' . strtr($element['#type'], '_', '-');
     }
@@ -574,7 +580,6 @@ function boots_core_form_element($variables) {
       case 'invisible':
         $output .= ' ' . theme('form_element_label', $variables);
 
-        $output .= '<div class="controls">';
         $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
         // Add inline errors.
         // @todo: figure out how to remove errors from messages area.
@@ -584,7 +589,6 @@ function boots_core_form_element($variables) {
         if (!empty($element['#description'])) {
           $output .= '<p class="help-block">' . $element['#description'] . "</p>\n";
         }
-        $output .= '</div>';
 
         break;
 
@@ -605,12 +609,10 @@ function boots_core_form_element($variables) {
       case 'none':
       case 'attribute':
         // Output no label and no required marker, only the children.
-        $output .= '<div class="controls">';
         $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
         if (!empty($element['#description'])) {
           $output .= '<p class="help-block">' . $element['#description'] . "</p>\n";
         }
-        $output .= '</div>';
 
         break;
     }
@@ -690,7 +692,7 @@ function boots_core_textfield($variables) {
   $element = $variables['element'];
   $element['#attributes']['type'] = 'text';
   element_set_attributes($element, array('id', 'name', 'value', 'size', 'maxlength'));
-  _form_set_class($element, array('form-text'));
+  _form_set_class($element, array('form-control'));
 
   if ($element['#required']) {
     $element['#attributes']['required'] = 'required';
@@ -861,10 +863,9 @@ function boots_core_facetapi_link_active($variables) {
   // position of the widget on a per-language basis.
   $replacements = array(
     '!link_text' => '<span class="term">' . $link_text . '</span>',
-    '!facetapi_deactivate_widget' => '<button class="close">&times;</button>',
     '!facetapi_accessible_markup' => theme('facetapi_accessible_markup', $accessible_vars),
   );
-  $variables['text'] = t('!link_text !facetapi_deactivate_widget !facetapi_accessible_markup', $replacements);
+  $variables['text'] = t('!link_text !facetapi_accessible_markup', $replacements);
   $variables['options']['html'] = TRUE;
   return  theme_link($variables);
 }
