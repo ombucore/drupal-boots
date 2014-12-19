@@ -22,7 +22,7 @@ function bootstrap_preprocess_block(&$variables) {
   $block = $variables['block'];
 
   if ($block->region == 'header') {
-    $variables['title_attributes_array']['class'] = 'sr-only';
+    $variables['title_attributes_array']['class'][] = 'sr-only';
   }
   if ($block->region == 'sidebar_first') {
     $variables['classes_array'][] = 'well';

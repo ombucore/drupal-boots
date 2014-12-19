@@ -30,7 +30,7 @@ function boots_grid_preprocess_block(&$variables) {
 
     // Add grid column classes.
     $default_breakpoint = tiles_get_default_breakpoint();
-    $default_width = isset($b->breakpoints[$default_breakpoint]) ? $b->breakpoints[$default_breakpoint] : tiles_get_max_step();
+    $default_width = isset($b->breakpoints[$default_breakpoint]) ? $b->breakpoints[$default_breakpoint] : $b->width;
 
 
     // Add breakpoint classes.
