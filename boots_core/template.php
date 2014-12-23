@@ -718,6 +718,18 @@ function boots_core_textfield($variables) {
 }
 
 /**
+ * Overrides theme_password
+ */
+function boots_core_password($variables) {
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'password';
+  element_set_attributes($element, array('id', 'name', 'size', 'maxlength'));
+  _form_set_class($element, array('form-control'));
+
+  return '<input' . drupal_attributes($element['#attributes']) . ' />';
+}
+
+/**
  * Overrides theme_checkboxes.
  */
 function boots_core_checkboxes($variables) {
