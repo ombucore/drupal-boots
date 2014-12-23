@@ -718,7 +718,7 @@ function boots_core_textfield($variables) {
 }
 
 /**
- * Overrides theme_password
+ * Overrides theme_password.
  */
 function boots_core_password($variables) {
   $element = $variables['element'];
