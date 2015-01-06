@@ -150,20 +150,21 @@ function boots_grid_status_messages($variables) {
   );
   $class_rename = array(
     'status' => 'alert-success',
-    'error' => 'alert-error',
-    'warning' => '',
+    'error' => 'alert-danger',
+    'warning' => 'alert-warning',
   );
   foreach (drupal_get_messages($display) as $type => $messages) {
-    $classes = 'block-inner alert alert-block';
-    if (!empty($class_rename)) {
-      $classes .= ' ' . $class_rename[$type];
-    }
+    $classes = 'block-inner alert alert-dismissible ' . $class_rename[$type];
+
     $output .= '<div data-type="region" data-name="console" class="console-' . $type . "\">\n<div class=\"container\"><div class=\"row\">";
-    $output .= '<aside class="col-xs-12 col-sm-12 col-md-12 col-lg-12 clearfix"><div class="' . $classes . '"><div class="contents">';
+    $output .= '<aside class="col-xs-12 col-sm-12 col-md-12 col-lg-12 clearfix"><div class="' . $classes . '">';
+
+    $output .= '<a class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></a>';
+
     if (!empty($status_heading[$type])) {
       $output .= '<h3 class="caption status-type">' . $status_heading[$type] . "</h3>\n";
     }
-    $output .= '<a class="dismiss" data-dismiss="alert" data-selector=".alert-block" href="#"><span>Dismiss</span></a>';
+
     if (count($messages) > 1) {
       $output .= ' <div class="messages"><ul>' . "\n";
       foreach ($messages as $message) {
@@ -174,7 +175,7 @@ function boots_grid_status_messages($variables) {
     else {
       $output .= '<div class="messages"><p>' . $messages[0] . '</p></div>';
     }
-    $output .= "</div></div></aside>";
+    $output .= "</div></aside>";
     $output .= "</div></div></div>\n";
   }
   return $output;
