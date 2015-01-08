@@ -5913,3 +5913,7 @@ body {
     padding-bottom: 15px;
   }
 }
+/* Fix for header positioning if toolbar is open. */
+.toolbar-open div[data-type="region"][data-name="header"] {
+  top: 30px;
+}
