@@ -1,7 +1,15 @@
 <?php
 
 /**
- * Preprocess variables for region.tpl.php
+ * Implements hook_preprocess_page().
+ */
+function bootstrap_preprocess_page(&$variables) {
+  $bootstrap_path = drupal_get_path('theme', 'boots_core') . '/../lib/bootstrap';
+  drupal_add_js($bootstrap_path . '/js/transition.js');
+}
+
+/**
+ * Implements hook_preprocess_region().
  *
  * @see region.tpl.php
  */
@@ -27,7 +35,7 @@ function bootstrap_preprocess_region(&$variables, $hook) {
 }
 
 /**
- * Implements theme_preprocess_block().
+ * Implements hook_preprocess_block().
  */
 function bootstrap_preprocess_block(&$variables) {
   $block = $variables['block'];
@@ -41,7 +49,7 @@ function bootstrap_preprocess_block(&$variables) {
 }
 
 /**
- * Default implementation for site logo block theme function.
+ * Overrides theme_ombucleanup_site_logo().
  */
 function bootstrap_ombucleanup_site_logo($variables) {
   return l($variables['site_name'], '<front>', array(
@@ -50,7 +58,6 @@ function bootstrap_ombucleanup_site_logo($variables) {
     )
   ));
 }
-
 
 /**
  * Makes menu items navbars
