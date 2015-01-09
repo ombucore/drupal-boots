@@ -10,8 +10,19 @@ function bootstrap_preprocess_region(&$variables, $hook) {
     $variables['classes_array'][] = 'navbar';
     $variables['classes_array'][] = 'navbar-inverse';
     $variables['classes_array'][] = 'navbar-fixed-top';
-    $variables['content'] = '<div class="container">' .
-        $variables['content'] . '</div>';
+
+    $variables['site_logo'] = theme('ombucleanup_site_logo', array(
+      'site_name' => variable_get('site_name', 'Site Name'),
+    ));
+
+    $variables['header_menu'] = theme('links__header_menu', array(
+      'links' => menu_navigation_links('header-menu'),
+      'attributes' => array(
+        'class' => array('nav', 'navbar-nav', 'navbar-left'),
+      ),
+    ));
+
+    $variables['search'] = drupal_get_form('search_block_form');
   }
 }
 
@@ -21,21 +32,11 @@ function bootstrap_preprocess_region(&$variables, $hook) {
 function bootstrap_preprocess_block(&$variables) {
   $block = $variables['block'];
 
-  if ($block->region == 'header') {
-    $variables['title_attributes_array']['class'] = 'sr-only';
-  }
   if ($block->region == 'sidebar_first') {
     $variables['classes_array'][] = 'well';
     if ($block->module == 'system' && $block->delta == 'main-menu') {
       $variables['classes_array'][] = 'sidebar-nav';
     }
-  }
-  if ($block->module == 'ombucleanup' && $block->delta == 'site_logo') {
-    $variables['classes_array'][] = 'navbar-header';
-  }
-  if ($block->module == 'menu' && $block->delta == 'header-menu') {
-    $variables['classes_array'][] = 'collapse navbar-collapse';
-    $variables['classes_array'][] = 'collapse';
   }
 }
 

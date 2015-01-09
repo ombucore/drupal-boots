@@ -5914,6 +5914,6 @@ body {
   }
 }
 /* Fix for header positioning if toolbar is open. */
-.toolbar-open div[data-type="region"][data-name="header"] {
+.toolbar-open .navbar-fixed-top {
   top: 30px;
 }

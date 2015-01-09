@@ -59,6 +59,8 @@ function boots_core_form_alter(&$form, $form_state, $form_id) {
 
     case 'search_block_form':
       $form['search_block_form']['#attributes']['placeholder'] = t('Search');
+      $form['submit'] = $form['actions']['submit'];
+      $form['actions']['#access'] = FALSE;
       break;
   }
 }
@@ -668,15 +670,15 @@ function boots_core_form_element_label($variables) {
 
   $title = filter_xss_admin($element['#title']);
 
-  $attributes = array();
+  $attributes = array('class' => array());
 
-  // Style the label as class option to display inline with the element.
+  // Style the label as class control label to display inline with the element.
   if ($element['#title_display'] == 'after') {
-    $attributes['class'] .= ' option';
+    $attributes['class'][] = ' control-label';
   }
   // Show label only to screen readers to avoid disruption in visual flows.
   elseif ($element['#title_display'] == 'invisible') {
-    $attributes['class'] .= ' element-invisible';
+    $attributes['class'][] = 'sr-only';
   }
 
   if (!empty($element['#id'])) {
