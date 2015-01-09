@@ -50,6 +50,10 @@ function boots_core_form_alter(&$form, $form_state, $form_id) {
       // Remove container-inline class from search form.
       unset($form['basic']['#attributes']['class']);
 
+      // Show form as inline.
+      $form['#attributes']['class'][] = 'form-inline';
+
+      $form['basic']['keys']['#title_display'] = 'invisible';
       $form['basic']['keys']['#attributes']['placeholder'] = t('Search');
       break;
 
@@ -210,20 +214,21 @@ function boots_core_pager($variables) {
  */
 function boots_core_preprocess_button(&$variables) {
   $variables['element']['#attributes']['class'] = array();
-  $variables['element']['#attributes']['class'][] = 'btn btn-default';
+  $variables['element']['#attributes']['class'][] = 'btn';
 
-  // Primary Buttons
-  $btn_primary_class = 'btn-primary';
-  if (stristr($variables['element']['#value'], 'save') !== FALSE) {
-    $variables['element']['#attributes']['class'][] = $btn_primary_class;
+  if (
+    stristr($variables['element']['#value'], 'save') !== FALSE ||
+    stristr($variables['element']['#value'], 'create') !== FALSE
+  ) {
+    // Primary Buttons
+    $variables['element']['#attributes']['class'][] = 'btn-primary';
   }
-  if (stristr($variables['element']['#value'], 'create') !== FALSE) {
-    $variables['element']['#attributes']['class'][] = $btn_primary_class;
-  }
-
-  // Danger Buttons
-  if (stristr($variables['element']['#value'], 'Delete') !== FALSE) {
+  elseif (stristr($variables['element']['#value'], 'Delete') !== FALSE) {
+    // Danger Buttons
     $variables['element']['#attributes']['class'][] = 'btn-danger';
+  }
+  else {
+    $variables['element']['#attributes']['class'][] = 'btn-default';
   }
 }
 
