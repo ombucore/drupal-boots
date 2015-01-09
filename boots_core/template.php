@@ -45,11 +45,17 @@ function boots_core_css_alter(&$css) {
  * Implements hook_form_alter().
  */
 function boots_core_form_alter(&$form, $form_state, $form_id) {
-  if ($form_id == 'search_form') {
-    $form['basic']['keys']['#attributes']['placeholder'] = t('Search');
-  }
-  elseif ($form_id == 'search_block_form') {
-    $form['search_block_form']['#attributes']['placeholder'] = t('Search');
+  switch ($form_id) {
+    case 'search_form':
+      // Remove container-inline class from search form.
+      unset($form['basic']['#attributes']['class']);
+
+      $form['basic']['keys']['#attributes']['placeholder'] = t('Search');
+      break;
+
+    case 'search_block_form':
+      $form['search_block_form']['#attributes']['placeholder'] = t('Search');
+      break;
   }
 }
 
@@ -204,7 +210,7 @@ function boots_core_pager($variables) {
  */
 function boots_core_preprocess_button(&$variables) {
   $variables['element']['#attributes']['class'] = array();
-  $variables['element']['#attributes']['class'][] = 'btn';
+  $variables['element']['#attributes']['class'][] = 'btn btn-default';
 
   // Primary Buttons
   $btn_primary_class = 'btn-primary';
@@ -658,8 +664,6 @@ function boots_core_form_element_label($variables) {
   $title = filter_xss_admin($element['#title']);
 
   $attributes = array();
-  // Add bootstrap class
-  $attributes['class'] = 'control-label';
 
   // Style the label as class option to display inline with the element.
   if ($element['#title_display'] == 'after') {
@@ -669,7 +673,6 @@ function boots_core_form_element_label($variables) {
   elseif ($element['#title_display'] == 'invisible') {
     $attributes['class'] .= ' element-invisible';
   }
-
 
   if (!empty($element['#id'])) {
     $attributes['for'] = $element['#id'];
