@@ -41,7 +41,7 @@
     </div>
 
     <div class="collapse navbar-collapse">
-      <?php print $header_menu ?>
+      <?php print render($header_menu) ?>
       <?php print render($search) ?>
     </div>
   </div>
