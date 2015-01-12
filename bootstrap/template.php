@@ -61,26 +61,16 @@ function bootstrap_menu_link($variables) {
   $element = $variables['element'];
   $sub_menu = '';
 
+  $link = l($element['#title'], $element['#href'], $element['#localized_options']);
+
   if ($element['#below']) {
-    // Add current link as a child menu item, since bootstrap top level items
-    // aren't clickable :(.
-    $new_element = $element;
-    $new_element['#below'] = array();
-    $element['#below'] = array('0' => $new_element) + $element['#below'];
     $sub_menu .= drupal_render($element['#below']);
 
     $element['#attributes']['class'][] = 'dropdown';
-    $element['#localized_options']['attributes']['class'][] = 'dropdown-toggle';
-    $element['#localized_options']['attributes']['data-toggle'] = 'dropdown';
-    $element['#localized_options']['attributes']['role'] = 'button';
-    $element['#localized_options']['attributes']['aria-expanded'] = 'false';
-    $element['#localized_options']['html'] = TRUE;
-    $element['#title'] .= ' <span class="caret"></span>';
-
+    $link .= '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="caret"></span></a>';
   }
 
-  $output = l($element['#title'], $element['#href'], $element['#localized_options']);
-  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $link . $sub_menu . "</li>\n";
 }
 
 /**
