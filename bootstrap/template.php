@@ -14,18 +14,31 @@ function bootstrap_preprocess_page(&$variables) {
  *
  * @see region.tpl.php
  */
-function bootstrap_preprocess_region(&$variables, $hook) {
-  if ($variables['region'] == "header") {
-    $variables['classes_array'][] = 'navbar';
-    $variables['classes_array'][] = 'navbar-inverse';
-    $variables['classes_array'][] = 'navbar-fixed-top';
+function bootstrap_preprocess_region(&$variables) {
+  switch ($variables['region']) {
+    case 'header':
+      $variables['classes_array'][] = 'navbar';
+      $variables['classes_array'][] = 'navbar-inverse';
+      $variables['classes_array'][] = 'navbar-fixed-top';
 
-    $variables['site_logo'] = theme('ombucleanup_site_logo', array(
-      'site_name' => variable_get('site_name', 'Site Name'),
-    ));
+      $variables['site_logo'] = theme('ombucleanup_site_logo', array(
+        'site_name' => variable_get('site_name', 'Site Name'),
+      ));
 
-    $variables['header_menu'] = menu_tree('header-menu');
-    $variables['search'] = drupal_get_form('search_block_form');
+      $variables['header_menu'] = menu_tree('header-menu');
+      $variables['search'] = drupal_get_form('search_block_form');
+      break;
+
+    case 'footer':
+      $variables['classes_array'][] = 'navbar';
+      $variables['classes_array'][] = 'navbar-inverse';
+
+      $variables['copyright'] = t('Copyright !year <a class="navbar-link" href="http://ombuweb.com">OMBU, Inc.</a> All rights reserved.', array(
+        '!year' => date('Y'),
+      ));
+      $variables['footer_menu'] = menu_tree('footer-menu');
+
+      break;
   }
 }
 
@@ -71,6 +84,15 @@ function bootstrap_menu_link($variables) {
   }
 
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $link . $sub_menu . "</li>\n";
+}
+
+/**
+ * Makes menu items navbars
+ * This works here because the only menu on the OMBU demo site is a navbar,
+ * but we need a better solution.
+ */
+function bootstrap_menu_tree__footer_menu($variables) {
+  return '<ul class="nav navbar-nav navbar-right">' . $variables['tree'] . '</ul>';
 }
 
 /**
