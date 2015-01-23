@@ -6,6 +6,24 @@
  */
 
 /**
+ * Implements hook_page_alter().
+ *
+ * Adds mobile-targeting meta tags
+ */
+function boots_core_page_alter(&$page) {
+  $meta_viewport = array(
+    '#type' => 'html_tag',
+    '#tag' => 'meta',
+    '#attributes' => array(
+      'name' => 'viewport',
+      'content' => 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0.0',
+    ),
+  );
+
+  drupal_add_html_head($meta_viewport, 'meta_viewport');
+}
+
+/**
  * Implements hook_css_alter().
  *
  * Remove core stylesheets that are not necessary.
@@ -574,7 +592,7 @@ function boots_core_form_element($variables) {
     }
     // Add an error to control group.
     if (isset($element['#parents']) && form_get_error($element)) {
-      $attributes['class'][] = 'error';
+      $attributes['class'][] = 'has-error';
     }
     $output = '<div' . drupal_attributes($attributes) . '>' . "\n";
 
