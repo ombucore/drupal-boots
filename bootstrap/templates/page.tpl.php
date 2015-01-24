@@ -42,7 +42,7 @@
 
 </div> <!--/#container -->
 
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <?php if (!empty($page['footer'])): ?> <?php print render($page['footer']); ?> <?php endif ?>
   </div>
