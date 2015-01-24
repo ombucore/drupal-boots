@@ -21,6 +21,34 @@ img {
   display: none;
 }
 
+.nav {
+  .dropdown {
+    position: relative;
+
+    > a {
+      &:first-child {
+        padding-right: 44px;
+      }
+
+      &.dropdown-toggle {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 44px;
+      }
+    }
+
+    &.open {
+      > a {
+        .caret {
+          border-top: 0;
+          border-bottom-width: 4px;
+        }
+      }
+    }
+  }
+}
+
 .submenu-toggle {
   strong {
     font-family: sans-serif;

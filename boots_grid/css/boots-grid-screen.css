@@ -869,7 +869,6 @@ hr {
 }
 .overlay-element {
   z-index: 11001;
-  top: 0 !important;
 }
 html.overlay-open .displace-top,
 html.overlay-open .displace-bottom {
@@ -889,6 +888,22 @@ img {
 .menu-toggle,
 .submenu-toggle {
   display: none;
+}
+.nav .dropdown {
+  position: relative;
+}
+.nav .dropdown > a:first-child {
+  padding-right: 44px;
+}
+.nav .dropdown > a.dropdown-toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 44px;
+}
+.nav .dropdown.open > a .caret {
+  border-top: 0;
+  border-bottom-width: 4px;
 }
 .submenu-toggle strong {
   font-family: sans-serif;
