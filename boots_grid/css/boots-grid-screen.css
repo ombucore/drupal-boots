@@ -862,6 +862,19 @@ hr {
     margin-left: 91.66666667%;
   }
 }
+#overlay-container,
+.overlay-modal-background,
+.overlay-element {
+  z-index: 11000;
+}
+.overlay-element {
+  z-index: 11001;
+  top: 0 !important;
+}
+html.overlay-open .displace-top,
+html.overlay-open .displace-bottom {
+  z-index: 11100;
+}
 body {
   position: relative;
 }

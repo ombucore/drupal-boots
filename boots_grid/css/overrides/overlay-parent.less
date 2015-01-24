@@ -1,0 +1,21 @@
+#overlay-container,
+.overlay-modal-background,
+.overlay-element {
+  z-index: 11000;
+}
+
+.overlay-element {
+  z-index: 11001;
+
+  // Important is used to clobber Bootstrap's top: 30px rule for all elements
+  // matching .overlay-element.  In this case, the admin UI incorporates two
+  // iframe elements, each with the class .overlay-element.  This rule is meant
+  // to reset the top position to 0 for the first of those two.
+  // https://tickets.ombuweb.com/issues/10438
+  top: 0 !important;
+}
+
+html.overlay-open .displace-top,
+html.overlay-open .displace-bottom {
+  z-index: 11100;
+}
