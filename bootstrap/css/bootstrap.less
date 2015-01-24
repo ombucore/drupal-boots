@@ -64,6 +64,16 @@
 @import "@{path}/utilities.less";
 @import "@{path}/responsive-utilities.less";
 
+@import "../../boots_grid/css/rte.less";
+
+@media (min-width: @screen-sm) {
+  @import "../../boots_grid/css/responses/rte/rte-gte-tablet.less";
+}
+
+.btn {
+  .btn-default();
+}
+
 /**
  * For the styles below, see
  * <http://twitter.github.com/bootstrap/examples/fluid.html>
@@ -93,3 +103,5 @@ body { padding-top: 60px }
 .toolbar-open .navbar-fixed-top {
   top: 30px;
 }
+
+
