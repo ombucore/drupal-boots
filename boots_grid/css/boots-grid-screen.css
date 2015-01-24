@@ -875,6 +875,10 @@ html.overlay-open .displace-top,
 html.overlay-open .displace-bottom {
   z-index: 11100;
 }
+html,
+body {
+  overflow-x: hidden;
+}
 body {
   position: relative;
 }
