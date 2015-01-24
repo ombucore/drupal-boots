@@ -882,6 +882,10 @@ body {
 body {
   position: relative;
 }
+img {
+  max-width: 100%;
+  height: auto;
+}
 .menu-toggle,
 .submenu-toggle {
   display: none;
