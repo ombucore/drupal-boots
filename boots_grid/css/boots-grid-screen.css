@@ -863,16 +863,15 @@ hr {
   }
 }
 #overlay-container,
-.overlay-modal-background,
-.overlay-element {
-  z-index: 11000;
+.overlay-modal-background {
+  z-index: 1050;
 }
 .overlay-element {
-  z-index: 11001;
+  z-index: 1051;
 }
 html.overlay-open .displace-top,
 html.overlay-open .displace-bottom {
-  z-index: 11100;
+  z-index: 1150;
 }
 html,
 body {

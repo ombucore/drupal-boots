@@ -1,14 +1,13 @@
 #overlay-container,
-.overlay-modal-background,
-.overlay-element {
-  z-index: 11000;
+.overlay-modal-background {
+  z-index: @zindex-modal;
 }
 
 .overlay-element {
-  z-index: 11001;
+  z-index: @zindex-modal + 1;
 }
 
 html.overlay-open .displace-top,
 html.overlay-open .displace-bottom {
-  z-index: 11100;
+  z-index: @zindex-modal + 100;
 }
