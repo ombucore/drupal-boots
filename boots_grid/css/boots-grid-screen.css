@@ -920,8 +920,8 @@ img {
 .password-request {
   margin-left: 1em;
 }
-.bean-container.contextual-links-region:hover {
-  padding-top: 20px;
+.bean-container.contextual-links-region > .contextual-links-wrapper {
+  right: 35px;
 }
 ul.facetapi-ombucleanup-dropdowns,
 ul.facetapi-facetapi-links {
