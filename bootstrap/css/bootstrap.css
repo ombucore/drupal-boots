@@ -5847,27 +5847,52 @@ td.visible-print {
     display: none !important;
   }
 }
-pre.pull-left,
-pre.pull-right {
-  width: 50%;
+.field.c pre.pull-left,
+.field.c pre.pull-right {
   font-family: inherit;
+  white-space: normal;
+  word-break: normal;
+  word-wrap: normal;
 }
-@media (min-width: 768px) {
-  blockquote.pull-left,
-  p.pull-left,
-  blockquote.pull-right,
-  p.pull-right {
+.field.c pre.pull-left .field-name-field-caption,
+.field.c pre.pull-right .field-name-field-caption {
+  margin-top: 0.5em;
+}
+.field.c ul,
+.field.c ol {
+  overflow: hidden;
+}
+.field.c iframe {
+  max-width: 100%;
+}
+@media (min-width: 480px) {
+  .field.c pre.pull-left,
+  .field.c blockquote.pull-left,
+  .field.c p.pull-left,
+  .field.c pre.pull-right,
+  .field.c blockquote.pull-right,
+  .field.c p.pull-right {
     width: 50%;
     max-width: 350px;
-    margin: 0.4em 0 0.5em 0;
+    margin: 0.5em 0;
   }
-  blockquote.pull-left,
-  p.pull-left {
+  .field.c pre.pull-left.pull-left,
+  .field.c blockquote.pull-left.pull-left,
+  .field.c p.pull-left.pull-left,
+  .field.c pre.pull-right.pull-left,
+  .field.c blockquote.pull-right.pull-left,
+  .field.c p.pull-right.pull-left {
     float: left;
+    margin-right: 1.0em;
   }
-  blockquote.pull-right,
-  p.pull-right {
+  .field.c pre.pull-left.pull-right,
+  .field.c blockquote.pull-left.pull-right,
+  .field.c p.pull-left.pull-right,
+  .field.c pre.pull-right.pull-right,
+  .field.c blockquote.pull-right.pull-right,
+  .field.c p.pull-right.pull-right {
     float: right;
+    margin-left: 1.0em;
   }
 }
 .btn {

@@ -1,6 +1,33 @@
-// Simple styles for RTE elements.
-pre.pull-left,
-pre.pull-right {
-  width: 50%;
-  font-family: inherit;
+.field.c {
+
+  // To allow the left- and right-floating of images within our rich text
+  // editor, we must wrap them in <pre> elements.  In this context, the normal
+  // styles associate with pre (e.g., white space, word breaks, etc.) must be
+  // overriden.
+  pre {
+    &.pull-left, &.pull-right {
+      font-family: inherit;
+      white-space: normal;
+      word-break: normal;
+      word-wrap: normal;
+
+      .field-name-field-caption {
+        margin-top: 0.5em;
+      }
+    }
+  }
+
+  // List items may appear beside floated elements, which can result in a
+  // jarring shift.  Setting overflow to hidden ensures that all list items
+  // will remain together, clearing a floated element within necessary.
+  ul, ol {
+    overflow: hidden;
+  }
+
+  // An additional wrapping container will allow us to resize iframe elements
+  // proportionally to a known aspect ratio.  In the meantime, a max-width
+  // rule will at least keep the iframe contained within the site grid.
+  iframe {
+    max-width: 100%;
+  }
 }
