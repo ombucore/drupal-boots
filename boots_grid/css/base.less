@@ -1,7 +1,16 @@
-// Fixes height/positioning issues with overlay
+html, body {
+  overflow-x: hidden;
+}
 
+// Fixes height/positioning issues with overlay
 body {
   position: relative;
+}
+
+// Generally prevent images from breaking their containers.
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 // Menus
@@ -10,6 +19,34 @@ body {
 // Markup for menu and submenu toggle controls should be hidden by default.
 .menu-toggle, .submenu-toggle {
   display: none;
+}
+
+.nav {
+  .dropdown {
+    position: relative;
+
+    > a {
+      &:first-child {
+        padding-right: 44px;
+      }
+
+      &.dropdown-toggle {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 44px;
+      }
+    }
+
+    &.open {
+      > a {
+        .caret {
+          border-top: 0;
+          border-bottom-width: 4px;
+        }
+      }
+    }
+  }
 }
 
 .submenu-toggle {
@@ -34,4 +71,49 @@ body {
 
 .password-request {
   margin-left: 1em;
+}
+
+// Fixes contextual link display for bean containers
+.bean-container.contextual-links-region > .contextual-links-wrapper {
+  right: 35px;
+}
+
+// Search
+// ----------------------------------------------------------------------------
+ul.facetapi-ombucleanup-dropdowns,
+ul.facetapi-facetapi-links {
+  padding-left: 0;
+  li {
+    list-style: none;
+  }
+}
+a.facetapi-active, a.facetapi-inactive {
+  display: inline-block;
+  font-size: 15px;
+  line-height: 1.5em;
+  position: relative;
+  padding: 0.25em 0 0.25em 30px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #999;
+    border-radius: 2px;
+    background-color: rgb(245, 245, 245);
+    background-color: white;
+  }
+
+  &.facetapi-active:after {
+    content: "\2713";
+    font-size: 20px;
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 22px;
+    text-align: center;
+  }
 }

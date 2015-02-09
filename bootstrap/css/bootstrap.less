@@ -28,6 +28,9 @@
 @import "@{path}/forms.less";
 @import "@{path}/buttons.less";
 
+// Ensure that Glyph fonts are imported correctly. See @{path}/glyphicons.less.
+@icon-font-path: "../../lib/bootstrap/fonts/";
+
 // Components
 @import "@{path}/component-animations.less";
 @import "@{path}/glyphicons.less";
@@ -61,6 +64,16 @@
 @import "@{path}/utilities.less";
 @import "@{path}/responsive-utilities.less";
 
+@import "../../boots_grid/css/rte.less";
+
+@media (min-width: @screen-xs) {
+  @import "../../boots_grid/css/responses/rte/rte-gte-smartphone-landscape.less";
+}
+
+.btn {
+  .btn-default();
+}
+
 /**
  * For the styles below, see
  * <http://twitter.github.com/bootstrap/examples/fluid.html>
@@ -68,7 +81,7 @@
 
 /* Make room for toolbar */
 body { padding-top: 60px }
-.overlay-element { top: 30px; }
+.overlay-element { top: 0; }
 
 .sidebar-nav {
   padding: 9px 0;
@@ -85,4 +98,10 @@ body { padding-top: 60px }
 [data-module='menu'][data-delta='header-menu'] ul {
   .navbar-nav;
 }
+
+/* Fix for header positioning if toolbar is open. */
+.toolbar-open .navbar-fixed-top {
+  top: 30px;
+}
+
 

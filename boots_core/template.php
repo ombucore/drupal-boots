@@ -6,6 +6,24 @@
  */
 
 /**
+ * Implements hook_page_alter().
+ *
+ * Adds mobile-targeting meta tags
+ */
+function boots_core_page_alter(&$page) {
+  $meta_viewport = array(
+    '#type' => 'html_tag',
+    '#tag' => 'meta',
+    '#attributes' => array(
+      'name' => 'viewport',
+      'content' => 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0.0',
+    ),
+  );
+
+  drupal_add_html_head($meta_viewport, 'meta_viewport');
+}
+
+/**
  * Implements hook_css_alter().
  *
  * Remove core stylesheets that are not necessary.
@@ -45,11 +63,23 @@ function boots_core_css_alter(&$css) {
  * Implements hook_form_alter().
  */
 function boots_core_form_alter(&$form, $form_state, $form_id) {
-  if ($form_id == 'search_form') {
-    $form['basic']['keys']['#attributes']['placeholder'] = t('Search');
-  }
-  elseif ($form_id == 'search_block_form') {
-    $form['search_block_form']['#attributes']['placeholder'] = t('Search');
+  switch ($form_id) {
+    case 'search_form':
+      // Remove container-inline class from search form.
+      unset($form['basic']['#attributes']['class']);
+
+      // Show form as inline.
+      $form['#attributes']['class'][] = 'form-inline';
+
+      $form['basic']['keys']['#title_display'] = 'invisible';
+      $form['basic']['keys']['#attributes']['placeholder'] = t('Search');
+      break;
+
+    case 'search_block_form':
+      $form['search_block_form']['#attributes']['placeholder'] = t('Search');
+      $form['submit'] = $form['actions']['submit'];
+      $form['actions']['#access'] = FALSE;
+      break;
   }
 }
 
@@ -72,16 +102,26 @@ function boots_core_form_user_login_alter(&$form, $form_state) {
 /**
  * Returns HTML for a breadcrumb trail.
  *
- * @param $variables
+ * @param array $variables
  *   An associative array containing:
  *   - breadcrumb: An array containing the breadcrumb links.
+ *
  * @see theme_breadcrumb
  */
 function boots_core_breadcrumb($variables) {
   $breadcrumb = $variables['breadcrumb'];
   if (!empty($breadcrumb)) {
     if (variable_get('breadcrumb_show_page_title', FALSE)) {
-      $breadcrumb[] = drupal_get_title();
+      // Optionally show menu title instead of page title.
+      if (variable_get('breadcrumb_use_menu_title', FALSE)) {
+        $link = menu_link_get_preferred();
+        // If link has been found, use title, otherwise default to current
+        // title.
+        $breadcrumb[] = !empty($link['link_title']) ? $link['link_title'] : drupal_get_title();
+      }
+      else {
+        $breadcrumb[] = drupal_get_title();
+      }
     }
     $output = '<ul class="breadcrumb"><li>' . implode(' <span class="divider">/</span></li><li>', $breadcrumb) . '</li></ul>';
     return $output;
@@ -196,18 +236,19 @@ function boots_core_preprocess_button(&$variables) {
   $variables['element']['#attributes']['class'] = array();
   $variables['element']['#attributes']['class'][] = 'btn';
 
-  // Primary Buttons
-  $btn_primary_class = 'btn-primary';
-  if (stristr($variables['element']['#value'], 'save') !== FALSE) {
-    $variables['element']['#attributes']['class'][] = $btn_primary_class;
+  if (
+    stristr($variables['element']['#value'], 'save') !== FALSE ||
+    stristr($variables['element']['#value'], 'create') !== FALSE
+  ) {
+    // Primary Buttons
+    $variables['element']['#attributes']['class'][] = 'btn-primary';
   }
-  if (stristr($variables['element']['#value'], 'create') !== FALSE) {
-    $variables['element']['#attributes']['class'][] = $btn_primary_class;
-  }
-
-  // Danger Buttons
-  if (stristr($variables['element']['#value'], 'Delete') !== FALSE) {
+  elseif (stristr($variables['element']['#value'], 'Delete') !== FALSE) {
+    // Danger Buttons
     $variables['element']['#attributes']['class'][] = 'btn-danger';
+  }
+  else {
+    $variables['element']['#attributes']['class'][] = 'btn-default';
   }
 }
 
@@ -397,9 +438,7 @@ function boots_core_bean_container_tabs($variables) {
 
   if (empty($children)) {
     if (user_access('edit any bean_container bean')) {
-      $output .= t('This is an empty block container. You can add blocks to it by clicking <a href="!url">"Manage Children"</a> on the container cog menu', array(
-        '!url' => url($variables['parent']->url() . '/manage-children'),
-      ));
+      $output .= t('This is an empty block container. You can add blocks to it by clicking "Add Block to Container" in the container cog menu');
     }
     return $output;
   }
@@ -408,21 +447,27 @@ function boots_core_bean_container_tabs($variables) {
 
   $nav = array();
   $items = array();
-  foreach ($children as $key => $child) {
+  $key = 0;
+  foreach (element_children($children) as $child) {
+    $child = $children[$child];
+    $block = $child['#block'];
+
     // Generate nav.
     $nav[] = array(
-      'data' => '<a data-toggle="tab" href="#' . $parent->delta . '-' . $key . '">' . $child->title . '</a>',
+      'data' => '<a data-toggle="tab" href="#' . $parent->delta . '-' . $key . '">' . $block->subject . '</a>',
       'class' => $key == 0 ? array('active') : array(),
     );
 
+    // Hide subject, since it's shown in tab.
+    $block->subject = '';
+
     // Generate items.
-    $content = $child->view();
-    $content['#prefix'] = '<div class="' . drupal_clean_css_identifier($child->type) . '">';
-    $content['#suffix'] = '</div>';
     $item_output = '<div class="tab-pane' . ($key == 0 ? ' active' : '') . '" id="' . $parent->delta . '-' . $key . '">';
-    $item_output .= drupal_render($content);
+    $item_output .= drupal_render($child);
     $item_output .= '</div>';
     $items[] = $item_output;
+
+    $key++;
   }
 
   $output .= theme('item_list', array(
@@ -534,7 +579,7 @@ function boots_core_form_element($variables) {
       $attributes['id'] = $element['#id'];
     }
     // Add element's #type and #name as class to aid with JS/CSS selectors.
-    $attributes['class'] = array('control-group', 'form-item');
+    $attributes['class'] = array('form-group', 'form-item');
     if (!empty($element['#type'])) {
       $attributes['class'][] = 'form-type-' . strtr($element['#type'], '_', '-');
     }
@@ -547,7 +592,7 @@ function boots_core_form_element($variables) {
     }
     // Add an error to control group.
     if (isset($element['#parents']) && form_get_error($element)) {
-      $attributes['class'][] = 'error';
+      $attributes['class'][] = 'has-error';
     }
     $output = '<div' . drupal_attributes($attributes) . '>' . "\n";
 
@@ -563,7 +608,6 @@ function boots_core_form_element($variables) {
       case 'invisible':
         $output .= ' ' . theme('form_element_label', $variables);
 
-        $output .= '<div class="controls">';
         $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
         // Add inline errors.
         // @todo: figure out how to remove errors from messages area.
@@ -573,7 +617,6 @@ function boots_core_form_element($variables) {
         if (!empty($element['#description'])) {
           $output .= '<p class="help-block">' . $element['#description'] . "</p>\n";
         }
-        $output .= '</div>';
 
         break;
 
@@ -594,12 +637,10 @@ function boots_core_form_element($variables) {
       case 'none':
       case 'attribute':
         // Output no label and no required marker, only the children.
-        $output .= '<div class="controls">';
         $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
         if (!empty($element['#description'])) {
           $output .= '<p class="help-block">' . $element['#description'] . "</p>\n";
         }
-        $output .= '</div>';
 
         break;
     }
@@ -647,19 +688,16 @@ function boots_core_form_element_label($variables) {
 
   $title = filter_xss_admin($element['#title']);
 
-  $attributes = array();
-  // Add bootstrap class
-  $attributes['class'] = 'control-label';
+  $attributes = array('class' => array());
 
-  // Style the label as class option to display inline with the element.
+  // Style the label as class control label to display inline with the element.
   if ($element['#title_display'] == 'after') {
-    $attributes['class'] .= ' option';
+    $attributes['class'][] = ' control-label';
   }
   // Show label only to screen readers to avoid disruption in visual flows.
   elseif ($element['#title_display'] == 'invisible') {
-    $attributes['class'] .= ' element-invisible';
+    $attributes['class'][] = 'sr-only';
   }
-
 
   if (!empty($element['#id'])) {
     $attributes['for'] = $element['#id'];
@@ -679,7 +717,7 @@ function boots_core_textfield($variables) {
   $element = $variables['element'];
   $element['#attributes']['type'] = 'text';
   element_set_attributes($element, array('id', 'name', 'value', 'size', 'maxlength'));
-  _form_set_class($element, array('form-text'));
+  _form_set_class($element, array('form-control'));
 
   if ($element['#required']) {
     $element['#attributes']['required'] = 'required';
@@ -702,6 +740,18 @@ function boots_core_textfield($variables) {
   $output = '<input' . drupal_attributes($element['#attributes']) . ' />';
 
   return $output . $extra;
+}
+
+/**
+ * Overrides theme_password.
+ */
+function boots_core_password($variables) {
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'password';
+  element_set_attributes($element, array('id', 'name', 'size', 'maxlength'));
+  _form_set_class($element, array('form-control'));
+
+  return '<input' . drupal_attributes($element['#attributes']) . ' />';
 }
 
 /**
@@ -850,10 +900,9 @@ function boots_core_facetapi_link_active($variables) {
   // position of the widget on a per-language basis.
   $replacements = array(
     '!link_text' => '<span class="term">' . $link_text . '</span>',
-    '!facetapi_deactivate_widget' => '<button class="close">&times;</button>',
     '!facetapi_accessible_markup' => theme('facetapi_accessible_markup', $accessible_vars),
   );
-  $variables['text'] = t('!link_text !facetapi_deactivate_widget !facetapi_accessible_markup', $replacements);
+  $variables['text'] = t('!link_text !facetapi_accessible_markup', $replacements);
   $variables['options']['html'] = TRUE;
   return  theme_link($variables);
 }
