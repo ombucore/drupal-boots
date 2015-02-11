@@ -884,6 +884,24 @@ img {
   max-width: 100%;
   height: auto;
 }
+.video-container {
+  width: 100%;
+}
+.video-container .video-frame {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%;
+  padding-bottom: 35px;
+  overflow: hidden;
+}
+.video-container .video-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 .menu-toggle,
 .submenu-toggle {
   display: none;
