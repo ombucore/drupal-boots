@@ -111,19 +111,24 @@ function boots_core_form_user_login_alter(&$form, $form_state) {
 function boots_core_breadcrumb($variables) {
   $breadcrumb = $variables['breadcrumb'];
   if (!empty($breadcrumb)) {
+    $output = '<li>' . implode(' </li><li>', $breadcrumb) . '</li>';
+
     if (variable_get('breadcrumb_show_page_title', FALSE)) {
       // Optionally show menu title instead of page title.
       if (variable_get('breadcrumb_use_menu_title', FALSE)) {
         $link = menu_link_get_preferred();
         // If link has been found, use title, otherwise default to current
         // title.
-        $breadcrumb[] = !empty($link['link_title']) ? $link['link_title'] : drupal_get_title();
+        $current_title = !empty($link['link_title']) ? $link['link_title'] : drupal_get_title();
       }
       else {
-        $breadcrumb[] = drupal_get_title();
+        $current_title = drupal_get_title();
       }
+
+      $output .= '<li class="active">' . $current_title . '</li>';
     }
-    $output = '<ul class="breadcrumb"><li>' . implode(' <span class="divider">/</span></li><li>', $breadcrumb) . '</li></ul>';
+
+    $output = '<ol class="breadcrumb">' . $output . '</ol>';
     return $output;
   }
 }
