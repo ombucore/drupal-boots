@@ -42,26 +42,22 @@
  */
 ?>
 <!doctype html>
-<!--[if lt IE 7]>      <html lang="<?php print $language->language; ?>" class="lt-ie10 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="<?php print $language->language; ?>" class="lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="<?php print $language->language; ?>" class="lt-ie10 lt-ie9"> <![endif]-->
-<!--[if IE 9]>         <html lang="<?php print $language->language; ?>" class="lt-ie10"> <![endif]-->
-<!--[if gt IE 9]><!--> <html lang="<?php print $language->language; ?>" class="not-ie"> <!--<![endif]-->
+<html lang="<?php print $language->language; ?>">
 <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title><?php print $head_title; ?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0.0" />
   <?php print $head; ?>
   <?php print $styles; ?>
+  <script type="text/javascript">document.documentElement.setAttribute('data-useragent', navigator.userAgent);</script>
   <script src="<?php print url(drupal_get_path('theme', 'boots_core')) . '/js/modernizr.js'; ?>"></script>
 </head>
-<!-- <body class="<?php print $classes; ?>" <?php print $attributes;?>> -->
-<body class="<?php print $classes; ?>" <?php print $attributes;?>
-    data-grid-framework="bf" data-grid-color="blue" data-grid-opacity="0.5"
-    data-grid-zindex="0" data-grid-nbcols="12">
+  <body class="<?php print $classes; ?>" <?php print $attributes;?>>
     <div id="wrap">
       <?php print $page_top; ?>
       <?php print $page; ?>
       <?php print $scripts; ?>
       <?php print $page_bottom; ?>
     </div>
-</body>
+  </body>
 </html>
