@@ -962,6 +962,7 @@ ul.field-collection-view-links li a {
 .select2-container {
   width: 100% !important;
   /* Width is set as an inline style, unfortunately. */
+  max-width: 480px;
 }
 .select2-container .select2-choice,
 .select2-container.select2-container-active .select2-choice {
@@ -983,11 +984,16 @@ ul.field-collection-view-links li a {
 }
 .select2-container .select2-choice .select2-chosen,
 .select2-container.select2-container-active .select2-choice .select2-chosen {
-  margin-right: 56px;
+  margin-right: 68px;
 }
 .select2-container .select2-choice .select2-search-choice-close,
 .select2-container.select2-container-active .select2-choice .select2-search-choice-close {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 36px;
   width: 32px;
+  height: auto;
   font-family: sans-serif;
   font-size: 20px;
   line-height: 1;
@@ -999,13 +1005,19 @@ ul.field-collection-view-links li a {
 .select2-container .select2-choice .select2-search-choice-close:before,
 .select2-container.select2-container-active .select2-choice .select2-search-choice-close:before {
   content: '×';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  margin-top: -0.5em;
 }
 .select2-container .select2-choice .select2-arrow,
 .select2-container.select2-container-active .select2-choice .select2-arrow {
-  width: 24px;
+  width: 36px;
   border: 0;
   border-radius: 0;
-  background: none;
+  background: black;
+  text-align: center;
 }
 .select2-container .select2-choice .select2-arrow b,
 .select2-container.select2-container-active .select2-choice .select2-arrow b {
@@ -1015,7 +1027,7 @@ ul.field-collection-view-links li a {
   font-size: 13px;
   line-height: 1;
   font-weight: normal;
-  color: black;
+  color: white;
   text-shadow: none;
 }
 .select2-container .select2-choice .select2-arrow b:before,
@@ -1055,7 +1067,7 @@ ul.field-collection-view-links li a {
   height: 32px;
   margin-top: -0.6em;
   padding: 1px 0 0 3px;
-  color: black;
+  color: green;
   font-size: 32px;
   line-height: 1;
   font-family: sans-serif;
