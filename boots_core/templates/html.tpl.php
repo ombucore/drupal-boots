@@ -42,7 +42,7 @@
  */
 ?>
 <!doctype html>
-<html lang="<?php print $language->language; ?>">
+<html id="top" lang="<?php print $language->language; ?>">
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title><?php print $head_title; ?></title>
@@ -59,5 +59,6 @@
       <?php print $scripts; ?>
       <?php print $page_bottom; ?>
     </div>
+    <div id="top-link"><a href="#top"><span>Top</span></a></div>
   </body>
 </html>
