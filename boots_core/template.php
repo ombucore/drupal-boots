@@ -107,7 +107,7 @@ function boots_core_breadcrumb($variables) {
         $current_title = drupal_get_title();
       }
 
-      $output .= '<li class="active">' . $current_title . '</li>';
+      $output .= '<li class="active"><span class="no-link">' . $current_title . '</span></li>';
     }
 
     $output = '<ol class="breadcrumb">' . $output . '</ol>';
