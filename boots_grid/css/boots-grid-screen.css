@@ -862,10 +862,15 @@ hr {
     margin-left: 91.66666667%;
   }
 }
+a.contextual-links-trigger {
+  width: 32px;
+  text-indent: 999999px;
+}
 div.contextual-links-active a.contextual-links-trigger {
   position: relative;
   background-color: white;
   overflow: visible;
+  outline: 0;
 }
 div.contextual-links-active a.contextual-links-trigger:before {
   content: '';
@@ -876,22 +881,26 @@ div.contextual-links-active a.contextual-links-trigger:before {
   height: 2px;
   background-color: white;
 }
-ul.contextual-links,
+ul.contextual-links {
+  padding: 3px 0 !important;
+}
 ul.contextual-links * {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  font-size: 12px;
-  line-height: 1.2;
-  letter-spacing: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: sans-serif !important;
+  font-size: 12px !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
 }
 ul.contextual-links a {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
+  padding: 4px 16px 4px 6px !important;
   background-color: white !important;
 }
 ul.contextual-links a:hover {
   background-color: #eee !important;
+}
+ul.contextual-links .bean-type a:hover {
+  background-color: transparent !important;
 }
 .field .field-label {
   font-weight: normal;
