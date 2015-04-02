@@ -1,8 +1,20 @@
-.contextual-links-trigger {
-  background-color: transparent !important;
+div.contextual-links-active a.contextual-links-trigger {
+  position: relative;
+  background-color: white;
+  overflow: visible;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 2px;
+    background-color: white;
+  }
 }
 
-.contextual-links {
+ul.contextual-links {
   &, * {
     margin: 0;
     padding: 0;
@@ -13,6 +25,12 @@
   }
 
   a {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
     background-color: white !important;
+
+    &:hover {
+      background-color: #eee !important;
+    }
   }
 }
