@@ -64,7 +64,7 @@ function boots_grid_preprocess_region(&$variables) {
  * Default implementation of theme_tiles_region().
  */
 function boots_grid_tiles_region($variables) {
-  return $variables['element']['#children'];
+  return '<div class="container">' . $variables['element']['#children'] . '</div>';
 }
 
 /**

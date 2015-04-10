@@ -1,0 +1,53 @@
+#top-link {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  html {
+    #top-link {
+      display: block;
+
+      a {
+        position: fixed;
+        top: -50px;
+        right: 0;
+        width: 64px;
+        height: 64px;
+        padding-top: 22px;
+        .font-size(10, 1);
+        font-weight: @font-weight-bold;
+        text-align: center;
+        border: 10px solid transparent;
+        border-radius: 12px;
+        color: @color-white;
+        background-color: fade(@color-black, 70);
+        text-transform: uppercase;
+        text-decoration: none;
+        opacity: 0;
+        transition: all 0.4s ease 0;
+        background-clip: padding-box;
+
+        &:before {
+          content: '';
+          position: absolute;
+          top: 10px;
+          left: 50%;
+          margin-left: -5px;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 0 5px 6px 5px;
+          border-color: transparent transparent @color-white transparent;
+        }
+      }
+    }
+
+    &.show-top-link #top-link {
+      a {
+        top: 0;
+        opacity: 1;
+        transition-delay: 0.4s;
+      }
+    }
+  }
+}

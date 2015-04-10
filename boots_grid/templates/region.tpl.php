@@ -28,8 +28,6 @@
 ?>
 <?php if ($content): ?>
   <div data-type="region" data-name="<?php print $region ?>" class="<?php print $classes; ?>">
-    <div class="container">
-      <?php print $content; ?>
-    </div>
+    <?php print $content; ?>
   </div>
 <?php endif; ?>

@@ -18,8 +18,8 @@ div[data-type="region"][data-name="console"] {
   .alert {
     overflow: hidden;
     position: relative;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding: 15px;
+    margin: 0 -15px;
 
     &.animate {
       .transition(all @transition-duration-default ease);
@@ -27,17 +27,19 @@ div[data-type="region"][data-name="console"] {
 
     &.dismissed {
       border: 0;
-      margin: 0;
-      padding: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-top: 0;
+      padding-bottom: 0;
       max-height: 0 !important;
-      .opacity(0);
+      opacity: 0;
     }
   }
 
   h3 {
     margin: 0 50px 0 0;
     font-weight: normal;
-    .opacity(0.5);
+    opacity: 0.5;
   }
 
   .messages {
@@ -82,15 +84,17 @@ div[data-type="region"][data-name="console"] {
     line-height: 42px;
     color: black;
     background-color: transparent;
-    .opacity(0.5);
+    opacity: 0.5;
     .transition(all @transition-duration-fast ease);
+    cursor: pointer;
 
     &:after {
       content: '✖';
       position: absolute;
-      top: 0;
+      top: 50%;
       left: 0;
       width: 100%;
+      margin-top: -0.5em;
     }
 
     span {
@@ -100,7 +104,7 @@ div[data-type="region"][data-name="console"] {
     &:hover {
       background-color: black;
       color: white;
-      .opacity(1);
+      opacity: 1;
     }
   }
 
@@ -124,7 +128,7 @@ aside[data-module="ombubench"][data-delta="moderation"] {
   margin-bottom: 15px;
 
   h2 {
-    .opacity(0.5);
+    opacity: 0.5;
     font-size: 1.5em;
     margin: 0.75em 0 0.25em 0;
   }
