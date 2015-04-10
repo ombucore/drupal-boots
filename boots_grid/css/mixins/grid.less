@@ -1,0 +1,35 @@
+// Use this mixin to set the site grid's maximum width and appropriate gutters
+// for each breakpoint desired.  Gutters are added to the provided maximum width
+// so that the actual content inside a full-width block reflects the desired
+// maximum width, after it's been padded.
+
+.set-grid-metrics(@gutter-side: 15px, @max-width: none) {
+  #page {
+    > [data-type="region"],
+    > [data-type="region-container"] {
+      > .container {
+        .set-grid-max-width(@gutter-side, @max-width);
+        position: relative;
+        padding-left: @gutter-side;
+        padding-right: @gutter-side;
+      }
+    }
+
+    > [data-type="region-container"][data-name="core"] {
+      [data-type="region"] {
+        > .container {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}
+
+.set-grid-max-width(@gutter-side, @max-width) when (ispixel(@max-width)) {
+  max-width: @max-width + (@gutter-side * 2);
+}
+
+.set-grid-max-width(@gutter-side, @max-width) when (default()) {
+  max-width: none;
+}

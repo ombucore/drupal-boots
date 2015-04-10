@@ -1,10 +1,22 @@
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 html, body {
   overflow-x: hidden;
 }
 
-// Fixes height/positioning issues with overlay
+html {
+  -webkit-text-size-adjust: none;
+  overflow-x: hidden;
+}
+
 body {
   position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 // Generally prevent images from breaking their containers.
@@ -12,6 +24,9 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+// Common elements
+// -----------------------------------------------------------------------------
 
 // Responsive video iframes.
 .video-container {
@@ -35,8 +50,17 @@ img {
   }
 }
 
+// Grid
+// -----------------------------------------------------------------------------
+
+.container {
+  max-width: none;
+}
+
+.set-grid-metrics(@gutter-side-mobile);
+
 // Menus
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 // Markup for menu and submenu toggle controls should be hidden by default.
 .menu-toggle, .submenu-toggle {
@@ -101,7 +125,7 @@ img {
 }
 
 // Search
-// ----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 ul.facetapi-ombucleanup-dropdowns,
 ul.facetapi-facetapi-links {
   padding-left: 0;
