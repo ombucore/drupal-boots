@@ -15,11 +15,26 @@
       }
     }
 
+    // Exceptions for regions nested within region containers.
     > [data-type="region-container"][data-name="core"] {
       [data-type="region"] {
         > .container {
           padding-left: 0;
           padding-right: 0;
+        }
+      }
+    }
+
+    // Exceptions for the tile sections region container and its nested regions.
+    > [data-type="region-container"][data-name="sections"] {
+      > .field-type-tiles-section  {
+        [data-type="region"][data-name="section"] {
+          &:extend(#page > [data-type="region"] all);
+
+          > .container > .container {
+            padding-left: 0;
+            padding-right: 0;
+          }
         }
       }
     }
