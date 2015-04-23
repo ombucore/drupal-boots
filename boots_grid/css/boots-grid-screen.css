@@ -1209,10 +1209,6 @@ html.overlay-open .displace-bottom {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-html,
-body {
-  overflow-x: hidden;
-}
 html {
   -webkit-text-size-adjust: none;
   overflow-x: hidden;
@@ -1220,7 +1216,6 @@ html {
 body {
   position: relative;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 img {
   max-width: 100%;
