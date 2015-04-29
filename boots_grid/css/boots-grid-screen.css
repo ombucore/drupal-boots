@@ -1212,10 +1212,12 @@ html.overlay-open .displace-bottom {
 html {
   -webkit-text-size-adjust: none;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 body {
   position: relative;
   min-height: 100vh;
+  overflow: hidden;
 }
 img {
   max-width: 100%;
