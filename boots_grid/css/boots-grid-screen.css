@@ -1223,6 +1223,9 @@ img {
   max-width: 100%;
   height: auto;
 }
+iframe {
+  border: 0;
+}
 .video-container {
   width: 100%;
 }
