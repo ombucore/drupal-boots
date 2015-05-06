@@ -867,7 +867,7 @@ function boots_core_file($variables) {
   $no_file = isset($variables['no_file_text']) ? $variables['no_file_text'] : t('No file chosen');
 
   return '<div class="file-input">
-    <label for="edit-file">' . $choose . '</label>
+    <label for="' . $element['#id'] . '">' . $choose . '</label>
     <input' . drupal_attributes($element['#attributes']) . ' />
     <p class="value">' . $no_file . '</p>
   </div>';
