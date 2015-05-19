@@ -1171,6 +1171,9 @@ iframe {
   padding-left: 0;
   padding-right: 0;
 }
+#page > [data-type="region-container"][data-name="sections"] > .field-type-tiles-section [data-type="region"][data-name="section"] .container.header .block.header {
+  min-height: 0;
+}
 #page > [data-type="region-container"][data-name="sections"] > .field-type-tiles-section [data-type="region"][data-name="section"] > .container > .container {
   padding-left: 0;
   padding-right: 0;

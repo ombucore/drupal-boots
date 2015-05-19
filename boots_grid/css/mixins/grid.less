@@ -31,6 +31,12 @@
         [data-type="region"][data-name="section"] {
           &:extend(#page > [data-type="region"] all);
 
+          .container.header {
+            .block.header {
+              min-height: 0;
+            }
+          }
+
           > .container > .container {
             padding-left: 0;
             padding-right: 0;
