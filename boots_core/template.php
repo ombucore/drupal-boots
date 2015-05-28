@@ -877,6 +877,25 @@ function boots_core_fieldset($variables) {
 }
 
 /**
+ * Override theme_file.
+ */
+function boots_core_file($variables) {
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'file';
+  element_set_attributes($element, array('id', 'name', 'size'));
+  _form_set_class($element, array('form-file'));
+
+  $choose = isset($variables['choose_text']) ? $variables['choose_text'] : t('Choose a file');
+  $no_file = isset($variables['no_file_text']) ? $variables['no_file_text'] : t('No file chosen');
+
+  return '<div class="file-input">
+    <label for="' . $element['#id'] . '">' . $choose . '</label>
+    <input' . drupal_attributes($element['#attributes']) . ' />
+    <p class="value">' . $no_file . '</p>
+  </div>';
+}
+
+/**
  * Themes the progress bar with Bootstrap markup
  */
 function boots_core_progress_bar($variables) {

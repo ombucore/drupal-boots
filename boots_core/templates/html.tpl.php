@@ -50,6 +50,9 @@
   <?php print $head; ?>
   <?php print $styles; ?>
   <script type="text/javascript">document.documentElement.setAttribute('data-useragent', navigator.userAgent);</script>
+  <!--[if IE 7 ]> <script type="text/javascript">document.documentElement.className += ' ie7';</script> <![endif]-->
+  <!--[if IE 8 ]> <script type="text/javascript">document.documentElement.className += ' ie8';</script> <![endif]-->
+  <!--[if IE 9 ]> <script type="text/javascript">document.documentElement.className += ' ie9';</script> <![endif]-->
   <script src="<?php print url(drupal_get_path('theme', 'boots_core')) . '/js/modernizr.js'; ?>"></script>
 </head>
   <body class="<?php print $classes; ?>" <?php print $attributes;?>>

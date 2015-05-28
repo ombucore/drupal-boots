@@ -5,17 +5,27 @@
  */
 ?>
 
+<!-- Site Top -->
 <?php if (!empty($page['site_top'])): ?>
 <?php print render($page['site_top']); ?>
 <?php endif ?>
 
-<div id="container" class="container <?php print $classes ?>">
+<div id="page" class="<?php print $classes ?>">
 
-    <?php if (!empty($page['header'])): ?> <?php print render($page['header']); ?> <?php endif ?>
+  <!-- Header -->
+  <?php if (!empty($page['header'])): ?> <?php print render($page['header']); ?> <?php endif ?>
 
-    <?php if ($messages) { print $messages; } ?>
+  <!-- Console Messages -->
+  <?php if ($messages) { print $messages; } ?>
 
-    <div class="row">
+  <!-- Content top -->
+  <?php if (!empty($page['content_top'])): ?>
+  <?php print render($page['content_top']); ?>
+  <?php endif ?>
+
+  <div data-type="region-container" data-name="core">
+    <div class="container">
+      <div class="row">
 
         <!-- Sidebar First-->
         <?php if (!empty($page['sidebar_first'])): ?>
@@ -23,27 +33,32 @@
         <?php endif ?>
 
         <!-- Main Content -->
-        <div class="col-xs-<?php print $content_col_width_xs; ?> col-sm-<?php print $content_col_width_sm; ?> col-md-<?php print $content_col_width_md; ?> col-lg-<?php print $content_col_width_lg; ?>">
-
-            <?php if (!empty($page['content_top'])): ?>
-            <?php print render($page['content_top']); ?>
-            <?php endif ?>
-            <?php if (!empty($page['content'])): ?>
-            <?php print render($page['content']); ?>
-            <?php endif ?>
+        <div id="main" class="col-xs-<?php print $content_col_width_xs; ?> col-sm-<?php print $content_col_width_sm; ?> col-md-<?php print $content_col_width_md; ?> col-lg-<?php print $content_col_width_lg; ?>">
+        <?php if (!empty($page['content'])): ?>
+        <?php print render($page['content']); ?>
+        <?php endif ?>
         </div>
 
         <!-- Sidebar Second -->
         <?php if (!empty($page['sidebar_second'])): ?>
         <?php print render($page['sidebar_second']); ?>
         <?php endif ?>
-    </div><!-- /.row -->
 
+      </div>
+    </div>
+  </div>
 
-    <?php if (!empty($page['footer'])): ?> <?php print render($page['footer']); ?> <?php endif ?>
+  <!-- Content Bottom -->
+  <?php if (!empty($page['content_bottom'])): ?>
+  <?php print render($page['content_bottom']); ?>
+  <?php endif ?>
 
-</div> <!--/#container -->
+  <!-- Footer -->
+  <?php if (!empty($page['footer'])): ?> <?php print render($page['footer']); ?> <?php endif ?>
 
+</div>
+
+<!-- Site Bottom -->
 <?php if (!empty($page['site_bottom'])): ?>
 <?php print render($page['site_bottom']); ?>
 <?php endif ?>

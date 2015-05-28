@@ -4,8 +4,9 @@
 // ----------------------------------------------------------------------------
 
 div[data-type="region"][data-name="console"] {
-  background: @color-console-background;
   clear: both;
+  color: @color-console-foreground;
+  background: @color-console-background;
 
   > .container {
     position: relative;
@@ -39,16 +40,14 @@ div[data-type="region"][data-name="console"] {
   h3 {
     margin: 0 50px 0 0;
     font-weight: normal;
-    opacity: 0.5;
+    opacity: 0.6;
+    text-transform: uppercase;
+    font-size: 100%;
   }
 
   .messages {
-    font-weight: bold;
-
     p {
       margin: 0.5em 0 0 0;
-      color: black;
-      opacity: 0.75;
     }
 
     > ul {
@@ -91,6 +90,8 @@ div[data-type="region"][data-name="console"] {
     &:after {
       content: '✖';
       position: absolute;
+      font-size: 24px;
+      line-height: 1;
       top: 50%;
       left: 0;
       width: 100%;
@@ -102,8 +103,6 @@ div[data-type="region"][data-name="console"] {
     }
 
     &:hover {
-      background-color: black;
-      color: white;
       opacity: 1;
     }
   }
@@ -128,7 +127,6 @@ aside[data-module="ombubench"][data-delta="moderation"] {
   margin-bottom: 15px;
 
   h2 {
-    opacity: 0.5;
     font-size: 1.5em;
     margin: 0.75em 0 0.25em 0;
   }
