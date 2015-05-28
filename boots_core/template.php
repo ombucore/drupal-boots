@@ -444,6 +444,7 @@ function boots_core_bean_container_tabs($variables) {
       'data' => '<a data-toggle="tab" href="#' . $parent->delta . '-' . $key . '">' . $block->subject . '</a>',
       'class' => $key == 0 ? array('active') : array(),
     );
+    $options['#' . $parent->delta . '-' . $key] = $block->subject;
 
     // Hide subject, since it's shown in tab.
     $block->subject = '';
@@ -457,12 +458,33 @@ function boots_core_bean_container_tabs($variables) {
     $key++;
   }
 
+  $select = array(
+    '#name' => 'select',
+    '#type' => 'select',
+    '#options' => $options,
+    '#attached' => array(
+      'js' => array('
+      jQuery(function() {
+        jQuery(".tabbable-select select").change(function() {
+          var content = jQuery(this).closest(".tabbable-select").siblings(".tab-content");
+          jQuery(content).find(".tab-pane").removeClass("active");
+          jQuery(content).find(this.value).addClass("active");
+        });
+      });' => array('type' => 'inline'),
+      ),
+    ),
+    '#prefix' => t('<div class="tabbable-select"><h5>Select from the following:</h5><div class="form-type-select"><div class="controls">'),
+    '#suffix' => '</div></div></div>',
+  );
+
   $output .= theme('item_list', array(
     'items' => $nav,
     'attributes' => array(
       'class' => array('nav', 'nav-tabs'),
     ),
   ));
+
+  $output .= drupal_render($select);
 
   $output .= '<div class="tab-content">' . join('', $items) . '</div>';
 
