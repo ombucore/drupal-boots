@@ -39,4 +39,3 @@ scripts[] = js/boots-grid-alerts.js
 scripts[] = js/boots-grid-menus.js
 scripts[] = js/boots-grid-contextual.js
 scripts[] = js/boots-grid-fastclick.js
-scripts[] = js/boots-grid-responsive-video.js
