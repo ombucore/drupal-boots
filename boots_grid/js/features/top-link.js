@@ -6,7 +6,7 @@
 
       // Scroll user to the top of the document on click of the top link.
       $topLink.on('click', function(e) {
-        e.preventDefault;
+        e.preventDefault();
         $('html, body').animate({scrollTop: 0}, 500);
       });
 
