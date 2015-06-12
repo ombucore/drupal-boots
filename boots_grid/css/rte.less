@@ -5,6 +5,14 @@
   // styles associate with pre (e.g., white space, word breaks, etc.) must be
   // overriden.
   pre {
+    &.pull-left {
+      clear: left;
+    }
+
+    &.pull-right {
+      clear: right;
+    }
+    
     &.pull-left, &.pull-right {
       font-family: inherit;
       white-space: normal;
