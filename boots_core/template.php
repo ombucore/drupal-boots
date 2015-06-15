@@ -934,3 +934,13 @@ function boots_core_facetapi_link_active($variables) {
   $variables['options']['html'] = TRUE;
   return  theme_link($variables);
 }
+
+/**
+ * Implements hook_preprocess_file_entity().
+ */
+function boots_core_preprocess_file_entity(&$variables) {
+  // Removes contextual links from files.
+  if (!empty($variables['title_suffix']['contextual_links'])) {
+    $variables['title_suffix']['contextual_links'] = array();
+  }
+}
