@@ -944,3 +944,35 @@ function boots_core_preprocess_file_entity(&$variables) {
     $variables['title_suffix']['contextual_links'] = array();
   }
 }
+
+/**
+ * Overrides theme_apachesolr_search_noresults().
+ */
+function boots_core_apachesolr_search_noresults() {
+  global $language_url;
+
+  // Show a list of all available languages that aren't active.
+  $links = array();
+  $languages = language_list();
+  foreach ($languages as $language) {
+    if ($language_url->language != $language->language) {
+      $links[] = l($language->native, current_path(), array(
+        'language' => $language,
+      ));
+    }
+  }
+
+  if (count($links) > 0) {
+    return t('<ul>
+      <li>Check if your spelling is correct, or try removing filters.</li>
+      <li>Remove quotes around phrases to match each word individually: <em>"blue drop"</em> will match less than <em>blue drop</em>.</li>
+      <li>You can require or exclude terms using + and -: <em>big +blue drop</em> will require a match on <em>blue</em> while <em>big blue -drop</em> will exclude results that contain <em>drop</em>.</li>
+      <li>You can also try this search in a different language: !languages</li>
+      </ul>', array(
+        '!languages' => join(' | ', $links)
+    ));
+  }
+  else {
+    return theme_apachesolr_search_noresults();
+  }
+}
