@@ -473,6 +473,9 @@ function boots_core_bean_container_tabs($variables) {
       });' => array('type' => 'inline'),
       ),
     ),
+    '#attributes' => array(
+      'class' => array('select2-exclude'),
+    ),
     '#prefix' => t('<div class="tabbable-select"><h5>Select from the following:</h5><div class="form-type-select"><div class="controls">'),
     '#suffix' => '</div></div></div>',
   );
