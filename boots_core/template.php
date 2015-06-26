@@ -444,6 +444,7 @@ function boots_core_bean_container_tabs($variables) {
       'data' => '<a data-toggle="tab" href="#' . $parent->delta . '-' . $key . '">' . $block->subject . '</a>',
       'class' => $key == 0 ? array('active') : array(),
     );
+    $options['#' . $parent->delta . '-' . $key] = $block->subject;
 
     // Hide subject, since it's shown in tab.
     $block->subject = '';
@@ -457,12 +458,36 @@ function boots_core_bean_container_tabs($variables) {
     $key++;
   }
 
+  $select = array(
+    '#name' => 'select',
+    '#type' => 'select',
+    '#options' => $options,
+    '#attached' => array(
+      'js' => array('
+      jQuery(function() {
+        jQuery(".tabbable-select select").change(function() {
+          var content = jQuery(this).closest(".tabbable-select").siblings(".tab-content");
+          jQuery(content).find(".tab-pane").removeClass("active");
+          jQuery(content).find(this.value).addClass("active");
+        });
+      });' => array('type' => 'inline'),
+      ),
+    ),
+    '#attributes' => array(
+      'class' => array('select2-exclude'),
+    ),
+    '#prefix' => t('<div class="tabbable-select"><h5>Select from the following:</h5><div class="form-type-select"><div class="controls">'),
+    '#suffix' => '</div></div></div>',
+  );
+
   $output .= theme('item_list', array(
     'items' => $nav,
     'attributes' => array(
       'class' => array('nav', 'nav-tabs'),
     ),
   ));
+
+  $output .= drupal_render($select);
 
   $output .= '<div class="tab-content">' . join('', $items) . '</div>';
 
@@ -911,4 +936,46 @@ function boots_core_facetapi_link_active($variables) {
   $variables['text'] = t('!link_text !facetapi_accessible_markup', $replacements);
   $variables['options']['html'] = TRUE;
   return  theme_link($variables);
+}
+
+/**
+ * Implements hook_preprocess_file_entity().
+ */
+function boots_core_preprocess_file_entity(&$variables) {
+  // Removes contextual links from files.
+  if (!empty($variables['title_suffix']['contextual_links'])) {
+    $variables['title_suffix']['contextual_links'] = array();
+  }
+}
+
+/**
+ * Overrides theme_apachesolr_search_noresults().
+ */
+function boots_core_apachesolr_search_noresults() {
+  global $language_url;
+
+  // Show a list of all available languages that aren't active.
+  $links = array();
+  $languages = language_list();
+  foreach ($languages as $language) {
+    if ($language_url->language != $language->language) {
+      $links[] = l($language->native, current_path(), array(
+        'language' => $language,
+      ));
+    }
+  }
+
+  if (count($links) > 0) {
+    return t('<ul>
+      <li>Check if your spelling is correct, or try removing filters.</li>
+      <li>Remove quotes around phrases to match each word individually: <em>"blue drop"</em> will match less than <em>blue drop</em>.</li>
+      <li>You can require or exclude terms using + and -: <em>big +blue drop</em> will require a match on <em>blue</em> while <em>big blue -drop</em> will exclude results that contain <em>drop</em>.</li>
+      <li>You can also try this search in a different language: !languages</li>
+      </ul>', array(
+        '!languages' => join(' | ', $links)
+    ));
+  }
+  else {
+    return theme_apachesolr_search_noresults();
+  }
 }
