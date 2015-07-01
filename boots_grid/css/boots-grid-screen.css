@@ -776,7 +776,7 @@ table {
 }
 a.contextual-links-trigger {
   width: 32px;
-  text-indent: 999999px;
+  font-size: 0;
 }
 div.contextual-links-active a.contextual-links-trigger {
   position: relative;
