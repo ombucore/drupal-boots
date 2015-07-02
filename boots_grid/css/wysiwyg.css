@@ -20,6 +20,9 @@ body.cke_editable h6 {
   color: black;
   font-weight: bold;
 }
+body.cke_editable hr {
+  clear: both;
+}
 body.cke_editable a {
   color: #000096;
 }
@@ -87,6 +90,8 @@ body.cke_editable a.btn {
 }
 body.cke_editable a.cta {
   font-weight: bold;
+  background-color: #c3c3c3;
+  border-bottom-color: #9c9c9c;
 }
 body.cke_editable a.cta:after {
   content: ' →';
