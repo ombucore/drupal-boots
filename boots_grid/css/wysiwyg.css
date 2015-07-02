@@ -79,7 +79,8 @@ body.cke_editable blockquote.pull-left,
 body.cke_editable blockquote.pull-right {
   width: 33%;
 }
-body.cke_editable a.btn {
+body.cke_editable a.btn,
+body.cke_editable a.cta {
   display: inline-block;
   padding: 0.5em 3.0em;
   background-color: #dcdcdc;
