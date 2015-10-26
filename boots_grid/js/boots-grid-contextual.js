@@ -63,7 +63,7 @@
             }
             else {
               $region.css({
-                'min-height': 0
+                'min-height': '' 
               });
             }
           }
