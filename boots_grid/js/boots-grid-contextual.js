@@ -48,10 +48,13 @@
         var $wrapper = $region.find('.contextual-links-wrapper');
         var $trigger = $wrapper.find('.contextual-links-trigger');
         var $links = $wrapper.find('.contextual-links');
+
         var minHeight = $links.outerHeight() + $trigger.outerHeight() + 10;
+        var originalMinHeight = parseInt($region.css('min-height')) > 0 ? $region.css('min-height') : '20px';
 
         $region.css({
-          'transition': 'min-height 0.15s ease'
+          'transition': 'min-height 0.15s ease',
+          'min-height': originalMinHeight
         });
 
         $wrapper.attrchange(function(attrName) {
@@ -63,7 +66,7 @@
             }
             else {
               $region.css({
-                'min-height': '' 
+                'min-height': originalMinHeight
               });
             }
           }
