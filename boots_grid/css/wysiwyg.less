@@ -127,7 +127,10 @@ body.cke_editable {
   // ---------------------------------------------------------------------------
 
   a.cta {
+    &:extend(body.cke_editable a.btn);
     font-weight: bold;
+    background-color: darken(@color-gray, 10);
+    border-bottom-color: darken(@color-gray, 25);
 
     &:after {
       content: ' →';

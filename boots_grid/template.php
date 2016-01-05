@@ -21,20 +21,26 @@ function boots_grid_preprocess_page(&$variables) {
 }
 
 function boots_grid_preprocess_block(&$variables) {
-    $b = $variables['block'];
-    $ca = &$variables['classes_array'];
+  $b = $variables['block'];
+  $ca = &$variables['classes_array'];
 
-    // remove some classes
-    unset($ca[array_search('block', $ca)]);
-    unset($ca[array_search(str_replace('_', '-', 'block-' . $b->module), $ca)]);
+  // Remove some classes.
+  unset($ca[array_search('block', $ca)]);
+  unset($ca[array_search(str_replace('_', '-', 'block-' . $b->module), $ca)]);
 
-    // add grid column class
-    if (isset($b->width)) {
-      $ca[] = 'col-xs-' . 12;
-      $ca[] = 'col-sm-' . $b->width;
-      $ca[] = 'col-md-' . $b->width;
-      $ca[] = 'col-lg-' . $b->width;
-    }
+  // Add grid column class.
+  if (isset($b->width)) {
+    $ca[] = 'col-xs-' . 12;
+    $ca[] = 'col-sm-' . $b->width;
+    $ca[] = 'col-md-' . $b->width;
+    $ca[] = 'col-lg-' . $b->width;
+  }
+  if (!empty($b->offset)) {
+    $ca[] = 'col-xs-' . 12;
+    $ca[] = 'col-sm-offset-' . $b->offset;
+    $ca[] = 'col-md-offset-' . $b->offset;
+    $ca[] = 'col-lg-offset-' . $b->offset;
+  }
 }
 
 function boots_grid_preprocess_region(&$variables) {
