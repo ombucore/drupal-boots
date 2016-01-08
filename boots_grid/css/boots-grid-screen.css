@@ -811,6 +811,7 @@ ul.contextual-links a {
 ul.contextual-links a:hover {
   background-color: #eee !important;
 }
+ul.contextual-links .bean-style a:hover,
 ul.contextual-links .bean-type a:hover {
   background-color: transparent !important;
 }
