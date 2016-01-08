@@ -55,7 +55,7 @@
 
   <!-- Sections -->
   <?php if (!empty($page['sections'])): ?>
-    <div data-type="region" data-name="sections">
+    <div data-type="region-container" data-name="sections">
         <?php print render($page['sections']) ?>
     </div>
   <?php endif ?>
