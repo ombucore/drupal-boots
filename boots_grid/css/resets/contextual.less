@@ -1,6 +1,7 @@
 a.contextual-links-trigger {
   width: 32px;
   font-size: 0;
+  transition: none !important;
 }
 
 div.contextual-links-active a.contextual-links-trigger {
@@ -35,6 +36,7 @@ ul.contextual-links {
   a {
     padding: 4px 16px 4px 6px !important;
     background-color: white !important;
+    transition: none !important;
 
     &:hover {
       background-color: #eee !important;
@@ -46,5 +48,15 @@ ul.contextual-links {
     &:hover {
       background-color: transparent !important;
     }
+  }
+}
+
+[data-type="region"][data-name="section"] {
+  .header.block > .contextual-links-wrapper {
+    right: 5px;
+  }
+
+  aside[data-type="block"] > div.contextual-links-wrapper {
+    right: 40px;
   }
 }

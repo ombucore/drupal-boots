@@ -777,6 +777,7 @@ table {
 a.contextual-links-trigger {
   width: 32px;
   font-size: 0;
+  transition: none !important;
 }
 div.contextual-links-active a.contextual-links-trigger {
   position: relative;
@@ -807,6 +808,7 @@ ul.contextual-links * {
 ul.contextual-links a {
   padding: 4px 16px 4px 6px !important;
   background-color: white !important;
+  transition: none !important;
 }
 ul.contextual-links a:hover {
   background-color: #eee !important;
@@ -814,6 +816,12 @@ ul.contextual-links a:hover {
 ul.contextual-links .bean-style a:hover,
 ul.contextual-links .bean-type a:hover {
   background-color: transparent !important;
+}
+[data-type="region"][data-name="section"] .header.block > .contextual-links-wrapper {
+  right: 5px;
+}
+[data-type="region"][data-name="section"] aside[data-type="block"] > div.contextual-links-wrapper {
+  right: 40px;
 }
 .field .field-label {
   font-weight: normal;
