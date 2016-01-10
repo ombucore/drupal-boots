@@ -5875,7 +5875,7 @@ td.visible-print {
 .field.c iframe {
   max-width: 100%;
 }
-@media (max-width: 480px) {
+@media (min-width: 480px) {
   .field.c pre.pull-left,
   .field.c blockquote.pull-left,
   .field.c p.pull-left,
