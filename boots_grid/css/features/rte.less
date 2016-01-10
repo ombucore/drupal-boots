@@ -1,5 +1,10 @@
 .field.c {
 
+  .lead {
+    font-size: 120%;
+    font-weight: bold;
+  }
+
   // To allow the left- and right-floating of images within our rich text
   // editor, we must wrap them in <pre> elements.  In this context, the normal
   // styles associate with pre (e.g., white space, word breaks, etc.) must be
@@ -12,7 +17,7 @@
     &.pull-right {
       clear: right;
     }
-    
+
     &.pull-left, &.pull-right {
       font-family: inherit;
       white-space: normal;
@@ -37,5 +42,37 @@
   // rule will at least keep the iframe contained within the site grid.
   iframe {
     max-width: 100%;
+  }
+}
+
+// MEDIA RESPONSES
+// ----------------------------------------------------------------------------
+
+@media (max-width: 480px) {
+  .field.c {
+
+    // Now that we've reached a sufficiently wide breakpoint, pull-left and
+    // pull-right elements are allowed to float accordingly.
+    pre, blockquote, p {
+      &.pull-left, &.pull-right {
+        width: 50%;
+        max-width: 350px;
+        margin: 0.5em 0;
+      }
+
+      &.pull-left {
+        float: left;
+        margin-right: 1.0em;
+      }
+
+      &.pull-right {
+        float: right;
+        margin-left: 1.0em;
+      }
+
+      img {
+        max-width: 100%;
+      }
+    }
   }
 }
