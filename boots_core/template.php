@@ -480,12 +480,16 @@ function boots_core_bean_container_tabs($variables) {
     '#suffix' => '</div></div></div>',
   );
 
+  $output .= '<div class="tabbable-tabs">';
+
   $output .= theme('item_list', array(
     'items' => $nav,
     'attributes' => array(
       'class' => array('nav', 'nav-tabs'),
     ),
   ));
+
+  $output .= '</div>';
 
   $output .= drupal_render($select);
 
