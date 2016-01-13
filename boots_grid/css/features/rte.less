@@ -5,29 +5,12 @@
     font-weight: bold;
   }
 
-  // To allow the left- and right-floating of images within our rich text
-  // editor, we must wrap them in <pre> elements.  In this context, the normal
-  // styles associate with pre (e.g., white space, word breaks, etc.) must be
-  // overriden.
-  pre, blockquote, p {
-    &.pull-left {
-      clear: left;
-    }
+  .pull-left {
+    clear: left;
+  }
 
-    &.pull-right {
-      clear: right;
-    }
-
-    &.pull-left, &.pull-right {
-      font-family: inherit;
-      white-space: normal;
-      word-break: normal;
-      word-wrap: normal;
-
-      .field-name-field-caption {
-        margin-top: 0.5em;
-      }
-    }
+  .pull-right {
+    clear: right;
   }
 
   // List items may appear beside floated elements, which can result in a
@@ -43,6 +26,10 @@
   iframe {
     max-width: 100%;
   }
+
+  img {
+    max-width: 100%;
+  }
 }
 
 // MEDIA RESPONSES
@@ -53,26 +40,20 @@
 
     // Now that we've reached a sufficiently wide breakpoint, pull-left and
     // pull-right elements are allowed to float accordingly.
-    pre, blockquote, p {
-      &.pull-left, &.pull-right {
-        width: 50%;
-        max-width: 350px;
-        margin: 0.5em 0;
-      }
+    .pull-left, .pull-right {
+      width: 50%;
+      max-width: 350px;
+      margin: 0.5em 0;
+    }
 
-      &.pull-left {
-        float: left;
-        margin-right: 1.0em;
-      }
+    .pull-left {
+      float: left;
+      margin-right: 1.0em;
+    }
 
-      &.pull-right {
-        float: right;
-        margin-left: 1.0em;
-      }
-
-      img {
-        max-width: 100%;
-      }
+    .pull-right {
+      float: right;
+      margin-left: 1.0em;
     }
   }
 }
