@@ -54,3 +54,44 @@
 .set-grid-max-width(@gutter-side, @max-width) when (default()) {
   max-width: none;
 }
+
+// DEVELOPMENT TOOLBAR
+// -----------------------------------------------------------------------------
+
+@breakpoint-icon-arrows:     '\f047';
+@breakpoint-icon-smartphone: '\f10b';
+@breakpoint-icon-tablet:     '\f10a';
+@breakpoint-icon-laptop:     '\f109';
+@breakpoint-icon-desktop:    '\f108';
+
+.phpdebugbar-header-right .phpdebugbar-indicator:nth-of-type(1) {
+  &:after {
+    margin-left: 0.25em;
+  }
+
+  > i.fa {
+    width: 16px;
+    text-align: center;
+
+    &:before {
+      display: inline-block;
+    }
+  }
+}
+
+.breakpoint-message(@text: 'Smartphone', @icon: @breakpoint-icon-smartphone, @rotate: 0deg) {
+  .phpdebugbar-header-right .phpdebugbar-indicator:nth-of-type(1) {
+    &:after {
+      content: @text;
+    }
+
+    > i.fa:before {
+      content: @icon;
+      transform: rotate(@rotate);
+    }
+
+    > .phpdebugbar-text {
+      display: none;
+    }
+  }
+}

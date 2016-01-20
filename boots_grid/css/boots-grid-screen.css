@@ -774,6 +774,16 @@ table {
     margin-left: 91.66666667%;
   }
 }
+.phpdebugbar-header-right .phpdebugbar-indicator:nth-of-type(1):after {
+  margin-left: 0.25em;
+}
+.phpdebugbar-header-right .phpdebugbar-indicator:nth-of-type(1) > i.fa {
+  width: 16px;
+  text-align: center;
+}
+.phpdebugbar-header-right .phpdebugbar-indicator:nth-of-type(1) > i.fa:before {
+  display: inline-block;
+}
 .contextual-links-region {
   transition: min-height 0.15s ease;
 }
