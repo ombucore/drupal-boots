@@ -1,3 +1,5 @@
+@z-index-contextual: 999;
+
 .contextual-links-region {
   transition: min-height 0.15s ease;
 }
@@ -63,4 +65,8 @@ ul.contextual-links {
   aside[data-type="block"] > div.contextual-links-wrapper {
     right: 40px;
   }
+}
+
+div.phpdebugbar {
+  z-index: @z-index-contextual - 1;
 }

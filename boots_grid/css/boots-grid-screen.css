@@ -836,6 +836,9 @@ ul.contextual-links .bean-type a:hover {
 [data-type="region"][data-name="section"] aside[data-type="block"] > div.contextual-links-wrapper {
   right: 40px;
 }
+div.phpdebugbar {
+  z-index: 998;
+}
 .field .field-label {
   font-weight: normal;
 }
