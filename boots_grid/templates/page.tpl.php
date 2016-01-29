@@ -53,6 +53,13 @@
   <?php print render($page['content_bottom']); ?>
   <?php endif ?>
 
+  <!-- Sections -->
+  <?php if (!empty($page['sections'])): ?>
+    <div data-type="region-container" data-name="sections">
+        <?php print render($page['sections']) ?>
+    </div>
+  <?php endif ?>
+
   <!-- Footer -->
   <?php if (!empty($page['footer'])): ?> <?php print render($page['footer']); ?> <?php endif ?>
 

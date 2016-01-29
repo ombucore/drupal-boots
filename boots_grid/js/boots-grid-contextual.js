@@ -53,7 +53,6 @@
         var originalMinHeight = parseInt($region.css('min-height')) > 0 ? $region.css('min-height') : '20px';
 
         $region.css({
-          'transition': 'min-height 0.15s ease',
           'min-height': originalMinHeight
         });
 

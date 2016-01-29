@@ -774,9 +774,23 @@ table {
     margin-left: 91.66666667%;
   }
 }
+.phpdebugbar-header-right .phpdebugbar-indicator:nth-of-type(1):after {
+  margin-left: 0.25em;
+}
+.phpdebugbar-header-right .phpdebugbar-indicator:nth-of-type(1) > i.fa {
+  width: 16px;
+  text-align: center;
+}
+.phpdebugbar-header-right .phpdebugbar-indicator:nth-of-type(1) > i.fa:before {
+  display: inline-block;
+}
+.contextual-links-region {
+  transition: min-height 0.15s ease;
+}
 a.contextual-links-trigger {
   width: 32px;
   font-size: 0;
+  transition: none !important;
 }
 div.contextual-links-active a.contextual-links-trigger {
   position: relative;
@@ -807,12 +821,23 @@ ul.contextual-links * {
 ul.contextual-links a {
   padding: 4px 16px 4px 6px !important;
   background-color: white !important;
+  transition: none !important;
 }
 ul.contextual-links a:hover {
   background-color: #eee !important;
 }
+ul.contextual-links .bean-style a:hover,
 ul.contextual-links .bean-type a:hover {
   background-color: transparent !important;
+}
+[data-type="region"][data-name="section"] .header.block > .contextual-links-wrapper {
+  right: 5px;
+}
+[data-type="region"][data-name="section"] aside[data-type="block"] > div.contextual-links-wrapper {
+  right: 40px;
+}
+div.phpdebugbar {
+  z-index: 998;
 }
 .field .field-label {
   font-weight: normal;

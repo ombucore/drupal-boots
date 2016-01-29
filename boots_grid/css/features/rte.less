@@ -1,0 +1,59 @@
+.field.c {
+
+  .lead {
+    font-size: 120%;
+    font-weight: bold;
+  }
+
+  .pull-left {
+    clear: left;
+  }
+
+  .pull-right {
+    clear: right;
+  }
+
+  // List items may appear beside floated elements, which can result in a
+  // jarring shift.  Setting overflow to hidden ensures that all list items
+  // will remain together, clearing a floated element within necessary.
+  ul, ol {
+    overflow: hidden;
+  }
+
+  // An additional wrapping container will allow us to resize iframe elements
+  // proportionally to a known aspect ratio.  In the meantime, a max-width
+  // rule will at least keep the iframe contained within the site grid.
+  iframe {
+    max-width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+// MEDIA RESPONSES
+// ----------------------------------------------------------------------------
+
+@media (min-width: 480px) {
+  .field.c {
+
+    // Now that we've reached a sufficiently wide breakpoint, pull-left and
+    // pull-right elements are allowed to float accordingly.
+    .pull-left, .pull-right {
+      width: 50%;
+      max-width: 350px;
+      margin: 0.5em 0;
+    }
+
+    .pull-left {
+      float: left;
+      margin-right: 1.0em;
+    }
+
+    .pull-right {
+      float: right;
+      margin-left: 1.0em;
+    }
+  }
+}
