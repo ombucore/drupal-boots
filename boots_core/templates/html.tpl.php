@@ -56,6 +56,9 @@
   <script src="<?php print url(drupal_get_path('theme', 'boots_core')) . '/js/modernizr.js'; ?>"></script>
 </head>
   <body class="<?php print $classes; ?>" <?php print $attributes;?>>
+    <?php if (isset($google_tag_manager)): ?>
+      <?php print $google_tag_manager; ?>
+    <?php endif; ?>
     <div id="wrap">
       <?php print $page_top; ?>
       <?php print $page; ?>
