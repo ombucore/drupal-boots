@@ -861,7 +861,7 @@ function boots_core_fieldset($variables) {
   element_set_attributes($element, array('id'));
   _form_set_class($element, array('form-wrapper'));
 
-  if ($element['#collapsible']) {
+  if (!empty($element['#collapsible'])) {
     $element['#attributes']['class'][] = 'accordion-group';
   }
 
