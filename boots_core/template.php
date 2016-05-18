@@ -220,7 +220,9 @@ function boots_core_pager($variables) {
  * Delete buttons
  */
 function boots_core_preprocess_button(&$variables) {
-  $variables['element']['#attributes']['class'] = array();
+  if (!isset($variables['element']['#attributes']['class'])){
+    $variables['element']['#attributes']['class'] = array();
+  }
   $variables['element']['#attributes']['class'][] = 'btn';
 
   if (
