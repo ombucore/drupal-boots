@@ -34,7 +34,7 @@ settings[tiles_regions][sidebar_second] = Sidebar Second
 
 stylesheets[screen][] = css/boots-grid-screen.css
 stylesheets[print][] = css/boots-grid-print.css
-scripts[] = js/vendor/fastclick.js
+scripts[] = js/vendor/fastclick.min.js
 scripts[] = js/boots-grid-alerts.js
 scripts[] = js/boots-grid-menus.js
 scripts[] = js/boots-grid-contextual.js
