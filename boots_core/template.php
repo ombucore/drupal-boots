@@ -216,6 +216,18 @@ function boots_core_pager($variables) {
 }
 
 /**
+ * Implements hook_preprocess_html().
+ */
+function boots_core_preprocess_html(&$variables) {
+  if ($node = menu_get_object()) {
+    $has_nav = field_get_items('node', $node, 'field_navigation_visible');
+    if (!empty($has_nav[0]['value'])) {
+      $variables['classes_array'][] = 'has-section-nav';
+    }
+  }
+}
+
+/**
  * Adds `btn` class to all submit buttons with special treatment for Save &
  * Delete buttons
  */
