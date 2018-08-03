@@ -20,10 +20,10 @@
       this.popup = $('<div class="dropdown"></div>')[0];
       this.popup.owner = this;
       $(this.popup).css({
-        width: $input.innerWidth() + 'px',
+        width: $input.innerWidth() + 'px'
       });
       $(this.popup).find('ul.dropdown-menu').css({
-        width: $input.innerWidth() + 'px',
+        width: $input.innerWidth() + 'px'
       });
 
       $input.after(this.popup);
